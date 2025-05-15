@@ -62,7 +62,7 @@ const MealCard = ({ meal, expanded, onPress }) => {
 //   }, [getUserOrderHistory]);
 
   setTimeout(() => setPurchased(false), 3000);
-
+  // console.log("meal image", meal.image, meal.image === undefined, meal.image === null);
   return (
     <Card
       style={{
@@ -73,7 +73,9 @@ const MealCard = ({ meal, expanded, onPress }) => {
     >
       <TouchableOpacity onPress={onPress}>
         <View style={{ flexDirection: "row", alignItems: "center", padding: 15 }}>
-          <Image source={meal.image || DEFAULT_IMAGE} style={{ width: 50, height: 50, borderRadius: 10, marginRight: 10 }} />
+          {meal.image !== undefined && (
+            <Image source={meal.image || DEFAULT_IMAGE} style={{ width: 50, height: 50, borderRadius: 10, marginRight: 10 }} />
+          )}
           <View style={{ flex: 1 }}>
             <Text style={{ fontSize: 16, fontWeight: "bold" }}>{meal.name}</Text>
             <Text numberOfLines={1} style={{ fontSize: 14, color: "gray" }}>
@@ -86,6 +88,12 @@ const MealCard = ({ meal, expanded, onPress }) => {
                 </Chip>
               ))}
             </View>
+            {!expanded && <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 15 }}>
+              <Text style={{ fontSize: 18, fontWeight: "bold", color: "black" }}>{formatPrice(meal.price)}</Text>
+              <Button mode="contained" onPress={handlePurchase} disabled={purchased}>
+                {purchased ? "Purchased" : "Buy Now"}
+              </Button>
+            </View>}
           </View>
         </View>
       </TouchableOpacity>

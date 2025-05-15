@@ -10,23 +10,23 @@ const backgroundImage = require("../../assets/images/santaClaraBackground.png");
 const meals = [
   {
     name: "Grilled Chicken Bowl",
-    image: require("../../assets/images/error404.png"), // Replace with actual image
+    // image: require("../../assets/images/error404.png"), // Replace with actual image
     ingredients: "Grilled chicken, quinoa, spinach, avocado, cherry tomatoes, lemon dressing",
-    tags: ["High Protein", "Good for Bulk"],
+    tags: ["+ Protein", "- Carbs"], //["High Protein", "Good for Bulk"],
     price: "4.99"
   },
   {
     name: "Vegan Tofu Stir-Fry",
-    image: require("../../assets/images/error404.png"), // Replace with actual image
+    // image: require("../../assets/images/error404.png"), // Replace with actual image
     ingredients: "Tofu, bell peppers, broccoli, carrots, soy sauce, sesame seeds",
-    tags: ["Low Protein", "High Carbs"], 
+    tags: ["- Protein", "+ Fiber", "+ Estrogen"], 
     price: "9.99"
   },
   {
     name: "Salmon & Brown Rice",
-    image: require("../../assets/images/error404.png"), // Replace with actual image
+    // image: require("../../assets/images/error404.png"), // Replace with actual image
     ingredients: "Grilled salmon, brown rice, asparagus, olive oil, garlic",
-    tags: ["Good for Bulk", "Reduce Bodyfat"],
+    tags: ["+ Calories", "+ Fat"],
     price: "20.01"
   }
 ];
