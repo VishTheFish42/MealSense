@@ -1,0 +1,87 @@
+{
+  "location": "Benson",
+  "date": "2025-05-15",
+  "menus": {
+    "News": {},
+    "Caf\u00e9 Hours": {},
+    "Smoothie Bar": {
+      "Smoothies": [
+        {
+          "meal": "Strawnana",
+          "price": "reg.7.65"
+        },
+        {
+          "meal": "Mango Delight",
+          "price": "reg.7.65"
+        },
+        {
+          "meal": "Tropical Matcha Smoothie",
+          "price": "reg.7.65"
+        },
+        {
+          "meal": "Creamy Strawberries",
+          "price": "reg.7.65"
+        }
+      ]
+    },
+    "Lunch Tapas Menu": {
+      "Tapas": [
+        {
+          "meal": "Cold Soba Noodle Salad",
+          "price": "reg.8.23"
+        },
+        {
+          "meal": "Soft Boiled Egg",
+          "price": "reg.2.00"
+        },
+        {
+          "meal": "Lemon Asparagus with Pecorino",
+          "price": "reg.8.73"
+        },
+        {
+          "meal": "Spicy Vegetarian Potstickers",
+          "price": "reg.10.57"
+        },
+        {
+          "meal": "Hot Cheetos Elote",
+          "price": "reg.9.75"
+        },
+        {
+          "meal": "Tuna & Watermelon Poke",
+          "price": "reg.12.83"
+        },
+        {
+          "meal": "Wagyu Beef Sliders Animal Style",
+          "price": "reg.12.50"
+        },
+        {
+          "meal": "Chicken 65",
+          "price": "reg.11.55"
+        }
+      ]
+    },
+    "Boba": {
+      "Milk Tea Bar": [
+        {
+          "meal": "House Special Milk Tea",
+          "price": "reg.7.25"
+        },
+        {
+          "meal": "Matcha Series: Strawberry or Mango",
+          "price": "reg.7.50"
+        },
+        {
+          "meal": "Peach Black Tea",
+          "price": "reg.7.50"
+        }
+      ]
+    },
+    "Icons": {},
+    "FOOD ALLERGIES": {},
+    "Events": {},
+    "About Your Food": {},
+    "Menu Mail": {},
+    "Contact Us": {},
+    "Chef Wars": {}
+  }
+}
