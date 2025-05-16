@@ -1,41 +1,59 @@
+#!/usr/bin/env python3
+import sys
+import json
 import requests
 from bs4 import BeautifulSoup
+from datetime import date
 
 BASE_URL = "https://scudining.cafebonappetit.com/cafe/marketplace-2/"
 
-def scrape_menu(date_suffix=""):  # pass "2025-05-15/" etc. if you need a specific day
-    url = BASE_URL + date_suffix
+def scrape_menu(target_date=None):
+    # build URL
+    if target_date:
+        # expect e.g. "2025-05-16" or "2025-05-16/"
+        ds = target_date.rstrip("/") + "/"
+    else:
+        ds = date.today().isoformat() + "/"
+    url = BASE_URL + ds
+    print(f"→ Scraping {url}")
+
+    # fetch & parse
     resp = requests.get(url)
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")
 
-    # 1) find all the tab targets
-    #    (the jump-nav buttons carry data-target="{tab-id}")
-    tab_ids = [btn["data-target"] for btn in soup.select("a.jump-nav__btn")]
+    # find all tab buttons to get their IDs and labels
+    tabs = []
+    for btn in soup.select("a.jump-nav__btn"):
+        tabs.append({
+            "id":   btn["data-target"],
+            "name": btn.get_text(strip=True)
+        })
 
-    report = {}
+    # collect items under each tab
+    result = {
+        "location": "Benson",
+        "date":     ds.rstrip("/"),
+        "menus":    {}
+    }
 
-    for tab in tab_ids:
-        section = soup.find("section", id=tab)
-        if not section:
-            continue
-
-        # Within each section, find every food‐item header
-        headers = section.select("header.site-panel__daypart-item-header")
+    for tab in tabs:
+        section = soup.find("section", id=tab["id"])
         items = []
-        for hdr in headers:
-            name = hdr.select_one("button.site-panel__daypart-item-title").get_text(strip=True)
-            price = hdr.select_one("div.site-panel__daypart-item-price").get_text(strip=True)
-            items.append((name, price))
+        if section:
+            for hdr in section.select("header.site-panel__daypart-item-header"):
+                name_el  = hdr.select_one("button.site-panel__daypart-item-title")
+                price_el = hdr.select_one("div.site-panel__daypart-item-price")
+                if not name_el or not price_el:
+                    continue
+                items.append({
+                    "meal":  name_el.get_text(strip=True),
+                    "price": price_el.get_text(strip=True)
+                })
+        result["menus"][tab["name"]] = items
 
-        report[tab] = items
-
-    return report
+    return result
 
 if __name__ == "__main__":
     menu = scrape_menu()
-    # Print a quick report
-    for tab, items in menu.items():
-        print(f"\n=== {tab.capitalize():<12} ({len(items)} items) ===")
-        for name, price in items:
-            print(f"  • {name:<40}  ${price}")
+    print(menu)
