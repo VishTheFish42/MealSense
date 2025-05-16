@@ -1,0 +1,91 @@
+{
+    meals: [
+      {
+        name: "BYO Pizza",
+        baseNutrition: ????,
+        basePrice: 11.99,
+        modifications: [
+          {
+            name: "Crust",
+            maximum: 1,
+            options: [
+              {
+                label: "Gluten Free",
+                nutrition: ????,
+              },
+              {
+                label: "Regular",
+                nutrition: ????,
+              }
+            ]
+          },
+          {
+            name: "Sauce",
+            maximum: 1,
+            options: [
+              {
+                label: "Marinara",
+                nutrition: ????,
+              },
+              {
+                label: "Garlic Cream Sauce",
+                nutrition: ????,
+              },
+              {
+                label: "No Sauce",
+              }
+            ]
+          },
+          {
+            name: "Protein",
+            maximum: 3,
+            options: [
+              {
+                label: "Chicken",
+                price: 2,
+                nutrition: ????,
+              },
+              {
+                label: "Ham",
+                price: 2,
+                nutrition: ????,
+              },
+              {
+                label: "Impossible Meat",
+                price: 2,
+                nutrition: ????,
+              },
+              {
+                label: "Italian Sausage",
+                price: 2,
+                nutrition: ????,
+              },
+              {
+                label: "Pepperoni",
+                price: 2,
+                nutrition: ????,
+              },
+              {
+                label: "Vegan Ham",
+                price: 2,
+                nutrition: ????,
+              },
+            ]
+          },
+          {
+            name: "Cheese",
+            maximum: 1,
+            options: [
+              {
+                label: "Cheese",
+                nutrition: ????,
+              },
+              {
+                label: "No Cheese",
+                nutrition: ????,
+              }
+            ]
+          }
+        ]
+      ]
+    }
