@@ -1,88 +1,113 @@
 #!/usr/bin/env python3
-import sys
-import json
-import requests
-from bs4 import BeautifulSoup
+"""
+Scrape *all* SCU campus cafés for a single day
+Outputs: full_menu.json (see structure above)
+"""
+import sys, json, re, requests
 from datetime import date
+from bs4 import BeautifulSoup
 
-BASE_URL = "https://scudining.cafebonappetit.com/cafe/marketplace-2/"
+# -------- 1)  Café slugs you want to crawl (add/remove here) ----------
+CAFE_SLUGS = [
+    "marketplace-2",
+    "mission-bakery",
+    "cadence-cyber-cafe",
+    "fresh-bytes",
+    "side-bar-cafe",
+    "the-sunstream-cafe",
+    "cellar-market",
+]
 
-def scrape_menu(target_date=None):
-    # Build URL suffix (e.g. "2025-05-16/")
-    if target_date:
-        ds = target_date.rstrip("/") + "/"
-    else:
-        ds = date.today().isoformat() + "/"
+SKIP_TABS = [
+    "news",
+    "cafe-hours",
+    "food-allergies",
+    "events",
+    "about-your-food",
+    "menu-mail",
+    "contact-us",
+    "chef-wars",
+    "icons",
+]
 
-    # url = BASE_URL + ds
-    url = BASE_URL
-    print(f"→ Scraping {url}")
+BASE = "https://scudining.cafebonappetit.com/cafe/{slug}/{date}/"
 
-    resp = requests.get(url)
-    resp.raise_for_status()
-    soup = BeautifulSoup(resp.text, "html.parser")
+# -------- 2)  Helpers -------------------------------------------------
+def tidy(txt):            # strip + squeeze whitespace
+    return re.sub(r"\s+", " ", txt).strip()
 
-    # 1) discover all day-part tabs
-    tabs = [
-        {"id": btn["data-target"], "name": btn.get_text(strip=True)}
-        for btn in soup.select("a.jump-nav__btn")
-    ]
+def get_time_slot(btn):
+    """Return a nice label like 'Brunch — 10:00 AM-2:30 PM'
+       If no hours are listed, fallback to the tab's text."""
+    label = tidy(btn.get_text())
+    hrs   = btn.get("data-hours") or ""
+    hrs   = tidy(hrs.replace("|", "—"))
+    return f"{label} — {hrs}" if hrs else label
 
-    result = {
-        "location": "Benson",
-        "date":     ds.rstrip("/"),
-        "menus":    {}
-    }
-    total_count = 0
+def scrape_cafe(slug: str, day: str):
+    url = BASE.format(slug=slug, date=day)
+    print(f"  · {slug}")
+    html = requests.get(url).text
+    soup = BeautifulSoup(html, "html.parser")
 
-    for tab in tabs:
-        section = soup.find("section", id=tab["id"])
-        station_items = {}
-        current_station = None
+    # discover every day-part button
+    tabs = soup.select("a.jump-nav__btn")
+    cafe_data = {}
 
-        if section:
-            # walk through all station headers and item headers in document order
-            for el in section.find_all(["h3", "header"], recursive=True):
-                # when we hit a station title, update current_station
-                if (el.name == "h3"
-                    and "site-panel__daypart-station-title" in el.get("class", [])):
-                    current_station = el.get_text(strip=True)
-                    station_items.setdefault(current_station, [])
-                # when we hit an item header, scrape name+price into current_station
-                elif (el.name == "header"
-                      and "site-panel__daypart-item-header" in el.get("class", [])):
-                    if current_station is None:
-                        # fallback if no station seen yet
-                        current_station = "Unknown"
-                        station_items.setdefault(current_station, [])
-                    name_el  = el.select_one("button.site-panel__daypart-item-title")
-                    price_el = el.select_one("div.site-panel__daypart-item-price")
-                    if name_el and price_el:
-                        meal = name_el.get_text(strip=True)
-                        price = price_el.get_text(strip=True)
-                        station_items[current_station].append({
-                            "meal":  meal,
-                            "price": price.replace("reg.", ""),
-                        })
-                        total_count += 1
+    for btn in tabs:
+        slot_id = btn["data-target"]
 
-        result["menus"][tab["name"]] = station_items
+        if slot_id in SKIP_TABS:
+            continue
+            
+        print(f"    → {slot_id}")
 
-    return result, total_count
+        slot_nm = get_time_slot(btn)
+        section = soup.find("section", id=slot_id)
+        if not section:
+            continue
+
+        time_slot = cafe_data.setdefault(slot_nm, {})
+        current_station = "Unknown"
+
+        # walk H3 (station) and HEADER (item) in order
+        for el in section.find_all(["h3", "header"], recursive=True):
+            if "site-panel__daypart-station-title" in el.get("class", []):
+                current_station = tidy(el.get_text())
+                time_slot.setdefault(current_station, [])
+            elif "site-panel__daypart-item-header" in el.get("class", []):
+                name_el  = el.select_one("button.site-panel__daypart-item-title")
+                price_el = el.select_one("div.site-panel__daypart-item-price")
+                if name_el and price_el:
+                    time_slot.setdefault(current_station, []).append({
+                        "meal":  tidy(name_el.get_text()),
+                        "price": tidy(price_el.get_text().replace("reg.", "")),
+                    })
+    return cafe_data
+
+# -------- 3)  Main routine -------------------------------------------
+def scrape_all(day=None):
+    day = (day or date.today().isoformat()).rstrip("/") + "/"
+    full = {"date": day.rstrip("/"), "time_slots": {}}
+
+    for slug in CAFE_SLUGS:
+        cafe_menu = scrape_cafe(slug, day)
+        for slot, stations in cafe_menu.items():
+            slot_dict = full["time_slots"].setdefault(slot, {})
+            slot_dict[slug.replace("-", " ").title()] = stations  # café name
+
+    return full
 
 if __name__ == "__main__":
     target = sys.argv[1] if len(sys.argv) > 1 else None
-    data, count = scrape_menu(target)
+    data   = scrape_all(target)
 
-    # — console report —
-    for tab_name, stations in data["menus"].items():
-        print(f"\n{tab_name} ({sum(len(v) for v in stations.values())} items)")
-        for station, items in stations.items():
-            print(f"  [{station}]")
-            for itm in items:
-                print(f"    • {itm['meal']} — ${itm['price']}")
-
-    # — write JSON —
-    with open("scraped_menu_bytes.json", "w") as f:
+    with open("full_menu.json", "w") as f:
         json.dump(data, f, indent=2)
-    print(f"\n✔ Saved {count} total items to scraped_menu.json")
+    total = sum(
+        len(items)
+        for ts in data["time_slots"].values()
+        for cafe in ts.values()
+        for items in cafe.values()
+    )
+    print(f"\n✓ Scraped {len(CAFE_SLUGS)} cafés, {total} menu items → full_menu.json")
