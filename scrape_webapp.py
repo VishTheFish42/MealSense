@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import date
 
-BASE_URL = "https://scudining.cafebonappetit.com/cafe/fresh-bytes/"
+BASE_URL = "https://scudining.cafebonappetit.com/cafe/marketplace-2/"
 
 def scrape_menu(target_date=None):
     # Build URL suffix (e.g. "2025-05-16/")
@@ -13,7 +13,9 @@ def scrape_menu(target_date=None):
         ds = target_date.rstrip("/") + "/"
     else:
         ds = date.today().isoformat() + "/"
-    url = BASE_URL + ds
+
+    # url = BASE_URL + ds
+    url = BASE_URL
     print(f"→ Scraping {url}")
 
     resp = requests.get(url)
@@ -60,7 +62,7 @@ def scrape_menu(target_date=None):
                         price = price_el.get_text(strip=True)
                         station_items[current_station].append({
                             "meal":  meal,
-                            "price": price
+                            "price": price.replace("reg.", ""),
                         })
                         total_count += 1
 
