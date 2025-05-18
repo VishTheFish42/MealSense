@@ -8,7 +8,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ProfileScreen = () => {
   const theme = useTheme();
+  const { user, loading: authLoading } = useAuth();
   const [refreshing, setRefreshing] = useState(false);
+  const { userProfile } = useUserProfile();
+  const firstName = userProfile?.firstName || "User" ;
+  const lastName = userProfile?.lastName || "";
+  const [diningPoints, getDiningPoints] = useState(userProfile?.diningPoints || "0");
+  const [orderHistory, setOrderHistory] = useState(userProfile?.orderHistory || []);
 
   const onRefresh = () => {
     console.log("refresh profile");
