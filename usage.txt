@@ -1,0 +1,3 @@
+.sniff-venv\Scripts\activate.bat
+mitmdump -p 8080 -s dump_menu.py
+python aggregate_requests.py

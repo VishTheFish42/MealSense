@@ -135,6 +135,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.sniff-venv/
 
 # Spyder project settings
 .spyderproject

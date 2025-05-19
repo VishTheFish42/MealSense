@@ -1,0 +1,3462 @@
+{
+  "Drinks": [
+    {
+      "item": "Chai Latte",
+      "price": 5.25,
+      "cal": 270,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 5.25
+            },
+            {
+              "value": "Grande",
+              "price": 5.55
+            },
+            {
+              "value": "Venti",
+              "price": 6.05
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Sugar Free Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Caramel Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Hazelnut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Peppermint Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Toffee Nut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Praline Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Sauce Options",
+          "max": 50,
+          "values": [
+            {
+              "value": "Caramel Sauce",
+              "price": 0.94
+            },
+            {
+              "value": "Dark Chocolate",
+              "price": 0.94
+            },
+            {
+              "value": "White Chocolate",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Add-ons",
+          "max": 1,
+          "values": [
+            {
+              "value": "1 Espresso Shot",
+              "price": 1.16
+            },
+            {
+              "value": "1 Scoop Matcha",
+              "price": 0.99
+            },
+            {
+              "value": "2 Espresso Shots",
+              "price": 2.32
+            },
+            {
+              "value": "2 Scoops Matcha",
+              "price": 1.98
+            },
+            {
+              "value": "3 Scoops Matcha",
+              "price": 2.97
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Hot Coffee",
+      "price": 3.55,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 3.55
+            },
+            {
+              "value": "Grande",
+              "price": 3.75
+            },
+            {
+              "value": "Venti",
+              "price": 4.05
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Sugar Free Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Caramel Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Hazelnut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Peppermint Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Toffee Nut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Praline Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Add-ons",
+          "max": 1,
+          "values": [
+            {
+              "value": "1 Espresso Shot",
+              "price": 1.16
+            },
+            {
+              "value": "1 Scoop Matcha",
+              "price": 0.99
+            },
+            {
+              "value": "2 Espresso Shots",
+              "price": 2.32
+            },
+            {
+              "value": "2 Scoops Matcha",
+              "price": 1.98
+            },
+            {
+              "value": "3 Scoops Matcha",
+              "price": 2.97
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Americano",
+      "price": 4.25,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 4.25
+            },
+            {
+              "value": "Grande",
+              "price": 4.55
+            },
+            {
+              "value": "Venti",
+              "price": 5.25
+            }
+          ]
+        },
+        {
+          "name": "Decaf Option",
+          "max": 1,
+          "values": [
+            {
+              "value": "Caffeinated",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Sugar Free Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Caramel Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Hazelnut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Peppermint Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Toffee Nut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Praline Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Sauce Options",
+          "max": 50,
+          "values": [
+            {
+              "value": "Caramel Sauce",
+              "price": 0.94
+            },
+            {
+              "value": "Dark Chocolate",
+              "price": 0.94
+            },
+            {
+              "value": "White Chocolate",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Add-ons",
+          "max": 1,
+          "values": [
+            {
+              "value": "1 Espresso Shot",
+              "price": 1.16
+            },
+            {
+              "value": "1 Scoop Matcha",
+              "price": 0.99
+            },
+            {
+              "value": "2 Espresso Shots",
+              "price": 2.32
+            },
+            {
+              "value": "2 Scoops Matcha",
+              "price": 1.98
+            },
+            {
+              "value": "3 Scoops Matcha",
+              "price": 2.97
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Espresso",
+      "price": 3.35,
+      "cal": 5,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Single",
+              "price": 3.35
+            },
+            {
+              "value": "Triple",
+              "price": 3.85
+            },
+            {
+              "value": "Double",
+              "price": 3.55
+            }
+          ]
+        },
+        {
+          "name": "Decaf Option",
+          "max": 1,
+          "values": [
+            {
+              "value": "Caffeinated",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Cappuccino",
+      "price": 5.25,
+      "cal": 130,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 5.25
+            },
+            {
+              "value": "Grande",
+              "price": 5.75
+            },
+            {
+              "value": "Venti",
+              "price": 6.25
+            }
+          ]
+        },
+        {
+          "name": "Decaf Option",
+          "max": 1,
+          "values": [
+            {
+              "value": "Caffeinated",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Sugar Free Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Caramel Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Hazelnut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Peppermint Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Toffee Nut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Praline Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Sauce Options",
+          "max": 50,
+          "values": [
+            {
+              "value": "Caramel Sauce",
+              "price": 0.94
+            },
+            {
+              "value": "Dark Chocolate",
+              "price": 0.94
+            },
+            {
+              "value": "White Chocolate",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Add-ons",
+          "max": 1,
+          "values": [
+            {
+              "value": "1 Espresso Shot",
+              "price": 1.16
+            },
+            {
+              "value": "1 Scoop Matcha",
+              "price": 0.99
+            },
+            {
+              "value": "2 Espresso Shots",
+              "price": 2.32
+            },
+            {
+              "value": "2 Scoops Matcha",
+              "price": 1.98
+            },
+            {
+              "value": "3 Scoops Matcha",
+              "price": 2.97
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Caramel Macchiato",
+      "price": 5.55,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 5.55
+            },
+            {
+              "value": "Grande",
+              "price": 6.3
+            },
+            {
+              "value": "Venti",
+              "price": 6.8
+            }
+          ]
+        },
+        {
+          "name": "Decaf Option",
+          "max": 1,
+          "values": [
+            {
+              "value": "Caffeinated",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Sugar Free Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Caramel Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Hazelnut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Peppermint Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Toffee Nut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Praline Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Sauce Options",
+          "max": 50,
+          "values": [
+            {
+              "value": "Caramel Sauce",
+              "price": 0.94
+            },
+            {
+              "value": "Dark Chocolate",
+              "price": 0.94
+            },
+            {
+              "value": "White Chocolate",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Add-ons",
+          "max": 1,
+          "values": [
+            {
+              "value": "1 Espresso Shot",
+              "price": 1.16
+            },
+            {
+              "value": "1 Scoop Matcha",
+              "price": 0.99
+            },
+            {
+              "value": "2 Espresso Shots",
+              "price": 2.32
+            },
+            {
+              "value": "2 Scoops Matcha",
+              "price": 1.98
+            },
+            {
+              "value": "3 Scoops Matcha",
+              "price": 2.97
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Iced Tea",
+      "price": 4.05,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 4.05
+            },
+            {
+              "value": "Grande",
+              "price": 4.25
+            },
+            {
+              "value": "Venti",
+              "price": 5.05
+            }
+          ]
+        },
+        {
+          "name": "Iced Tea Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Black Tea",
+              "price": null
+            },
+            {
+              "value": "Green Tea",
+              "price": null
+            },
+            {
+              "value": "Passion Tea",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry",
+              "price": 0.94
+            },
+            {
+              "value": "Mango",
+              "price": 0.94
+            },
+            {
+              "value": "Peach",
+              "price": 0.94
+            },
+            {
+              "value": "Passion Fruit Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Mojito Mix Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Cherry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lime Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Kiwi Syrup",
+              "price": 0.94
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Italian Soda",
+      "price": 3.85,
+      "cal": 180,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 3.85
+            },
+            {
+              "value": "Grande",
+              "price": 5.75
+            },
+            {
+              "value": "Venti",
+              "price": 5.95
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry",
+              "price": 0.94
+            },
+            {
+              "value": "Mango",
+              "price": 0.94
+            },
+            {
+              "value": "Peach",
+              "price": 0.94
+            },
+            {
+              "value": "Passion Fruit Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Mojito Mix Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Cherry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lime Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Kiwi Syrup",
+              "price": 0.94
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Hot Tea",
+      "price": 3.55,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 3.55
+            },
+            {
+              "value": "Grande",
+              "price": 3.75
+            },
+            {
+              "value": "Venti",
+              "price": 4.29
+            }
+          ]
+        },
+        {
+          "name": "Tea Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Hibiscus Tea",
+              "price": null
+            },
+            {
+              "value": "Green Tea",
+              "price": null
+            },
+            {
+              "value": "English Breakfast",
+              "price": null
+            },
+            {
+              "value": "Earl Grey",
+              "price": null
+            },
+            {
+              "value": "Mint",
+              "price": null
+            },
+            {
+              "value": "Chamomile",
+              "price": null
+            },
+            {
+              "value": "Jasmine Citrus Green Tea",
+              "price": null
+            },
+            {
+              "value": "Classic Chai",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Latte",
+      "price": 5.05,
+      "cal": 180,
+      "options": [
+        {
+          "name": "Decaf Option",
+          "max": 1,
+          "values": [
+            {
+              "value": "Caffeinated",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 5.05
+            },
+            {
+              "value": "Grande",
+              "price": 5.55
+            },
+            {
+              "value": "Venti",
+              "price": 6.05
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Sugar Free Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Caramel Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Hazelnut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Peppermint Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Toffee Nut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Praline Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Sauce Options",
+          "max": 50,
+          "values": [
+            {
+              "value": "Caramel Sauce",
+              "price": 0.94
+            },
+            {
+              "value": "Dark Chocolate",
+              "price": 0.94
+            },
+            {
+              "value": "White Chocolate",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Add-ons",
+          "max": 1,
+          "values": [
+            {
+              "value": "1 Espresso Shot",
+              "price": 1.16
+            },
+            {
+              "value": "1 Scoop Matcha",
+              "price": 0.99
+            },
+            {
+              "value": "2 Espresso Shots",
+              "price": 2.32
+            },
+            {
+              "value": "2 Scoops Matcha",
+              "price": 1.98
+            },
+            {
+              "value": "3 Scoops Matcha",
+              "price": 2.97
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Lemonade",
+      "price": 3.65,
+      "cal": 130,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 3.65
+            },
+            {
+              "value": "Grande",
+              "price": 3.95
+            },
+            {
+              "value": "Venti",
+              "price": 4.15
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry",
+              "price": 0.94
+            },
+            {
+              "value": "Mango",
+              "price": 0.94
+            },
+            {
+              "value": "Peach",
+              "price": 0.94
+            },
+            {
+              "value": "Passion Fruit Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Mojito Mix Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Cherry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lime Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Kiwi Syrup",
+              "price": 0.94
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Steamer",
+      "price": 3.75,
+      "cal": 220,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 3.75
+            },
+            {
+              "value": "Grande",
+              "price": 4.05
+            },
+            {
+              "value": "Venti",
+              "price": 4.25
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Sugar Free Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Caramel Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Hazelnut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Peppermint Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Toffee Nut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Praline Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Mocha",
+      "price": 5.55,
+      "cal": 250,
+      "options": [
+        {
+          "name": "Decaf Option",
+          "max": 1,
+          "values": [
+            {
+              "value": "Caffeinated",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 5.55
+            },
+            {
+              "value": "Grande",
+              "price": 6.25
+            },
+            {
+              "value": "Venti",
+              "price": 6.75
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Sugar Free Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Caramel Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Hazelnut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Peppermint Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Toffee Nut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Praline Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Sauce Options",
+          "max": 50,
+          "values": [
+            {
+              "value": "Caramel Sauce",
+              "price": 0.94
+            },
+            {
+              "value": "Dark Chocolate",
+              "price": 0.94
+            },
+            {
+              "value": "White Chocolate",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Add-ons",
+          "max": 1,
+          "values": [
+            {
+              "value": "1 Espresso Shot",
+              "price": 1.16
+            },
+            {
+              "value": "1 Scoop Matcha",
+              "price": 0.99
+            },
+            {
+              "value": "2 Espresso Shots",
+              "price": 2.32
+            },
+            {
+              "value": "2 Scoops Matcha",
+              "price": 1.98
+            },
+            {
+              "value": "3 Scoops Matcha",
+              "price": 2.97
+            }
+          ]
+        },
+        {
+          "name": "Whipped Cream",
+          "max": 1,
+          "values": [
+            {
+              "value": "Whipped Cream",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "White Mocha",
+      "price": 5.75,
+      "cal": 360,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 5.75
+            },
+            {
+              "value": "Grande",
+              "price": 6.25
+            },
+            {
+              "value": "Venti",
+              "price": 6.75
+            }
+          ]
+        },
+        {
+          "name": "Decaf Option",
+          "max": 1,
+          "values": [
+            {
+              "value": "Caffeinated",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Sugar Free Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Caramel Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Hazelnut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Peppermint Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Toffee Nut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Praline Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Sauce Options",
+          "max": 50,
+          "values": [
+            {
+              "value": "Caramel Sauce",
+              "price": 0.94
+            },
+            {
+              "value": "Dark Chocolate",
+              "price": 0.94
+            },
+            {
+              "value": "White Chocolate",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Add-ons",
+          "max": 1,
+          "values": [
+            {
+              "value": "1 Espresso Shot",
+              "price": 1.16
+            },
+            {
+              "value": "1 Scoop Matcha",
+              "price": 0.99
+            },
+            {
+              "value": "2 Espresso Shots",
+              "price": 2.32
+            },
+            {
+              "value": "2 Scoops Matcha",
+              "price": 1.98
+            },
+            {
+              "value": "3 Scoops Matcha",
+              "price": 2.97
+            }
+          ]
+        },
+        {
+          "name": "Whipped Cream",
+          "max": 1,
+          "values": [
+            {
+              "value": "Whipped Cream",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Cold Brew",
+      "price": 5.05,
+      "cal": 15,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 5.05
+            },
+            {
+              "value": "Grande",
+              "price": 5.25
+            },
+            {
+              "value": "Venti",
+              "price": 5.75
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Sugar Free Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Caramel Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Hazelnut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Peppermint Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Toffee Nut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Praline Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Add-ons",
+          "max": 1,
+          "values": [
+            {
+              "value": "1 Espresso Shot",
+              "price": 1.16
+            },
+            {
+              "value": "2 Espresso Shots",
+              "price": 2.32
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Hot Chocolate",
+      "price": 3.95,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 3.95
+            },
+            {
+              "value": "Grande",
+              "price": 4.45
+            },
+            {
+              "value": "Venti",
+              "price": 4.85
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Whipped Cream",
+          "max": 1,
+          "values": [
+            {
+              "value": "Whipped Cream",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Matcha Latte",
+      "price": 5.55,
+      "cal": 220,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 5.55
+            },
+            {
+              "value": "Grande",
+              "price": 5.7
+            },
+            {
+              "value": "Venti",
+              "price": 6.15
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Sugar Free Vanilla Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Caramel Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Hazelnut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Peppermint Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Toffee Nut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Praline Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            }
+          ]
+        },
+        {
+          "name": "Add-ons",
+          "max": 1,
+          "values": [
+            {
+              "value": "1 Espresso Shot",
+              "price": 1.16
+            },
+            {
+              "value": "1 Scoop Matcha",
+              "price": 0.99
+            },
+            {
+              "value": "2 Espresso Shots",
+              "price": 2.32
+            },
+            {
+              "value": "2 Scoops Matcha",
+              "price": 1.98
+            },
+            {
+              "value": "3 Scoops Matcha",
+              "price": 2.97
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Havana Cappuccino",
+      "price": 5.7,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Decaf Option",
+          "max": 1,
+          "values": [
+            {
+              "value": "Caffeinated",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Tall",
+              "price": 5.7
+            },
+            {
+              "value": "Grande",
+              "price": 6.15
+            },
+            {
+              "value": "Venti",
+              "price": 6.45
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Add-ons",
+          "max": 1,
+          "values": [
+            {
+              "value": "1 Espresso Shot",
+              "price": 1.16
+            },
+            {
+              "value": "2 Espresso Shots",
+              "price": 2.32
+            }
+          ]
+        },
+        {
+          "name": "Whipped Cream",
+          "max": 1,
+          "values": [
+            {
+              "value": "Whipped Cream",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "The Lexington",
+      "price": 6.25,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Grande",
+              "price": 6.25
+            },
+            {
+              "value": "Tall",
+              "price": 5.75
+            },
+            {
+              "value": "Venti",
+              "price": 6.75
+            }
+          ]
+        },
+        {
+          "name": "Decaf Option",
+          "max": 1,
+          "values": [
+            {
+              "value": "Caffeinated",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Whipped Cream",
+          "max": 1,
+          "values": [
+            {
+              "value": "Whipped Cream",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "The Manila",
+      "price": 6.25,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Grande",
+              "price": 6.25
+            },
+            {
+              "value": "Tall",
+              "price": 5.75
+            },
+            {
+              "value": "Venti",
+              "price": 6.75
+            }
+          ]
+        },
+        {
+          "name": "Decaf Option",
+          "max": 1,
+          "values": [
+            {
+              "value": "Caffeinated",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Whipped Cream",
+          "max": 1,
+          "values": [
+            {
+              "value": "Whipped Cream",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "The Tokyo",
+      "price": 6.25,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Grande",
+              "price": 6.25
+            },
+            {
+              "value": "Tall",
+              "price": 5.75
+            },
+            {
+              "value": "Venti",
+              "price": 6.75
+            }
+          ]
+        },
+        {
+          "name": "Decaf Option",
+          "max": 1,
+          "values": [
+            {
+              "value": "Caffeinated",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "name": "Whipped Cream",
+          "max": 1,
+          "values": [
+            {
+              "value": "Whipped Cream",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Blackberry London Fog",
+      "price": 5.8,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Medium",
+              "price": 5.8
+            },
+            {
+              "value": "Tall",
+              "price": 5.5
+            },
+            {
+              "value": "Venti",
+              "price": 6.1
+            }
+          ]
+        },
+        {
+          "name": "Temperature options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Iced",
+              "price": null
+            },
+            {
+              "value": "Hot",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Milk Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Low fat Milk",
+              "price": null
+            },
+            {
+              "value": "Nonfat Milk",
+              "price": null
+            },
+            {
+              "value": "Whole Milk",
+              "price": null
+            },
+            {
+              "value": "Soy Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Oat Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Almond Milk",
+              "price": 0.7
+            },
+            {
+              "value": "Coconut Milk",
+              "price": 0.7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Lemonade Tea",
+      "price": 5.05,
+      "cal": 90,
+      "options": [
+        {
+          "name": "Drink Size",
+          "max": 1,
+          "values": [
+            {
+              "value": "Grande",
+              "price": 5.05
+            },
+            {
+              "value": "Tall",
+              "price": 4.55
+            },
+            {
+              "value": "Venti",
+              "price": 5.55
+            }
+          ]
+        },
+        {
+          "name": "Lemonade Tea Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Black Tea",
+              "price": null
+            },
+            {
+              "value": "Green Tea",
+              "price": null
+            },
+            {
+              "value": "Passion Tea",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Syrup Options",
+          "max": 2,
+          "values": [
+            {
+              "value": "Strawberry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Classic Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lavender",
+              "price": 0.94
+            },
+            {
+              "value": "Raspberry",
+              "price": 0.94
+            },
+            {
+              "value": "Mango",
+              "price": 0.94
+            },
+            {
+              "value": "Peach",
+              "price": 0.94
+            },
+            {
+              "value": "Passion Fruit Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Coconut Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Mojito Mix Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Cherry Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Lime Syrup",
+              "price": 0.94
+            },
+            {
+              "value": "Kiwi Syrup",
+              "price": 0.94
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Pastries and Baked Goods": [
+    {
+      "item": "Bagel with Cream Cheese",
+      "price": 3.85,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Bagel Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Everything Bagel",
+              "price": null
+            },
+            {
+              "value": "Plain Bagel",
+              "price": null
+            },
+            {
+              "value": "Whole Wheat Bagel",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Extra PC Cream Cheese",
+          "max": 50,
+          "values": [
+            {
+              "value": "Extra PC Cream Cheese",
+              "price": 0.95
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Bagel without Cream Cheese",
+      "price": 2.85,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Bagel Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Everything Bagel",
+              "price": null
+            },
+            {
+              "value": "Plain Bagel",
+              "price": null
+            },
+            {
+              "value": "Whole Wheat Bagel",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Muffin",
+      "price": 3.8,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Raspberry",
+              "price": null
+            },
+            {
+              "value": "Blueberry",
+              "price": null
+            },
+            {
+              "value": "Chocolate Chip",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Sliced Loaf Cake",
+      "price": 4.6,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Options",
+          "max": 50,
+          "values": [
+            {
+              "value": "Chocolate Vanilla Marble",
+              "price": null
+            },
+            {
+              "value": "Banana with Chocolate Chips",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Pizzetta - Tomato Cheese",
+      "price": 5.99,
+      "cal": 0,
+      "options": []
+    },
+    {
+      "item": "Donut",
+      "price": 2.99,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Donut Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Chocolate Donut",
+              "price": null
+            },
+            {
+              "value": "Glazed Donut",
+              "price": null
+            },
+            {
+              "value": "Old Fashion Donut",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Pizzetta - Zucchini Tomato",
+      "price": 5.99,
+      "cal": 0,
+      "options": []
+    },
+    {
+      "item": "Cookies",
+      "price": 2.99,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Chocolate Chip",
+              "price": null
+            },
+            {
+              "value": "Double Chocolate",
+              "price": null
+            },
+            {
+              "value": "Oatmeal Raisin",
+              "price": null
+            },
+            {
+              "value": "Snickerdoodle",
+              "price": null
+            }
+          ]
+        },
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Ham and Cheese Croissant",
+      "price": 5.05,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Morning Bun",
+      "price": 4.45,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Scone",
+      "price": 4.15,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Danish",
+      "price": 4.6,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Apple Fritter",
+      "price": 3.35,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Butter Croissant",
+      "price": 4.3,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Chocolate Croissant",
+      "price": 4.7,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Blueberry Streusel Croissant",
+      "price": 4.45,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Breakfast Grab n Go": [
+    {
+      "item": "Lox Bagel Sandwich",
+      "price": 11.65,
+      "cal": 270,
+      "options": []
+    },
+    {
+      "item": "Chia Seed Pudding",
+      "price": 5.6,
+      "cal": 140,
+      "options": []
+    },
+    {
+      "item": "Strawberry Yogurt Parfait",
+      "price": 7.25,
+      "cal": 440,
+      "options": []
+    },
+    {
+      "item": "Overnight Oats",
+      "price": 5.6,
+      "cal": 290,
+      "options": []
+    },
+    {
+      "item": "Uncrustable - Grape",
+      "price": 2.99,
+      "cal": 0,
+      "options": []
+    },
+    {
+      "item": "Uncrustable - Strawberry",
+      "price": 2.99,
+      "cal": 0,
+      "options": []
+    },
+    {
+      "item": "Uncrustable - Chocolate Hazelnut",
+      "price": 2.99,
+      "cal": 0,
+      "options": []
+    },
+    {
+      "item": "Bacon Egg and Cheese Breakfast Sandwich",
+      "price": 6.75,
+      "cal": 450,
+      "options": [
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Egg and Cheese Breakfast Sandwich",
+      "price": 5.8,
+      "cal": 320,
+      "options": [
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Ham Croissant Breakfast Sandwich",
+      "price": 6.6,
+      "cal": 340,
+      "options": [
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Cafe Dessert": [
+    {
+      "item": "Peach Pop Tart",
+      "price": 3.95,
+      "cal": 0,
+      "options": []
+    }
+  ],
+  "Lunch Grab n Go": [
+    {
+      "item": "Classic Chicken Caesar Salad",
+      "price": 11.65,
+      "cal": 440,
+      "options": []
+    },
+    {
+      "item": "Strawberry Arugula Salad w Feta Cheese",
+      "price": 10.65,
+      "cal": 280,
+      "options": []
+    },
+    {
+      "item": "Ciabatta Caprese Sandwich",
+      "price": 9.6,
+      "cal": 400,
+      "options": [
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Roast Beef Panini",
+      "price": 11.65,
+      "cal": 480,
+      "options": [
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": "Tuscan Roast Turkey Sandwich",
+      "price": 11.65,
+      "cal": 410,
+      "options": [
+        {
+          "name": "Toasted Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Not Toasted",
+              "price": null
+            },
+            {
+              "value": "Toasted",
+              "price": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Fruit and Fruit Cup": [
+    {
+      "item": "Extra PC Cream Cheese",
+      "price": 0.97,
+      "cal": 0,
+      "options": []
+    },
+    {
+      "item": "Fruit cup (12oz)",
+      "price": 5.55,
+      "cal": 0,
+      "options": []
+    },
+    {
+      "item": "Whole Fruit",
+      "price": 0.99,
+      "cal": 0,
+      "options": [
+        {
+          "name": "Whole Fruit Options",
+          "max": 1,
+          "values": [
+            {
+              "value": "Apple",
+              "price": null
+            },
+            {
+              "value": "Banana",
+              "price": null
+            },
+            {
+              "value": "Orange",
+              "price": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
