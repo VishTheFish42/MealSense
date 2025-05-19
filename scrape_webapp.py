@@ -32,27 +32,30 @@ SKIP_TABS = [
 
 BASE = "https://scudining.cafebonappetit.com/cafe/{slug}/{date}/"
 
-# -------- 2)  Helpers -------------------------------------------------
-def tidy(txt):            # strip + squeeze whitespace
+# ——————————————————————————————————————————————————————————————————————————————
+# Helpers
+def tidy(txt: str) -> str:
+    """Trim and collapse whitespace."""
     return re.sub(r"\s+", " ", txt).strip()
 
 def get_time_slot(btn):
     """Return a nice label like 'Brunch — 10:00 AM-2:30 PM'
        If no hours are listed, fallback to the tab's text."""
     label = tidy(btn.get_text())
-    hrs   = btn.get("data-hours") or ""
-    hrs   = tidy(hrs.replace("|", "—"))
+    hrs   = tidy((btn.get("data-hours") or "").replace("|", "—"))
     return f"{label} — {hrs}" if hrs else label
 
-def scrape_cafe(slug: str, day: str):
+# ——————————————————————————————————————————————————————————————————————————————
+def scrape_cafe(slug: str, day: str) -> dict:
+    """Scrape one café page, returning { time_slot: { station: [meals] } }."""
     url = BASE.format(slug=slug, date=day)
-    print(f"  · {slug}")
-    html = requests.get(url).text
-    soup = BeautifulSoup(html, "html.parser")
+    print(f"    • fetching {slug} → {url}")
+    resp = requests.get(url)
+    resp.raise_for_status()
+    soup = BeautifulSoup(resp.text, "html.parser")
 
-    # discover every day-part button
+    cafe_menu = {}
     tabs = soup.select("a.jump-nav__btn")
-    cafe_data = {}
 
     for btn in tabs:
         slot_id = btn["data-target"]
@@ -67,47 +70,79 @@ def scrape_cafe(slug: str, day: str):
         if not section:
             continue
 
-        time_slot = cafe_data.setdefault(slot_nm, {})
-        current_station = "Unknown"
+        station_map = {}
+        seen = {}  # seen[(station_name)] = set of (meal,price)
+        current_station = None
+        current_meal = None
 
-        # walk H3 (station) and HEADER (item) in order
+        # Walk in document order to group toppings under their parent meal
         for el in section.find_all(["h3", "header"], recursive=True):
-            if "site-panel__daypart-station-title" in el.get("class", []):
+            # Station header
+            if el.name == "h3" and "site-panel__daypart-station-title" in el.get("class", []):
                 current_station = tidy(el.get_text())
-                time_slot.setdefault(current_station, [])
-            elif "site-panel__daypart-item-header" in el.get("class", []):
+                station_map.setdefault(current_station, [])
+                seen[current_station] = set()
+                current_meal = None
+
+            # Menu-item header
+            elif el.name == "header" and "site-panel__daypart-item-header" in el.get("class", []):
                 name_el  = el.select_one("button.site-panel__daypart-item-title")
                 price_el = el.select_one("div.site-panel__daypart-item-price")
-                if name_el and price_el:
-                    time_slot.setdefault(current_station, []).append({
-                        "meal":  tidy(name_el.get_text()),
-                        "price": tidy(price_el.get_text().replace("reg.", "")),
-                    })
-    return cafe_data
+                if not name_el:
+                    continue
+                name  = tidy(name_el.get_text())
+                price = tidy(price_el.get_text() if price_el else "")
 
-# -------- 3)  Main routine -------------------------------------------
-def scrape_all(day=None):
-    day = (day or date.today().isoformat()).rstrip("/") + "/"
-    full = {"date": day.rstrip("/"), "time_slots": {}}
+                # If price present → new meal
+                if price:
+                    key = (name, price)
+                    if key not in seen[current_station]:
+                        seen[current_station].add(key)
+                        current_meal = {"meal": name, "price": price, "toppings": []}
+                        station_map[current_station].append(current_meal)
+                    else:
+                        # duplicate meal+price → skip
+                        current_meal = None
+
+                # No price → this is a topping/side
+                else:
+                    if current_meal:
+                        current_meal["toppings"].append(name)
+
+        cafe_menu[slot_nm] = station_map
+
+    return cafe_menu
+
+# ——————————————————————————————————————————————————————————————————————————————
+def scrape_all(day: str = None) -> dict:
+    """Scrape every café for the given day (YYYY-MM-DD) or today."""
+    d = (day or date.today().isoformat()).rstrip("/") + "/"
+    full = {"date": d.rstrip("/"), "time_slots": {}}
 
     for slug in CAFE_SLUGS:
-        cafe_menu = scrape_cafe(slug, day)
-        for slot, stations in cafe_menu.items():
-            slot_dict = full["time_slots"].setdefault(slot, {})
-            slot_dict[slug.replace("-", " ").title()] = stations  # café name
+        cafe_name = slug.replace("-", " ").title()
+        cafe_data = scrape_cafe(slug, d)
+        for slot, stations in cafe_data.items():
+            ts = full["time_slots"].setdefault(slot, {})
+            ts[cafe_name] = stations
 
     return full
 
+# ——————————————————————————————————————————————————————————————————————————————
 if __name__ == "__main__":
     target = sys.argv[1] if len(sys.argv) > 1 else None
     data   = scrape_all(target)
 
+    # Write out full_menu.json
     with open("full_menu.json", "w") as f:
         json.dump(data, f, indent=2)
-    total = sum(
-        len(items)
-        for ts in data["time_slots"].values()
-        for cafe in ts.values()
-        for items in cafe.values()
+
+    # Summary
+    total_items = sum(
+        len(meals)
+        for slot in data["time_slots"].values()
+        for cafe in slot.values()
+        for station in cafe.values()
+        for meals in [station]
     )
-    print(f"\n✓ Scraped {len(CAFE_SLUGS)} cafés, {total} menu items → full_menu.json")
+    print(f"\n✓ Scraped {len(CAFE_SLUGS)} cafés, {total_items} unique meals → full_menu.json")
