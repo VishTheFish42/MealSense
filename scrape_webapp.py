@@ -38,33 +38,57 @@ BASE = "https://scudining.cafebonappetit.com/cafe/{slug}/{date}/"
 #       which words are definitely condiments and which are “base” items
 CONDIMENT_SET : set[str] = set()
 
-_WORDS_THAT_ARE_MEALS = {
-    # items that can be 0-priced but are the *meal itself* – expand freely
-    "yogurt","bagel","bread","toast","egg","pancake","waffle",
-    "burrito","omelet","scramble","bowl","salad",
+# ❶  Everything in this set is *always* treated as a topping/side
+ALWAYS_CONDIMENTS = {
+    # breakfast proteins & sides  …                         (unchanged)
+    "scrambled eggs", "whole cracked egg", "egg white", "just eggs (plant-based)",
+    "bacon", "ham", "canadian bacon", "sausage", "chicken apple sausage",
+    "tater tots", "hash browns", "home fries",
+
+    # bowls / toast-bar fruit & sweet toppings  …           (unchanged)
+    "strawberry", "blueberries", "blackberries", "raspberry",
+    "cantaloupe", "honeydew", "pineapple", "banana", "granola",
+    "chocolate chips", "shredded coconut",
+
+    # ❶  wrap / bread *variants* that only appear as choices
+    "wheat tortilla", "spinach tortilla", "flour tortilla",
+    "corn tortilla",  "spinach wrap",    "whole-wheat wrap",
 }
 
+# ❷  Items that *can* be a zero-price entrée (leave eggs, bacon, etc. out)
+_WORDS_THAT_ARE_MEALS = {
+    "yogurt", "bagel", "bread", "toast",
+    "tortilla", "crepe", "omelet", "burrito",
+    "pancake", "waffle", "bowl", "salad",
+}
 # ----------——— helpers ————————————————————————————————————————————————————————
 def tidy(txt: str) -> str:
     """Trim and collapse whitespace."""
     return re.sub(r"\s+", " ", txt).strip()
 
-def looks_like_condiment(name:str)->bool:
-    """Heuristic: is <name> something that should attach to a parent meal?"""
+def looks_like_condiment(name: str) -> bool:
     n = name.lower()
-    if n.startswith(("add ","+")):                 #  “Add Pineapple”, “+ Bacon”
+
+    # 1. explicit list  (fast, authoritative)
+    if n in ALWAYS_CONDIMENTS:
         return True
-    if n in CONDIMENT_SET:                        #  captured from Condiments tab
+
+    # 2. “Add …” or “+ …”  => topping
+    if n.startswith(("add ", "+")):
         return True
-    # Low-calorie single-word produce items – usually toppings
+
+    # 3. keyword pattern  (unchanged from earlier)
     if re.fullmatch(r"[a-z ]+", n) and any(
-        kw in n for kw in (
-            "salsa","sauce","cheese","chips","granola","guacamole","onion",
-            "cilantro","lime","jalapeno","pepper","tomato","spinach",
-            "mushroom","chocolate","coconut"
+        kw in n
+        for kw in (
+            "salsa", "sauce", "cheese", "chips", "granola",
+            "guacamole", "onion", "cilantro", "lime", "jalapeno",
+            "pepper", "tomato", "spinach", "mushroom",
+            "chocolate", "coconut",
         )
     ):
         return True
+
     return False
 
 def get_time_slot(btn):
@@ -187,7 +211,16 @@ def scrape_all(day: str=None) -> dict:
                     "toppings": conds
                 }]
             else:
-                target_meal = cafe_entry[station][0]
+                target_meal = next(
+                    (itm for itm in cafe_entry[station] if not looks_like_condiment(itm["meal"])),
+                    None,
+                )
+
+                # if the station had only condiments, fabricate a placeholder
+                if target_meal is None:
+                    target_meal = {"meal": station, "price": "", "toppings": []}
+                    cafe_entry[station].insert(0, target_meal)
+
                 target_meal["toppings"].extend(
                     x for x in conds if x not in target_meal["toppings"]
                 )

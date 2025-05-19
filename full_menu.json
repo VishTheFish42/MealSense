@@ -72,22 +72,11 @@
           {
             "meal": "Scrambled Eggs",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Tater Tots",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Bacon",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Chicken Apple Sausage",
-            "price": "",
-            "toppings": []
+            "toppings": [
+              "Tater Tots",
+              "Bacon",
+              "Chicken Apple Sausage"
+            ]
           },
           {
             "meal": "Pancakes",
@@ -97,37 +86,19 @@
           {
             "meal": "French Toast",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Whole Cracked Egg",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Egg White",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Just Eggs (plant-based)",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Bacon",
-            "price": "",
-            "toppings": []
+            "toppings": [
+              "Whole Cracked Egg",
+              "Egg White",
+              "Just Eggs (plant-based)",
+              "Bacon"
+            ]
           },
           {
             "meal": "Apple Chicken Sausage",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Ham",
-            "price": "",
-            "toppings": []
+            "toppings": [
+              "Ham"
+            ]
           },
           {
             "meal": "Vegan Soyrizo",
@@ -165,39 +136,19 @@
           {
             "meal": "Wheat Tortilla",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Flour Tortilla",
-            "price": "",
             "toppings": [
-              "Monterey Jack Cheese"
+              "Flour Tortilla",
+              "Monterey Jack Cheese",
+              "Bacon"
             ]
-          },
-          {
-            "meal": "Bacon",
-            "price": "",
-            "toppings": []
           },
           {
             "meal": "Chorizo Sausage",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Chicken Apple Sausage",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Tater Tots",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Scrambled Eggs",
-            "price": "",
             "toppings": [
+              "Chicken Apple Sausage",
+              "Tater Tots",
+              "Scrambled Eggs",
               "Salsa"
             ]
           },
@@ -209,27 +160,17 @@
           {
             "meal": "Chorizo Sausage",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Bacon",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Chicken Apple Sausage",
-            "price": "",
-            "toppings": []
+            "toppings": [
+              "Bacon",
+              "Chicken Apple Sausage"
+            ]
           },
           {
             "meal": "Sausage Vegan Soyrizo",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Tater Tots",
-            "price": "",
-            "toppings": []
+            "toppings": [
+              "Tater Tots"
+            ]
           },
           {
             "meal": "Egg",
@@ -250,27 +191,16 @@
           {
             "meal": "Acai",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Banana",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Blueberries",
-            "price": "",
-            "toppings": []
+            "toppings": [
+              "Banana",
+              "Blueberries"
+            ]
           },
           {
             "meal": "Mango",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Strawberry",
-            "price": "",
             "toppings": [
+              "Strawberry",
               "Chocolate Chips",
               "Shredded Coconut"
             ]
@@ -292,27 +222,11 @@
           {
             "meal": "Vanilla Yogurt",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Blueberries",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Strawberry",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Cantaloupe",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Honeydew",
-            "price": "",
             "toppings": [
+              "Blueberries",
+              "Strawberry",
+              "Cantaloupe",
+              "Honeydew",
               "Add Pineapple",
               "Granola"
             ]
@@ -507,12 +421,9 @@
           {
             "meal": "Wheat Tortilla",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Flour Tortilla",
-            "price": "",
-            "toppings": []
+            "toppings": [
+              "Flour Tortilla"
+            ]
           },
           {
             "meal": "Mayocoba Beans",
@@ -584,12 +495,9 @@
           {
             "meal": "Sliced Roast Beef",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Ham",
-            "price": "",
-            "toppings": []
+            "toppings": [
+              "Ham"
+            ]
           },
           {
             "meal": "Salami",
@@ -914,27 +822,16 @@
           {
             "meal": "Acai",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Banana",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Blueberries",
-            "price": "",
-            "toppings": []
+            "toppings": [
+              "Banana",
+              "Blueberries"
+            ]
           },
           {
             "meal": "Mango",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Strawberry",
-            "price": "",
             "toppings": [
+              "Strawberry",
               "Chocolate Chips",
               "Shredded Coconut"
             ]
@@ -956,27 +853,11 @@
           {
             "meal": "Vanilla Yogurt",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Blueberries",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Strawberry",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Cantaloupe",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Honeydew",
-            "price": "",
             "toppings": [
+              "Blueberries",
+              "Strawberry",
+              "Cantaloupe",
+              "Honeydew",
               "Add Pineapple",
               "Granola"
             ]
@@ -1506,12 +1387,9 @@
           {
             "meal": "Wheat Tortilla",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Flour Tortilla",
-            "price": "",
-            "toppings": []
+            "toppings": [
+              "Flour Tortilla"
+            ]
           },
           {
             "meal": "Mayocoba Beans",
@@ -1673,27 +1551,11 @@
           {
             "meal": "Vanilla Yogurt",
             "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Blueberries",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Strawberry",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Cantaloupe",
-            "price": "",
-            "toppings": []
-          },
-          {
-            "meal": "Honeydew",
-            "price": "",
             "toppings": [
+              "Blueberries",
+              "Strawberry",
+              "Cantaloupe",
+              "Honeydew",
               "Add Pineapple",
               "Granola"
             ]
