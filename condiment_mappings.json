@@ -1,0 +1,85 @@
+{
+    "Wheat Tortilla": [
+        "Monterey Jack Cheese",
+        "Chorizo Sausage",
+        "Chicken Apple Sausage",
+        "Sausage Vegan Soyrizo",
+        "Scrambled Eggs",
+        "Salsa",
+        "Roasted Tomato Salsa",
+        "Salsa Verde",
+        "Onion",
+        "Cilantro",
+        "Lime Wedges"
+    ],
+    "Flour Tortilla": [
+        "Monterey Jack Cheese",
+        "Chorizo Sausage",
+        "Chicken Apple Sausage",
+        "Sausage Vegan Soyrizo",
+        "Scrambled Eggs",
+        "Salsa",
+        "Roasted Tomato Salsa",
+        "Salsa Verde",
+        "Onion",
+        "Cilantro",
+        "Lime Wedges"
+    ],
+
+    "Everything Bagel": [
+        "Cream Cheese",
+        "Strawberry Jelly Preserves",
+        "Apricot Preserves",
+        "Guacamole"
+    ],
+    "Plain Bagel": [
+        "Cream Cheese",
+        "Strawberry Jelly Preserves",
+        "Apricot Preserves",
+        "Guacamole"
+    ],
+    "Cinnamon Raisin Bread": [
+        "Cream Cheese",
+        "Strawberry Jelly Preserves",
+        "Apricot Preserves"
+    ],
+    "Whole-wheat Bread": [
+        "Cream Cheese",
+        "Strawberry Jelly Preserves",
+        "Apricot Preserves"
+    ],
+    "Sourdough Bread": [
+        "Cream Cheese",
+        "Strawberry Jelly Preserves",
+        "Apricot Preserves"
+    ],
+    "White Bread": [
+        "Cream Cheese",
+        "Strawberry Jelly Preserves",
+        "Apricot Preserves"
+    ],
+
+    "Strawberry Yogurt": [
+        "Blueberries",
+        "Strawberry",
+        "Cantaloupe",
+        "Honeydew",
+        "Add Pineapple",
+        "Plain Granola"
+    ],
+    "Vanilla Yogurt": [
+        "Blueberries",
+        "Strawberry",
+        "Cantaloupe",
+        "Honeydew",
+        "Add Pineapple",
+        "Plain Granola"
+    ],
+    "Plain Granola": [
+        "Blueberries",
+        "Strawberry",
+        "Cantaloupe",
+        "Honeydew",
+        "Add Pineapple"
+    ]
+}

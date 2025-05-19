@@ -88,11 +88,12 @@ def scrape_cafe(slug: str, day: str) -> dict:
                 price_el = el.select_one("div.site-panel__daypart-item-price")
                 if not name_el:
                     continue
+
                 name  = tidy(name_el.get_text())
-                price = tidy(price_el.text) if price_el else ""
+                price = tidy(price_el.text).replace("reg.", "") if price_el else ""
 
                 # priced ⇒ new meal
-                if price:
+                if price and price != "0":
                     key = (name, price)
                     if key not in seen[current_station]:
                         seen[current_station].add(key)
@@ -104,7 +105,12 @@ def scrape_cafe(slug: str, day: str) -> dict:
                 # no price ⇒ it’s a topping/extra for the last meal
                 else:
                     if current_meal:
+                        # attach as topping
                         current_meal["toppings"].append(name)
+                    else:
+                        # no “parent” meal — treat this as its own entry
+                        current_meal = {"meal": name, "price": "", "toppings": []}
+                        station_map[current_station].append(current_meal)
 
         cafe_menu[slot_nm] = station_map
 
@@ -165,6 +171,16 @@ def scrape_all(day: str=None) -> dict:
             cafe_entry["condiments"] = condiments
         if extras:
             cafe_entry["extras"] = extras
+    
+    with open("condiment_mappings.json","r") as f:
+        FOOD_TO_CONDIMENTS = json.load(f)
+
+        for slot, cafes in full["time_slots"].items():
+            for cafe, stations in cafes.items():
+                for station_name, meals in stations.items():
+                    for meal in meals:
+                        if meal["meal"] in FOOD_TO_CONDIMENTS:
+                            meal["toppings"] = FOOD_TO_CONDIMENTS[meal["meal"]]
 
     return full
 
@@ -172,6 +188,7 @@ def scrape_all(day: str=None) -> dict:
 if __name__=="__main__":
     target = sys.argv[1] if len(sys.argv)>1 else None
     data = scrape_all(target)
+
 
     with open("full_menu.json","w") as f:
         json.dump(data, f, indent=2)
