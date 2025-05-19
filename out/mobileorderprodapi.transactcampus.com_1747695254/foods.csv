@@ -1,0 +1,90 @@
+itemid,name,description,price_base,price_display,cover_picture_url,calories,fat_g,protein_g,carb_g,fiber_g,sugar_g,cholesterol_mg,sodium_mg,section,section_schedule_name,section_scheduleids,item_scheduleids,manual_online_datetime,currently_available
+6204181,Cappuccino,Classic espresso-style drink with a smooth and well-rounded flavor,0,525,,130,0,0,0,0,10,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-03-02 12:00:00,True
+6204185,Espresso,Concentrated drink made with specially roasted coffee beans,0,335,,5,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-03-02 12:00:00,True
+6204190,Iced Coffee,Iced Coffee,0,455,,5,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+6204186,Peach Chamomille Tea Fog,"Apples, orange, cinnamon, cloves, nutmeg and brown sugar",650,650,,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+6204183,Chai Latte,Freshly brewed black tea warming spices a hint of sweetness and extra frothy milk,0,525,,270,0,0,0,0,21,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-01-31 12:00:00,True
+6204188,Hot Coffee,Hot Coffee,0,355,,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+6204180,Americano,Classic espresso-style drink with a smooth and well-rounded flavor,0,425,,0,0,0,15,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-03-02 12:00:00,True
+6204191,Iced Tea,Iced Tea,0,405,,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-06-10 11:00:00,True
+6204197,Churro Latte,Cold brew infused with nitrogen gas,0,520,,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-11-12 12:00:00,False
+6204194,Lemonade,Lemonade,0,365,,130,0,0,0,0,27,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+6204192,Italian Soda,Soft drink made from carbonated water and flavored syrup,0,385,,180,0,0,0,0,33,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+6204198,Steamer,Steamed milk,0,375,,220,0,0,0,0,19,30,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+6204184,Cold Brew,Made by steeping coffee in water for an extended period of time at a cold temperature,0,505,,15,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-05-03 11:00:00,True
+6204193,Latte,Coffee made with espresso and hot steamed milk,0,505,,180,0,0,0,0,17,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-03-02 12:00:00,True
+6204182,Caramel Macchiato,"Latte-style beverage served hot or iced made with milk, vanilla syrup, and topped with espresso and caramel",0,555,,0,0,0,200,0,32,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-03-02 12:00:00,True
+6204196,Mocha,Chocolate-flavoured warm beverage,0,555,,250,0,0,0,0,34,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-03-02 12:00:00,True
+6204189,Hot Tea,Hot Tea,0,355,,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+6204195,Matcha Latte,Beverage made from finely ground green tea leaves mixed with steamed milk,0,555,,220,0,0,0,0,25,20,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-03-11 11:00:00,True
+7550524,Dark Chocolate Mocha,"A warm, comforting coffee drink loaded with cinnamon and hints of brown sugar",0,600,,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-11-12 12:00:00,False
+6204199,White Mocha,"A blend of espresso coffee, white chocolate, and milk",0,575,,360,0,0,0,0,60,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-03-02 12:00:00,True
+8656408,Havana Cappuccino,cappuccino sweetened with condensed milk topped with a sprinkle of cinnamon,0,570,,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-11-12 12:00:00,True
+8656409,Peppermint White Mocha,,0,570,,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-11-12 12:00:00,False
+8763279,The Lexington,,0,625,,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+8763280,The Manila,,0,625,,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+8763281,The Tokyo,,0,625,,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+6317302,Lodon Fog,,0,525,,0,180,0,0,0,29,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+6204187,Hot Chocolate,Hot Chocolate,0,395,,0,0,0,370,0,41,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+6317303,Maple Latte,Lavender Cream Matcha,0,550,,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-01-31 12:00:00,False
+8069250,Refresher,Refresher,0,665,,140,0,0,0,0,21,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+8339745,Blackberry London Fog,,0,580,,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-04-08 11:00:00,True
+7103828,Lavender Latte,,0,580,,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+6706199,Bronco Take Away Coffee - 96oz,Bronco Take Away Coffee - 96oz,4500,4500,items/cover_item_4_4_2503_1700517412600.jpg,0,0,0,0,0,0,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+6993002,Lemonade Tea,Lemonade Tea,0,505,,90,0,0,0,0,33,0,0,Drinks,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+6204201,Bagel with Cream Cheese,Bagel with Cream Cheese,385,385,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+6204214,Muffin,Muffin,380,380,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-05-07 11:00:00,True
+6204210,Donut,Donut,299,299,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+6204202,Bagel without Cream Cheese,Bagel without Cream Cheese,285,285,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+6204217,Sliced Bread,Toast,460,460,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-04-18 11:00:00,True
+6204208,Cupcake,Cupcake,335,335,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+6204215,Rice Krispies,Rice Krispy Treat,255,255,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+7750440,Pizzetta - Tomato Cheese,Pizzetta - Tomato Cheese,599,599,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-04-29 11:00:00,True
+7750441,Pizzetta - Zucchini Tomato,Pizzetta - Zucchini Tomato,599,599,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-04-29 11:00:00,True
+6204207,Cookies,Cookies,299,299,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+6204209,Danish,Danish,460,460,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-03-17 11:00:00,True
+6204212,Ham and Cheese Croissant,Ham and Cheese Croissant,505,505,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-05-09 11:00:00,True
+6204213,Morning Bun,"Light, flaky, buttery bun made of croissant dough",445,445,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-03-20 11:00:00,True
+6204216,Scone,Scone,415,415,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-04-18 11:00:00,True
+6204204,Butter Croissant,Butter Croissant,430,430,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-05-09 11:00:00,True
+6204205,Chocolate Croissant,Chocolate Croissant,470,470,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-05-09 11:00:00,True
+6204206,Cinnamon Twist Croissant,buttery croissant split and filled with a wild blueberry filling and a sweet crunchy streusel,445,445,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-05-09 11:00:00,True
+6204200,Apple Fritter,"Deep fried donut filled with apples, and cinnamon and drizzled with glaze",335,335,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-05-01 11:00:00,True
+6204203,Brownie,Brownie,360,360,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+8291818,Zesty Lemon & Candied Ginger,"~LOCAL BAKERY~
+Voyager Coffee Craft Coffee-Bake Shop
+Cinco De Mayo Special
+Mexican Sweet Bread/Cookie-Churro Flavor",525,525,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+8291819,Mint Chocolate Chips Cannoli,Daily Dessert,395,395,items/cover_item_4_4_2666_1706418968119.jpg,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-06-06 11:00:00,False
+8291820,Espresso Kahlua Cannoli Cannoli,,395,395,items/cover_item_4_4_19_1660933292557.jpg,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+8643881,Lotus Cookies Cannoli,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+8643882,Tiramisu Cannoli,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+8691740,Butterscotch Cannoli,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+8691741,Double Chocolate Cannoli,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+8691742,Oreo Cannoli,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+8691743,Purple Yam & Coconut Cannoli,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+8691920,Strawberry Pop Tart,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+8728643,Pot of Gold Chocolate Cupcake,,399,399,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+8728644,Baileys Tres Leche Cake,,499,499,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+8756977,Grasshopper Pie,,499,499,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+6204173,Lox Bagel Sandwich,"plain bagel, smoked Atlantic salmon, chive cream cheese, capers, and sliced cucumbers.",1165,1165,,270,2,13,48,0,4,5,590,Breakfast Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-03-17 11:00:00,True
+6204174,Chia Seed Pudding,"Chia seeds, oat milk, honey, fresh mixed berries",560,560,,140,4,4,24,8,13,0,40,Breakfast Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-04-24 11:00:00,True
+6204176,Strawberry Yogurt Parfait,"Vanilla yogurt, honey oat granola, honey and fresh berries",725,725,,440,3,30,60,6,15,25,120,Breakfast Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-11-04 12:00:00,True
+6204178,Hard Boiled Eggs (2ea),2 Hard Boiled Eggs,375,375,,130,8,11,1,0,0,32,125,Breakfast Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-11-04 12:00:00,False
+6204179,Overnight Oats,"Old-fashioned rolled oats, organic Straus whole milk, honey, and fresh mixed berries",560,560,,290,6,10,51,8,9,5,35,Breakfast Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-04-24 11:00:00,True
+8438172,Uncrustable - Grape,,299,299,,0,0,0,0,0,0,0,0,Breakfast Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-11-04 12:00:00,True
+8438173,Uncrustable - Strawberry,,299,299,,0,0,0,0,0,0,0,0,Breakfast Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-11-04 12:00:00,True
+8484459,Uncrustable - Chocolate Hazelnut,,299,299,,0,0,0,0,0,0,0,0,Breakfast Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-11-04 12:00:00,True
+6204172,Bacon Egg and Cheese Breakfast Sandwich,"Toasted English muffin, cage-free fried egg, American cheese, crisp bacon",675,675,,450,26,26,27,2,3,245,1260,Breakfast Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-01-28 12:00:00,True
+6204175,Egg and Cheese Breakfast Sandwich,"Toasted English muffin, cage-free fried egg, American cheese",580,580,,320,16,16,27,2,3,215,780,Breakfast Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-12-06 12:00:00,True
+6204177,Ham Croissant Breakfast Sandwich,"Savory butter croissant, house-made rosemary glazed ham, cage-free fried egg and Swiss cheese",660,660,,340,20,25,15,0,3,210,880,Breakfast Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2025-02-10 12:00:00,True
+6204219,Classic Chicken Caesar Salad,"Romaine hearts, Marys free-range diced chicken breast, grated parmesan, house-made seasoned croutons, and Caesar dressing",1165,1165,,440,28,23,20,4,5,55,1070,Lunch Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,[14910],[],2024-12-06 12:00:00,True
+6204224,Strawberry Arugula Salad with Feta Cheese,"Wild arugula, fresh local strawberries, feta cheese, and citrus vinaigrette",1065,1065,,280,26,6,9,3,5,25,400,Lunch Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,[14910],[],2024-12-06 12:00:00,True
+6204220,Grilled Portobello Mushroom Vegan Panini,"Focaccia bread, hummus spread, balsamic grilled Portobello mushroom, and grilled vegetables (zucchini, bell peppers, squash)",960,960,,230,11,7,28,4,4,0,240,Lunch Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,[14910],[],2025-01-28 12:00:00,False
+6204221,Ciabatta Caprese Sandwich,"Ciabatta bread, heirloom tomatoes, house-made basil sauce, and balsamic drizzle",960,960,,400,19,14,44,2,6,20,640,Lunch Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,[14910],[],2025-01-28 12:00:00,True
+6204223,Roast Beef Panini,"Focaccia bread, horseradish aioli, house-roasted tri-tip, white cheddar, and pickled onions",1165,1165,,480,19,32,42,2,4,80,780,Lunch Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,[14910],[],2025-04-29 11:00:00,True
+6204225,Tuscan Roast Turkey Sandwich,"Ciabatta, thinly sliced turkey, crispy bacon, roasted peppers with herbs, olive oil, paprika, basil, red pepper flakes, sundried tomato spread, and Provolone cheese.",1165,1165,,410,18,31,33,4,2,65,1020,Lunch Grab n Go,DS23 Cafe Sunstream Lunch and Dinner MO,[14910],[],2025-04-29 11:00:00,True
+6204169,Extra PC Cream Cheese,Extra PC Cream Cheese,97,97,,0,0,0,0,0,0,0,0,Fruit and Fruit Cup,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+6204170,Fruit cup (12oz),Fruit cup,555,555,,0,0,0,0,0,0,0,0,Fruit and Fruit Cup,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,True
+8773393,Soup,,504,504,,0,0,0,0,0,0,0,0,Fruit and Fruit Cup,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],,False
+6204171,Whole Fruit,"Apple, Orange, or Banana",99,99,,0,0,0,0,0,0,0,0,Fruit and Fruit Cup,DS23 Cafe Sunstream Lunch and Dinner MO,"[14910, 14947]",[],2024-02-09 12:00:00,True

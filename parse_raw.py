@@ -1,9 +1,14 @@
 import json, pprint, json
+import argparse
+
+parser = argparse.ArgumentParser(description="Parse and simplify JSON files.")
+parser.add_argument("path", type=str, help="Path to the directory containing the aggregated json")
+args = parser.parse_args()
 
 def dollars(cents):            # helper to show “525” → 5.25
     return None if cents in (None,0) else round(cents/100,2)
 
-j = json.load(open("menus/mobileorderprodapi.transactcampus.com_1747628377.json"))
+j = json.load(open(args.path))
 menu_root = j["menu"]    
 sections = menu_root["sections_1"]
 
@@ -45,7 +50,7 @@ for s in sections:
 
         simple_menu[sect_name].append(entry)
 
-pprint.pprint(simple_menu["Drinks"][:2])        # peek
+# pprint.pprint(simple_menu["Drinks"][:2])        # peek
 json.dump(simple_menu, open("menu_simplified.json","w"), indent=2)
 
-print(len(simple_menu["Pastries and Baked Goods"]))
+# print(len(simple_menu["Pastries and Baked Goods"]))

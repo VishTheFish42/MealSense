@@ -1,0 +1,36 @@
+itemid,name,description,price_base,price_display,cover_picture_url,calories,fat_g,protein_g,carb_g,fiber_g,sugar_g,cholesterol_mg,sodium_mg,section,section_schedule_name,section_scheduleids,item_scheduleids,manual_online_datetime,currently_available
+8530783,Side of Tater Tots,,330,330,,310,21,3,26,3,0,0,630,La Parilla Breakfast,,[14953],[],,True
+6218668,Breakfast Burrito Bowl,Bacon Scrambled eggs tater tots and Monterey Jack Cheddar cheese,960,960,,580,42,24,26,4,5,210,1170,La Parilla Breakfast,,[14953],[],,True
+6218670,Breakfast Vegetarian Burrito Bowl,soy chorizo scrambled eggs tater tots and Monterey Jack Cheddar cheese,750,750,,490,35,18,28,6,6,176,925,La Parilla Breakfast,,[14953],[],,True
+6218669,Breakfast Protein Burrito,"Flour tortilla or whole wheat tortilla, bacon, scrambled eggs, tater tots, and Monterey Jack Cheddar cheese",960,960,,660,42,26,36,3,3,210,1250,La Parilla Breakfast,,[14953],[],,True
+6218672,Vegetarian Breakfast Burrito,"Flour tortilla or whole wheat tortilla, soy chorizo, scrambled eggs, tater tots, and Monterey Jack Cheddar cheese",750,750,,580,37,20,43,7,6,180,1000,La Parilla Breakfast,,[14953],[],,True
+6182068,Fountain Soda,Fountain Soda,250,250,items/cover_item_4_4_2504_1660776016583.jpg,0,0,0,0,0,0,0,0,La Parilla Breakfast,,[14953],[],,True
+6218671,Vegan Breakfast Burrito Bowl,"Soyrizo, vegan cheese, tater tots",645,645,,0,0,0,0,0,0,0,0,La Parilla Breakfast,,[14953],[],,True
+6218665,Express Breakfast Bacon Burrito,,900,900,,660,45,26,40,5,5,210,1250,La Parilla Express Breakfast,,[14952],[],,True
+6218666,Express Vegetarian Breakfast Burrito,,750,750,,0,0,0,0,0,0,0,0,La Parilla Express Breakfast,,[14952],[],,True
+8114509,BYO Tacos,BYO Taco,399,474,,120,4,10,13,0,0,20,30,La Parilla Lunch & Dinner,DS23 MP La Parilla M F MO,"[14954, 14955]",[],,True
+6218677,Protein Quesadilla,"Choice of flour or whole wheat tortilla, filled with Mexican cheese blend and protein (optional)",1100,1295,,510,27,28,40,5,2,70,610,La Parilla Lunch & Dinner,DS23 MP La Parilla M F MO,"[14954, 14955]",[],,True
+6218676,Nachos,"House made chips, nacho cheese, your choice of protein and toppings",1100,1295,,790,50,34,95,10,2,95,880,La Parilla Lunch & Dinner,DS23 MP La Parilla M F MO,"[14954, 14955]",[],2025-05-14 11:00:00,True
+6218679,Torta,"Braised pork, fresh roll, guacamole, pickled onions, ripe tomatoes, and sour cream",1410,1605,,440,15,28,49,4,7,75,830,La Parilla Lunch & Dinner,DS23 MP La Parilla M F MO,"[14954, 14955]",[],,True
+6218675,Chips and Guacamole,Chips and Guacamole,870,870,,410,29,5,37,9,3,0,270,La Parilla Lunch & Dinner,DS23 MP La Parilla M F MO,"[14954, 14955]",[],2025-05-07 11:00:00,True
+6218678,TJ Style Grilled Beef Tacos,"Corn tortillas, grilled beef, avocado slices, spiced pinto beans, and sautéed nopales",950,950,,693,24,51,23,7,2,130,150,La Parilla Lunch & Dinner,DS23 MP La Parilla M F MO,"[14954, 14955]",[],2025-05-07 11:00:00,True
+6317262,Protein Tostada Salad Bowl,crispy flour tortilla shell / mayocoba or black beans / choice of chicken pork beef or tofu / four cheese blend / lettuce / guacamole / sour cream / pico de gallo,1379,1574,,0,0,0,0,0,0,0,0,La Parilla Lunch & Dinner,DS23 MP La Parilla M F MO,"[14954, 14955]",[],,True
+8688946,Crispy Chicken Flautas,crispy tortilla / avocado cream / cheese / shredded lettuce / queso fresco / cilantro / lime,1189,1189,,0,0,0,0,0,0,0,0,La Parilla Lunch & Dinner,DS23 MP La Parilla M F MO,"[14954, 14955]",[],2025-05-08 11:00:00,False
+8691613,Alicias Tamales,chicken tamales / salsa / Spanish rice / pinto beans,1479,1479,,0,0,0,0,0,0,0,0,La Parilla Lunch & Dinner,DS23 MP La Parilla M F MO,"[14954, 14955]",[],2025-03-10 11:00:00,False
+8750399,Chips and Pico de Gallo,,300,300,,0,0,0,0,0,0,0,0,La Parilla Lunch & Dinner,DS23 MP La Parilla M F MO,"[14954, 14955]",[],2025-05-04 11:00:00,True
+8756974,Churros with Dulce de Leche Sauce,,300,300,,0,0,0,0,0,0,0,0,La Parilla Lunch & Dinner,DS23 MP La Parilla M F MO,"[14954, 14955]",[],2025-05-18 11:00:00,True
+8773390,La Parilla Special 1,,0,0,,0,0,0,0,0,0,0,0,La Parilla Lunch & Dinner,DS23 MP La Parilla M F MO,"[14954, 14955]",[],2025-05-04 11:00:00,False
+8773391,La Parilla Special 2,,0,0,,0,0,0,0,0,0,0,0,La Parilla Lunch & Dinner,DS23 MP La Parilla M F MO,"[14954, 14955]",[],,False
+7884433,[Gluten Free] Breakfast Burrito Bowl,Gluten-Free Breakfast Burrito Bowl,900,900,,0,0,0,0,0,0,0,0,La Parilla Breakfast Allergen,,[14953],[],,True
+7884434,[Gluten Free] Breakfast Vegetarian Bowl,Gluten-Free Breakfast Vegetarian Bowl,750,750,,0,0,0,0,0,0,0,0,La Parilla Breakfast Allergen,,[14953],[],,True
+8064589,Burrito Bowl Combo,includes a fountain drink and a chocolate chip cookie,1500,1695,,0,0,0,0,0,0,0,0,La Parilla- Student Tour Groups,DS23 MP La Parilla M F MO,[14954],[],,True
+8064590,Burrito Combo,includes a fountain drink and a chocolate chip cookie,1500,1695,,0,0,0,0,0,0,0,0,La Parilla- Student Tour Groups,DS23 MP La Parilla M F MO,[14954],[],,True
+7884437,[Gluten Free] TJ Style Grilled Beef Tacos,Gluten-Free TJ Style Grilled Beef Tacos,950,950,items/cover_item_4_4_2503_1726858730827.jpg,0,0,0,0,0,0,0,0,La Parilla Lunch & Dinner Allergen,DS23 MP La Parilla M F MO,"[14954, 14955]",[],2025-03-22 11:00:00,True
+7884435,[Gluten Free] Nachos,Gluten-Free Nachos,1100,1295,,0,0,0,0,0,0,0,0,La Parilla Lunch & Dinner Allergen,DS23 MP La Parilla M F MO,"[14954, 14955]",[],2025-01-11 12:00:00,True
+7884436,[Gluten Free] SCU Burrito Bowl,Gluten-Free SCU Burrito Bowl,1100,1295,,0,0,0,0,0,0,0,0,La Parilla Lunch & Dinner Allergen,DS23 MP La Parilla M F MO,"[14954, 14955]",[],,True
+6218673,Burrito,"Choice of tender beef, grilled chicken, braised pork, or soyrizo on flour or whole wheat tortilla with choice of fillings",1100,1295,,470,17,21,59,6,2,45,680,La Parilla Late Night,,[15122],[],,True
+6219262,SCU Burrito Bowl,"Choice of tender beef, grilled chicken, braised pork, or soyrizo over rice. Option to add lettuce, sour cream, guacamole, cheese, and beans",1100,1295,,0,0,0,0,0,0,0,0,La Parilla Late Night,,[15122],[],,True
+8674788,Bean & Cheese Burrito,"choice of flour or whole wheat tortilla, pinto beans or black beans and Monterey Cheddar Jack cheese.",700,700,,0,0,0,0,0,0,0,0,La Parilla Value Menu,DS23 MP La Parilla M F MO,"[14954, 14955]",[],2025-02-12 12:00:00,True
+8674795,Vegetarian Quesadillas,"choice of flour tortilla or whole wheat tortilla, pinto beans or black beans, Monterey Cheddar Jack cheese and sauteed peppers onions.",900,900,,440,22,21,38,6,0,55,490,La Parilla Value Menu,DS23 MP La Parilla M F MO,"[14954, 14955]",[],,True
+6218674,Chicken Enchiladas Verdes,"corn tortillas, shredded chicken, salsa verde, queso fresco, iceberg lettuce, and Spanish rice",1000,1000,,340,12,26,90,2,5,90,690,La Parilla Value Menu,DS23 MP La Parilla M F MO,"[14954, 14955]",[],2025-05-13 11:00:00,True
+8674790,Chips & Guacamole,,870,870,,410,29,5,37,9,3,0,270,La Parilla Value Menu,DS23 MP La Parilla M F MO,"[14954, 14955]",[],,True

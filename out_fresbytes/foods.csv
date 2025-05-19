@@ -1,0 +1,115 @@
+itemid,name,description,price_base,price_display,cover_picture_url,calories,fat_g,protein_g,carb_g,fiber_g,sugar_g,cholesterol_mg,sodium_mg,section,section_schedule_name,section_scheduleids,item_scheduleids,manual_online_datetime,currently_available
+6164593,Bacon Egg and Cheese Breakfast Sandwich,"Toasted English muffin, cage-free fried egg, American cheese, crisp bacon",675,675,,450,26,26,27,2,3,245,1260,Breakfast Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-03-08 12:00:00,True
+6164613,Egg and Cheese Breakfast Sandwich,"Toasted English muffin, cage-free fried egg, American cheese",580,580,,320,16,16,27,2,3,215,780,Breakfast Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-03-08 12:00:00,True
+6164596,Lox Bagel Sandwich,"Plain bagel, smoked Atlantic salmon, chive cream cheese, capers, and sliced cucumbers.",1165,1165,,270,2,13,48,0,4,5,590,Breakfast Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-09 11:00:00,False
+6164603,Chia Seed Pudding,"Chia seeds, oat milk, honey, fresh mixed berries",560,560,,140,4,4,24,8,13,0,40,Breakfast Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-14 11:00:00,True
+6164617,Strawberry Yogurt Parfait,"Vanilla yogurt, honey oat granola, honey and strawberries.",725,725,,440,3,30,60,6,15,25,120,Breakfast Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-04-15 11:00:00,True
+6164620,Ham Croissant Breakfast Sandwich,"Savory butter croissant, house-made rosemary glazed ham, cage-free fried egg and Swiss cheese",660,660,,340,20,25,15,0,3,210,880,Breakfast Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-14 11:00:00,True
+6164621,Hard Boiled Eggs (2ea),2 Hard Boiled Eggs,375,375,,130,8,11,1,0,0,32,125,Breakfast Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-14 11:00:00,True
+6164639,Overnight Oats,"Old-fashioned rolled oats, organic Straus whole milk, honey, and fresh mixed berries.",560,560,,290,6,10,51,8,9,5,35,Breakfast Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-14 11:00:00,True
+8438657,Uncrustable - Grape,Grape Uncrustable,299,299,items/cover_item_4_4_2503_1726852363909.jpg,0,0,0,0,0,0,0,0,Breakfast Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-04-16 11:00:00,True
+8438658,Uncrustable - Strawberry,Strawberry Uncrustable,299,299,items/cover_item_4_4_2503_1726852097827.jpg,0,0,0,0,0,0,0,0,Breakfast Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-04-16 11:00:00,True
+8484981,Uncrustable - Chocolate Hazelnut,Chocolate Hazelnut Uncrustable,299,299,items/cover_item_4_4_2503_1726852432657.jpg,0,0,0,0,0,0,0,0,Breakfast Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-04-16 11:00:00,True
+8061756,Refresher,Refresher,0,665,,140,0,0,0,0,21,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,False
+6164614,Espresso,Concentrated drink made with specially roasted coffee beans,0,335,,5,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-04-12 11:00:00,True
+6993822,Lemonade Tea,Lemonade Tea,0,455,,90,0,0,0,0,33,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-03-08 12:00:00,True
+7103951,Lavender Latte,,0,580,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,True
+6164638,Churro Latte,Cold brew infused with nitrogen gas,0,520,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-04-12 11:00:00,False
+6164602,Chai Latte,"Freshly brewed black tea, warming spices, a hint of sweetness, and extra frothy milk",0,525,,270,0,0,0,0,21,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-04-22 11:00:00,True
+6164628,Italian Soda,Soft drink made from carbonated water and flavored syrup,0,385,,180,0,0,0,0,33,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,True
+6164623,Hot Chocolate,Hot Chocolate,0,395,,370,0,0,41,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-04-12 11:00:00,True
+6164607,Cold Brew,Made by steeping coffee in water for an extended period of time at a cold temperature,0,505,,5,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-04-12 11:00:00,False
+6164627,Iced Tea,Iced Tea,0,405,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,True
+6164626,Iced Coffee,Iced Coffee,0,455,,5,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-04-12 11:00:00,True
+6164654,White Mocha,"A blend of espresso coffee, white chocolate, and milk",0,575,,360,0,0,0,0,58,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-03-08 12:00:00,True
+6164631,Lemonade,Lemonade,0,365,,130,0,0,0,0,27,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,True
+8345834,Blackberry London Fog,,0,550,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,False
+6164629,Latte,A type of coffee made with espresso and hot steamed milk,0,505,,180,0,0,0,2,17,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-04-12 11:00:00,True
+6164601,Caramel Macchiato,"Latte-style beverage served hot or iced made with milk, vanilla syrup, and topped with espresso and caramel",0,555,,200,0,0,0,0,32,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-04-12 11:00:00,True
+6164624,Hot Coffee,Hot Coffee,0,355,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-04-12 11:00:00,True
+6164625,Hot Tea,Hot Tea,0,355,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,True
+6164645,Steamer,Hot milk based drink,0,375,,260,0,0,0,0,19,30,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-04-12 11:00:00,True
+6164590,Americano,Classic espresso-style drink with a smooth and well-rounded flavor,0,425,,15,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-04-12 11:00:00,True
+8656410,Havana Cappuccino,cappuccino sweetened with condensed milk topped with a sprinkle of cinnamon,0,570,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,True
+6164633,Mocha,Chocolate-flavoured warm beverage,0,555,,250,0,0,0,0,34,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-02-23 12:00:00,True
+7551606,Dark Chocolate Mocha,Snickerdoodle Latte,0,600,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,False
+6164600,Cappuccino,Espresso-based coffee drink that is traditionally prepared with steamed milk foam,0,525,,130,0,0,0,0,10,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-04-12 11:00:00,True
+8656411,Peppermint White Mocha,,0,570,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,False
+6317300,Maple Latte,,0,550,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,True
+8763288,The Lexington,,0,625,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,False
+6164622,Peach Chamomille Tea Fog,"Apples, orange, cinnamon, cloves, nutmeg and brown sugar",650,650,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-04-11 11:00:00,False
+8763289,The Manila,,0,625,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,False
+8763290,The Tokyo,,0,625,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,False
+6164632,Matcha Latte,Made from finely ground green tea leaves mixed with steamed milk,0,555,,220,0,0,0,0,25,20,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,True
+6706136,Bronco Take Away Coffee - 96oz,Bronco Take Away Coffee - 96oz,4500,4500,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,False
+6317299,Lodon Fog,1 shot of espresso with Monin Praline syrup and steamed milk,0,525,,180,0,0,0,0,29,15,0,Cafe Drinks,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-03-08 12:00:00,False
+6164655,Whole Fruit,"Apple, Orange, or Banana",99,99,,70,0,2,32,3,27,0,30,Fruit and Fruit Cup,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,True
+6164615,Extra PC Cream Cheese,Extra PC Cream Cheese,97,97,,0,0,0,0,0,0,0,0,Fruit and Fruit Cup,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2024-03-08 12:00:00,True
+6164616,Fruit cup (12oz),"Honeydew, cantaloupe, pineapple, strawberries",555,555,,0,0,0,0,0,0,0,0,Fruit and Fruit Cup,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-01-25 12:00:00,True
+8773395,Soup,,504,504,,0,0,0,0,0,0,0,0,Fruit and Fruit Cup,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,False
+6164594,Bagel with Cream Cheese,Bagel with Cream Cheese,385,385,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,True
+6164610,Danish,Danish,460,460,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-17 11:00:00,True
+6164643,Scone,Scone,415,415,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-16 11:00:00,True
+6164644,Sliced Bread,,460,460,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-17 11:00:00,True
+6164637,Muffin,Muffin,380,380,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-16 11:00:00,True
+6164611,Donut,Donut,299,299,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,True
+6164608,Cookies,Cookies,299,299,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,True
+6164595,Bagel without Cream Cheese,Bagel without Cream Cheese,285,285,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-07 11:00:00,True
+6164591,Apple Fritter,"Deep fried donut filled with apples, and cinnamon and drizzled with glaze",335,335,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-20 11:00:00,True
+6164598,Brownie,,445,445,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-17 11:00:00,True
+6164599,Butter Croissant,Butter Croissant,430,430,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-20 11:00:00,True
+6164609,Cupcake,Cupcake,335,335,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,False
+6164604,Chocolate Croissant,Chocolate Croissant,470,470,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-20 11:00:00,True
+6164605,Cinnamon Twist Croissant,buttery croissant split and filled with a wild blueberry filling and a sweet crunchy streusel,445,445,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-14 11:00:00,False
+6164641,Rice Krispies,Rice Krispie treat,255,255,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,False
+6164619,Ham and Cheese Croissant,Ham and Cheese Croissant,505,505,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-20 11:00:00,False
+6164634,Morning Bun,Flaky croissant dough rolled with cinnamon brown sugar and a hint of range.,445,445,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],2025-05-20 11:00:00,True
+7754498,Pizzetta - Tomato Cheese,Tomato Cheese Pizzetta,599,599,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,False
+7754499,Pizzetta - Zucchini Tomato,Pizzetta - Zucchini Tomato,599,599,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942, 18943]",[],,False
+8679919,The Temptation,strawberries / banana/ cocoa powder/ dark chocolate sauce / coconut milk,765,765,,0,0,0,0,0,0,0,0,Smoothies,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942]",[],,False
+8679920,Creamy Strawberries,strawberries / coconut cream / vanilla yogurt / agave,765,765,,0,0,0,0,0,0,0,0,Smoothies,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942]",[],2025-01-31 12:00:00,True
+8679917,Peach on the Beach,,738,738,,0,0,0,0,0,0,0,0,Smoothies,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942]",[],,False
+8679918,Strawnana,banana / strawberry / apple juice,765,765,,0,0,0,0,0,0,0,0,Smoothies,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942]",[],2025-05-07 11:00:00,True
+8679914,Caffeine kick,,850,850,,0,0,0,0,0,0,0,0,Smoothies,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942]",[],,False
+8679915,Mango delight,mango / pineapple / coconut milk / coconut cream / agave,765,765,,0,0,0,0,0,0,0,0,Smoothies,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942]",[],2025-01-31 12:00:00,True
+8679916,Mango Magic,,738,738,,0,0,0,0,0,0,0,0,Smoothies,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942]",[],,False
+8679921,Tropical Matcha Smoothie,,745,745,,0,0,0,0,0,0,0,0,Smoothies,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18940, 18941, 18942]",[],2025-05-07 11:00:00,True
+8679926,Matcha,,750,750,,0,0,0,0,0,0,0,0,Boba,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942, 18943]",[],,True
+8679929,Green Thai Tea,green thai tea leaves / condensed milk / sugar cane / your choice of whole milk or oat milk,725,725,,0,0,0,0,0,0,0,0,Boba,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942, 18943]",[],2025-02-22 12:00:00,False
+8679922,Calamansi Lemon Green Tea,,700,700,,0,0,0,0,0,0,0,0,Boba,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942, 18943]",[],,False
+8679927,Oreo Brulee Jade,delightful blend that combines the rich flavors of creamy jade matcha with the indulgence of crushed Oreo cookies and creme brulee.,750,750,,0,0,0,0,0,0,0,0,Boba,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942, 18943]",[],,False
+8679923,House special milk tea,cold brew black tea / condensed milk / sugar cane / brown sugar boba / your choice of whole milk or oat milk,725,725,,0,0,0,0,0,0,0,0,Boba,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942, 18943]",[],,False
+8679924,Lychee Green Tea,cold brew Jasmine green tea / lychee syrup / lychee bits,725,725,,0,0,0,0,0,0,0,0,Boba,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942, 18943]",[],,True
+8679925,Green Apple Lemonade,,725,725,,0,0,0,0,0,0,0,0,Boba,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942, 18943]",[],,True
+8679928,Taro Milk Tea,taro / ube extract / sugar cane / your choice of whole milk or oat milk,725,725,,0,0,0,0,0,0,0,0,Boba,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942, 18943]",[],,True
+6196358,Grilled Portobello Mushroom Vegan Panini,"Focaccia bread, hummus spread, balsamic grilled Portobello mushroom, and grilled vegetables (zucchini, bell peppers, squash)",960,960,,230,11,7,28,4,4,0,240,Lunch Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942]",[],2025-05-16 11:00:00,False
+6196359,Ciabatta Caprese Sandwich,"Ciabatta bread, heirloom tomatoes, house-made basil sauce, and a balsamic drizzle.",960,960,,400,19,14,44,2,6,20,640,Lunch Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942]",[],2025-05-16 11:00:00,True
+6196361,Roast Beef Panini,"Focaccia bread, horseradish aioli, house-roasted tri-tip, white cheddar, pickled onions",1165,1165,,480,19,32,42,2,4,80,780,Lunch Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942]",[],2025-05-16 11:00:00,False
+6196363,Tuscan Roast Turkey Sandwich,"Ciabatta, thinly sliced turkey, crispy bacon, roasted peppers with herbs, olive oil, paprika, basil, red pepper flakes, sundried tomato spread, and Provolone cheese.",1165,1165,,410,18,31,33,4,2,65,1020,Lunch Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942]",[],2025-05-16 11:00:00,True
+6196357,Classic Chicken Caesar Salad,"Romaine hearts, Marys free-range diced chicken breast, grated parmesan, house-made seasoned croutons, and Caesar dressing",1165,1165,,440,28,23,20,4,5,55,1070,Lunch Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942]",[],2025-05-16 11:00:00,True
+6196362,Strawberry Arugula Salad with Feta Cheese,"Wild arugula, fresh local strawberries, feta cheese and a citrus vinaigrette",1065,1065,,280,26,6,9,3,5,25,400,Lunch Grab n Go,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942]",[],2025-05-16 11:00:00,True
+8679930,Rocky Road Cheesecake,"~LOCAL BAKERY~
+Voyager Coffee Craft Coffee-Bake Shop
+Cinco De Mayo Special
+Mexican Sweet Bread/Cookie-Churro Flavor",525,525,,0,0,0,0,0,0,0,0,Fresh Bytes Dessert,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942]",[],2025-04-03 11:00:00,False
+8679931,Southern Hummingbird Bar,Flour sugar cinnamon oil baking soda banana pineapple cream cheese butter coconut�,495,495,,0,0,0,0,0,0,0,0,Fresh Bytes Dessert,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942]",[],2025-03-08 12:00:00,False
+8766524,Chocoflan Impossible Cake,Flour cocoa powder sugar butter egg cinnamon salt baking powder baking soda milk cream cream cheese vanilla,495,495,,0,0,0,0,0,0,0,0,Fresh Bytes Dessert,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942]",[],2025-04-17 11:00:00,True
+8766525,Key Lime Tart,flour sugar butter egg condensed milk cream Greek yogurt lime,495,495,,0,0,0,0,0,0,0,0,Fresh Bytes Dessert,DS23 SCDI Fresh Bytes Pre Dinner M F MO,"[18941, 18942]",[],2025-04-26 11:00:00,True
+8766238,Chicken 65 with Cucumber Raita,"chicken, ginger, garlic, chili powder, turmeric, garam masala, yogurt, egg, rice flour, cornstarch, potato starch. Sauce: yogurt, cucumber, cilantro, onions, curry powder",1175,1175,,0,0,0,0,0,0,0,0,Fresh Bytes Food,DS23 SCDI Fresh Bytes Lunch M F MO,[18941],[],2025-04-26 11:00:00,True
+8766240,Grilled Lemon Asparagus with Pecorino,"asparagus, garlic, olive oil, lemon, salt, pepper, pecorino cheese",900,900,,0,0,0,0,0,0,0,0,Fresh Bytes Food,DS23 SCDI Fresh Bytes Lunch M F MO,[18941],[],2025-05-08 11:00:00,True
+8766241,Hot Cheetos Elote (street corn),"corn, mayonnaise, sour cream, lime, paprika, cheetos, parmesan cheese, cilantro",975,975,,0,0,0,0,0,0,0,0,Fresh Bytes Food,DS23 SCDI Fresh Bytes Lunch M F MO,[18941],[],2025-05-13 11:00:00,True
+8766242,Spicy Vegetarian Potstickers,"cabbage, carrots, garlic, onions, dried chilis, corn, shiitake mushroom,  shallots, oil, soy sauce, and black vinegar",1100,1100,,0,0,0,0,0,0,0,0,Fresh Bytes Food,DS23 SCDI Fresh Bytes Lunch M F MO,[18941],[],2025-05-16 11:00:00,True
+8766243,Wagyu Beef Burger Animal Style,"wagyu beef, brioche buns, american cheese, thousand island dressing, caramelized onions",1275,1275,,0,0,0,0,0,0,0,0,Fresh Bytes Food,DS23 SCDI Fresh Bytes Lunch M F MO,[18941],[],2025-05-02 11:00:00,True
+8766244,Watermelon & Tuna Poke,"tuna, watermelon, soy sauce, garlic, cucumber, fried green onions, edamame, yuzu
+Side: Wonton chips",1275,1275,,0,0,0,0,0,0,0,0,Fresh Bytes Food,DS23 SCDI Fresh Bytes Lunch M F MO,[18941],[],2025-05-06 11:00:00,True
+8773396,House Made Chips,,400,400,,0,0,0,0,0,0,0,0,Fresh Bytes Food,DS23 SCDI Fresh Bytes Lunch M F MO,[18941],[],,True
+8782369,FB Special 1,,0,0,,0,0,0,0,0,0,0,0,Fresh Bytes Food,DS23 SCDI Fresh Bytes Lunch M F MO,[18941],[],,False
+8782370,FB Special 2,,0,0,,0,0,0,0,0,0,0,0,Fresh Bytes Food,DS23 SCDI Fresh Bytes Lunch M F MO,[18941],[],,False
+8782371,Spicy Chicken Bento with California Roll,Chicken All-purpose flour California sushi roll Mayonnaise Sriracha Ginger,1155,1155,,0,0,0,0,0,0,0,0,Fresh Bytes Food,DS23 SCDI Fresh Bytes Lunch M F MO,[18941],[],2025-05-06 11:00:00,False
+8766239,Cold Soba Noodle Salad,"soba noodles, cucumber, bell peppers, edamame, red cabbage, soft boiled egg, miso Vinaigrette, yuzu, pickled ginger.",850,850,,0,0,0,0,0,0,0,0,Fresh Bytes Food,DS23 SCDI Fresh Bytes Lunch M F MO,[18941],[],2025-04-18 11:00:00,True
+8679939,Garlic Parmesan Chicken Wings,Party Wings/ Garlic/ Salt/ Pepper/ Butter/ Parmesan Cheese,1220,1220,,0,0,0,0,0,0,0,0,Fresh Bytes Dinner,,[18943],[],,True
+8679940,Impossible Sloppy Joes,Ground Impossible/ Bell Peppers/ Onions/ Garlic/ Tomato Paste/ Ketchup/ Mushroom Stock/ Brown Sugar/ Chili Powder/ Worcestershire Sauce/ Tabasco/ Cole Slaw,950,950,,0,0,0,0,0,0,0,0,Fresh Bytes Dinner,,[18943],[],,True
+8679941,Pav Bhaji,Butter/ Onions/ Tomatoes/ Russet Potato/ Green Peas/ Carrots/ Cauliflower/ Bell Peppers/ Garlic/ Pav Bhaji Masala/ Chili Powder/ Cilantro/ Hawaiian Rolls. Garnish: Red Onions/ Lime,890,890,,0,0,0,0,0,0,0,0,Fresh Bytes Dinner,,[18943],[],,True
+8679942,Ube Cream Puff,,395,395,,0,0,0,0,0,0,0,0,Fresh Bytes Dinner,,[18943],[],,True
+8679943,Vanilla Marshmallows Milkshake,,700,700,,0,0,0,0,0,0,0,0,Fresh Bytes Dinner,,[18943],[],,True
+8679944,Wagyu Beef Sliders w Bacon Jam Cheddar,Wagyu Beef/ Brioche Buns/ Mild Cheddar Cheese/ Thousand Island Dressing/ Bacon/ Coffee/ Brown Sugar/ Garlic/ Salt/ Pepper,1257,1257,,0,0,0,0,0,0,0,0,Fresh Bytes Dinner,,[18943],[],,True

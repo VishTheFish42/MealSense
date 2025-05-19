@@ -1,0 +1,90 @@
+itemid,name,description,price_base,price_display,cover_picture_url,calories,fat_g,protein_g,carb_g,fiber_g,sugar_g,cholesterol_mg,sodium_mg,section,section_schedule_name,section_scheduleids,item_scheduleids,manual_online_datetime,currently_available
+6200633,Espresso,A concentrated drink made with specially roasted coffee beans,0,335,,5,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200631,Chai Latte,Freshly brewed black tea warming spices a hint of sweetness and extra frothy milk,0,525,,270,0,0,0,0,21,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200629,Cappuccino,Espresso-based coffee drink that is traditionally prepared with steamed milk foam,0,525,,130,0,0,0,0,10,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200636,Hot Coffee,Hot Coffee,0,355,,5,0,0,0,2,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200638,Iced Coffee,Iced Coffee,0,455,,5,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200628,Americano,Classic espresso-style drink with a smooth and well-rounded flavor,0,425,,15,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200642,Lemonade,Lemonade,0,365,,130,0,0,0,0,27,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200639,Iced Tea,Iced Tea,0,405,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200645,Churro Latte,Cold brew infused with nitrogen gas,0,520,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200640,Italian Soda,Soft drink made from carbonated water and flavored syrup,0,385,,180,0,0,0,0,33,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200641,Latte,Coffee made with espresso and hot steamed milk,0,505,,180,0,0,0,0,17,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200644,Mocha,Chocolate-flavoured warm beverage,0,555,items/cover_item_4_4_19_1662762616406.jpg,250,0,0,0,0,34,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200632,Cold Brew,Made by steeping coffee in water for an extended period of time at a cold temperature,0,505,,5,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+6200635,Hot Chocolate,Hot Chocolate,0,395,,370,0,0,0,0,41,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200646,Steamer,Hot milk based drink,0,375,,260,0,0,0,0,19,30,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200643,Matcha Latte,Beverage made from finely ground green tea leaves mixed with steamed milk,0,555,,220,0,0,0,0,25,14,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2024-10-08 11:00:00,True
+6200647,White Mocha,"A blend of espresso coffee, white chocolate, and milk",0,575,,360,0,0,0,0,58,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6317296,Maple Latte,,0,550,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200634,Peach Chamomille Tea Fog,"Apples, orange, cinnamon, cloves, nutmeg and brown sugar",650,650,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+7550501,Dark Chocolate Mocha,"A warm, comforting coffee drink loaded with cinnamon and hints of brown sugar",0,600,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-03-18 11:00:00,False
+8656404,Havana Cappuccino,cappuccino sweetened with condensed milk topped with a sprinkle of cinnamon,0,570,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+8656405,Peppermint White Mocha,,0,570,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+7103825,Lavender Latte,,0,580,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+8763273,The Lexington,,0,625,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+6200630,Caramel Macchiato,"Latte-style beverage served hot or iced made with milk, vanilla syrup, and topped with espresso and caramel",0,555,,200,0,0,0,0,32,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+8763274,The Manila,,0,625,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+8763275,The Tokyo,,0,625,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+8069212,Refresher,,0,665,,100,0,0,0,0,21,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6706139,Bronco Take Away Coffee - 96oz,,4500,4500,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+6317295,Lodon Fog,1 shot of espresso with Monin Praline syrup and steamed milk,0,525,,180,0,0,0,0,29,13,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+8339741,Blackberry London Fog,,0,580,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+6200637,Hot Tea,Hot Tea,0,355,,0,0,0,0,0,0,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6992984,Lemonade Tea,,0,505,,90,0,0,0,0,33,0,0,Cafe Drinks,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200649,Bagel with Cream Cheese,Bagel with Cream Cheese,385,385,items/cover_item_4_4_2503_1668718652626.jpg,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200650,Bagel without Cream Cheese,Bagel without Cream Cheese,285,285,items/cover_item_4_4_2503_1668718652626.jpg,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200662,Muffin,Muffin,380,380,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-05-13 11:00:00,True
+6200658,Donut,Donut,299,299,items/cover_item_4_4_19_1660687962225.jpg,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200656,Cupcake,Cupcake,335,335,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2024-01-25 12:00:00,False
+6200663,Rice Krispies,Rice Krispies,255,255,items/cover_item_4_4_2503_1693591844862.jpg,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2024-01-25 12:00:00,False
+7750434,Pizzetta - Tomato Cheese,Pizzetta - Tomato Cheese,599,599,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-05-06 11:00:00,True
+6200665,Sliced Bread,Sliced Bread,460,460,items/cover_item_4_4_2666_1705906462854.jpg,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-05-06 11:00:00,True
+7750435,Pizzetta - Zucchini Tomato,Pizzetta - Zucchini Tomato,599,599,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-05-06 11:00:00,True
+6200655,Cookies,Cookies,299,299,items/cover_item_4_4_19_1660934528683.jpg,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-03-13 11:00:00,True
+6200660,Ham and Cheese Croissant,Ham and Cheese Croissant,505,505,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-05-15 11:00:00,True
+6200661,Morning Bun,"Light, flaky, buttery bun made of croissant dough",445,445,items/cover_item_4_4_2503_1693591640148.jpg,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-04-18 11:00:00,False
+6200664,Scone,Scone,415,415,items/cover_item_4_4_2503_1693591875580.jpg,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-04-16 11:00:00,True
+6200651,Brownie,Brownie,360,360,items/cover_item_4_4_19_1661279511493.jpg,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+6200652,Butter Croissant,Butter Croissant,430,430,items/cover_item_4_4_2503_1693591420252.jpg,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-05-13 11:00:00,True
+6200654,Cinnamon Twist Croissant,buttery croissant split and filled with a wild blueberry filling and a sweet crunchy streusel,445,445,items/cover_item_4_4_2503_1693591517839.jpg,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-04-18 11:00:00,True
+6200657,Danish,Danish,460,460,items/cover_item_4_4_2503_1693591572583.jpg,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-02-22 12:00:00,True
+6200653,Chocolate Croissant,Chocolate Croissant,470,470,,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-05-13 11:00:00,True
+6200648,Apple Fritter,"Deep-fried donut filled with apples, and cinnamon and drizzled with glaze",335,335,items/cover_item_4_4_2503_1693591263251.jpg,0,0,0,0,0,0,0,0,Pastries and Baked Goods,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-04-18 11:00:00,True
+6200620,Lox Bagel Sandwich,"plain bagel, smoked Atlantic salmon, chive cream cheese, capers, and sliced cucumbers.",1165,1165,,270,2,13,48,0,4,5,590,Breakfast GNG,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-04-05 11:00:00,False
+6200621,Chia Seed Pudding,"Chia seeds, oat milk, honey, and fresh mixed berries",560,560,,140,4,4,24,8,13,0,40,Breakfast GNG,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200624,Strawberry Yogurt Parfait,"Vanilla yogurt, honey oat granola, honey and strawberries",725,725,,440,3,30,60,6,15,25,120,Breakfast GNG,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2024-10-29 11:00:00,True
+6200626,Hard Boiled Eggs (2ea),2 Hard Boiled Eggs,375,375,,0,0,0,0,0,0,0,0,Breakfast GNG,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200627,Overnight Oats,"Old-fashioned rolled oats, organic Straus whole milk, honey, and fresh mixed berries",560,560,,290,6,10,51,8,9,5,35,Breakfast GNG,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-05-15 11:00:00,True
+8438152,Uncrustable - Grape,Grape Uncrustable,299,299,items/cover_item_4_4_2503_1726852363909.jpg,0,0,0,0,0,0,0,0,Breakfast GNG,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+8438153,Uncrustable - Strawberry,Strawberry Uncrustable,299,299,items/cover_item_4_4_2503_1726852097827.jpg,0,0,0,0,0,0,0,0,Breakfast GNG,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+8484441,Uncrustable - Chocolate Hazelnut,Chocolate Hazelnut Uncrustable,299,299,items/cover_item_4_4_2503_1726852432657.jpg,0,0,0,0,0,0,0,0,Breakfast GNG,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-05-01 11:00:00,True
+6200622,Egg and Cheese Breakfast Sandwich,"Toasted English muffin, cage-free fried egg, and American cheese",580,580,,320,16,16,27,2,3,215,780,Breakfast GNG,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-02-07 12:00:00,True
+6200625,Ham Croissant Breakfast Sandwich,"Savory butter croissant, house-made rosemary glazed ham, cage-free fried egg and Swiss cheese",660,660,,340,20,25,15,0,3,210,880,Breakfast GNG,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-01-28 12:00:00,True
+6200619,Bacon Egg and Cheese Breakfast Sandwich,"Toasted English muffin, cage-free fried egg, American cheese, and crisp bacon",675,675,,450,26,26,27,2,3,245,1260,Breakfast GNG,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2024-09-28 11:00:00,True
+8300297,Zesty Lemon & Candied Ginger,"~LOCAL BAKERY~
+Voyager Coffee Craft Coffee-Bake Shop
+Cinco De Mayo Special
+Mexican Sweet Bread/Cookie-Churro Flavor",525,525,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+8300298,Mint Chocolate Chips Cannoli,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2024-05-07 11:00:00,False
+8300299,Espresso Kahlua Cannoli Cannoli,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+8643879,Lotus Cookies Cannoli,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+8643880,Tiramisu Cannoli,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+8691732,Butterscotch Cannoli,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+8691733,Double Chocolate Cannoli,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+8691734,Oreo Cannoli,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+8691735,Purple Yam & Coconut Cannoli,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+8700172,Strawberry Pop Tart,,395,395,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+8728639,Pot of Gold Chocolate Cupcake,,399,399,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+8728640,Baileys Tres Leche Cake,,499,499,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+8756972,Grasshopper Pie,,499,499,,0,0,0,0,0,0,0,0,Cafe Dessert,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,False
+6200667,Classic Chicken Caesar Salad,"Romaine hearts, Mary’s free-range diced chicken breast, grated parmesan, house-made seasoned croutons and Caesar dressing",1165,1165,,0,0,0,0,0,0,0,0,Lunch GNG,DS23 Cafe Cadence Lunch and Dinner MO,[14911],[],2024-04-19 11:00:00,True
+6200672,Strawberry Arugula Salad with Feta Cheese,"Wild arugula, fresh local strawberries, feta cheese, and citrus vinaigrette.",1065,1065,,280,26,6,9,3,5,25,400,Lunch GNG,DS23 Cafe Cadence Lunch and Dinner MO,[14911],[],2024-04-19 11:00:00,True
+6200669,Ciabatta Caprese Sandwich,"Ciabatta bread, heirloom tomatoes, house-made basil sauce, balsamic drizzle",960,960,,400,19,14,44,2,6,20,640,Lunch GNG,DS23 Cafe Cadence Lunch and Dinner MO,[14911],[],2025-02-04 12:00:00,True
+6200671,Roast Beef Panini,"Focaccia bread, horseradish aioli, house-roasted tri-tip, white cheddar, pickled onions",1165,1165,,480,19,32,42,2,4,80,780,Lunch GNG,DS23 Cafe Cadence Lunch and Dinner MO,[14911],[],2025-05-15 11:00:00,True
+6200673,Tuscan Roast Turkey Sandwich,"Ciabatta, thinly sliced turkey, crispy bacon, roasted peppers with herbs, olive oil, paprika, basil, red pepper flakes, sundried tomato spread, Provolone cheese.",1165,1165,,410,18,31,33,4,2,65,1020,Lunch GNG,DS23 Cafe Cadence Lunch and Dinner MO,[14911],[],2025-02-04 12:00:00,True
+6200668,Grilled Portobello Mushroom Vegan Panini,"Focaccia bread, hummus spread, balsamic grilled Portobello mushroom, grilled vegetables (zucchini, bell peppers, squash.)",960,960,,230,11,7,28,4,4,0,240,Lunch GNG,DS23 Cafe Cadence Lunch and Dinner MO,[14911],[],2025-05-02 11:00:00,True
+6200617,Extra PC Cream Cheese,Extra Cream Cheese,97,97,,0,0,0,0,0,0,0,0,Fruit and Fruit Cup,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200623,Fruit cup (12oz),"Honeydew, cantaloupe, pineapple, strawberries",555,555,,70,0,2,32,3,27,0,30,Fruit and Fruit Cup,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2025-04-25 11:00:00,True
+8773386,Soup,,504,504,,0,0,0,0,0,0,0,0,Fruit and Fruit Cup,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],,True
+6200618,Whole Fruit,"Apple, Banana, or Orange",99,99,,0,0,0,0,0,0,0,0,Fruit and Fruit Cup,DS23 Cafe Cadence Lunch and Dinner MO,"[14911, 14912]",[],2024-10-19 11:00:00,True

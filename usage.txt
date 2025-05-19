@@ -1,3 +1,7 @@
+// get IP
+ipconfig | find "IPv4" | find /V "" | CLIP
+
 .sniff-venv\Scripts\activate.bat
 mitmdump -p 8080 -s dump_menu.py
+// possibly add --set tls_version_client_min=SSL3
 python aggregate_requests.py

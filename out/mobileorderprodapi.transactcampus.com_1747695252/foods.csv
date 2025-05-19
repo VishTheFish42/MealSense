@@ -1,0 +1,3 @@
+itemid,name,description,price_base,price_display,cover_picture_url,calories,fat_g,protein_g,carb_g,fiber_g,sugar_g,cholesterol_mg,sodium_mg,section,section_schedule_name,section_scheduleids,item_scheduleids,manual_online_datetime,currently_available
+6025855,Acai Bowl,,1175,1175,,0,0,0,0,0,0,0,0,Acai,,[14948],[],2024-10-25 11:00:00,True
+6025856,Acai Bowl with Toppings,,1405,1405,,0,0,0,0,0,0,0,0,Acai,,[14948],[],2024-10-25 11:00:00,True
