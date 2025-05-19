@@ -3,9 +3,10 @@
 Scrape *all* SCU campus cafés for a single day
 Outputs: full_menu.json (see structure above)
 """
-import sys, json, re, requests
+import json, re, sys
 from datetime import date
 from bs4 import BeautifulSoup
+import requests
 
 # -------- 1)  Café slugs you want to crawl (add/remove here) ----------
 CAFE_SLUGS = [
@@ -32,10 +33,39 @@ SKIP_TABS = [
 
 BASE = "https://scudining.cafebonappetit.com/cafe/{slug}/{date}/"
 
-# ——————————————————————————————————————————————————————————————————————————————
+# -->  NEW  ---------------------------------------------------------------
+#   1.  While scraping *any* café we build this on the fly so we know
+#       which words are definitely condiments and which are “base” items
+CONDIMENT_SET : set[str] = set()
+
+_WORDS_THAT_ARE_MEALS = {
+    # items that can be 0-priced but are the *meal itself* – expand freely
+    "yogurt","bagel","bread","toast","egg","pancake","waffle",
+    "burrito","omelet","scramble","bowl","salad",
+}
+
+# ----------——— helpers ————————————————————————————————————————————————————————
 def tidy(txt: str) -> str:
     """Trim and collapse whitespace."""
     return re.sub(r"\s+", " ", txt).strip()
+
+def looks_like_condiment(name:str)->bool:
+    """Heuristic: is <name> something that should attach to a parent meal?"""
+    n = name.lower()
+    if n.startswith(("add ","+")):                 #  “Add Pineapple”, “+ Bacon”
+        return True
+    if n in CONDIMENT_SET:                        #  captured from Condiments tab
+        return True
+    # Low-calorie single-word produce items – usually toppings
+    if re.fullmatch(r"[a-z ]+", n) and any(
+        kw in n for kw in (
+            "salsa","sauce","cheese","chips","granola","guacamole","onion",
+            "cilantro","lime","jalapeno","pepper","tomato","spinach",
+            "mushroom","chocolate","coconut"
+        )
+    ):
+        return True
+    return False
 
 def get_time_slot(btn):
     """Return a nice label like 'Brunch — 10:00 AM-2:30 PM'
@@ -82,33 +112,28 @@ def scrape_cafe(slug: str, day: str) -> dict:
                 seen[current_station] = set()
                 current_meal = None
 
-            # Menu-item header?
-            elif el.name=="header" and "site-panel__daypart-item-header" in el.get("class", []):
-                name_el  = el.select_one("button.site-panel__daypart-item-title")
-                price_el = el.select_one("div.site-panel__daypart-item-price")
-                if not name_el:
-                    continue
+            # ——————————————————— MENU-ITEM HEADER ——————————————————————
+            elif el.name=="header" and "site-panel__daypart-item-header" in el["class"]:
+                name  = tidy(el.select_one("button.site-panel__daypart-item-title").get_text())
+                price = tidy(el.select_one("div.site-panel__daypart-item-price").text) if el.select_one("div.site-panel__daypart-item-price") else ""
 
-                name  = tidy(name_el.get_text())
-                price = tidy(price_el.text).replace("reg.", "") if price_el else ""
+                is_priced = price and price != "0"
 
-                # priced ⇒ new meal
-                if price and price != "0":
+                # ---------- A)  Priced  → always a brand-new meal ----------
+                if is_priced:
                     key = (name, price)
                     if key not in seen[current_station]:
-                        seen[current_station].add(key)
                         current_meal = {"meal": name, "price": price, "toppings": []}
                         station_map[current_station].append(current_meal)
+                        seen[current_station].add(key)
                     else:
                         current_meal = None
 
-                # no price ⇒ it’s a topping/extra for the last meal
+                # ---------- B)  Un-priced  → decide meal vs topping ----------
                 else:
-                    if current_meal:
-                        # attach as topping
+                    if current_meal and looks_like_condiment(name):
                         current_meal["toppings"].append(name)
                     else:
-                        # no “parent” meal — treat this as its own entry
                         current_meal = {"meal": name, "price": "", "toppings": []}
                         station_map[current_station].append(current_meal)
 
@@ -134,53 +159,38 @@ def scrape_all(day: str=None) -> dict:
             full["time_slots"].setdefault(parent, {})[cafe_name] = single_map
             continue
 
-        # Otherwise, sort tabs into normal vs condiments/extras
+       #  Collect condiment/extras tabs so we can merge later
         for slot_nm, station_map in cafe_data.items():
-            if "Condiments" in slot_nm or "Extras" in slot_nm:
+            if re.search(r"(condiment|extra)s?", slot_nm, re.I):
                 cond_buffer.append((cafe_name, slot_nm, station_map))
             else:
-                # regular time slot
-                ts = full["time_slots"].setdefault(slot_nm, {})
-                ts[cafe_name] = station_map
+                full["time_slots"].setdefault(slot_nm, {})[cafe_name] = station_map
 
-    # — process all Condiments/Extras tabs now ——————————————————————————
+     # ——— 2)  Fold the “Condiments / Extras” tabs back in  ————————
     for cafe_name, slot_nm, station_map in cond_buffer:
-        # find which parent slot this condiment tab belongs to:
-        if "Breakfast" in slot_nm:
-            parent = next(k for k in full["time_slots"] if k.startswith("Breakfast"))
-        elif "Lunch" in slot_nm:
-            parent = next(k for k in full["time_slots"] if k.startswith("Lunch"))
-        else:
-            # fallback: lump into All Day
-            parent = "All Day"
-            full["time_slots"].setdefault(parent, {})
-
-        cafe_entry = full["time_slots"][parent].setdefault(cafe_name, {})
-        condiments = {}
-        extras     = {}
+        parent_slot = (
+            next((k for k in full["time_slots"] if k.startswith("Breakfast") and "Breakfast" in slot_nm), None)
+            or next((k for k in full["time_slots"] if k.startswith("Lunch")      and "Lunch"      in slot_nm), None)
+            or "All Day"
+        )
+        cafe_entry = full["time_slots"].setdefault(parent_slot, {}).setdefault(cafe_name, {})
 
         for station, items in station_map.items():
-            # if station ends with the parent label → condiments
-            if station.lower().endswith(parent.lower()):
-                rest = tidy(station[: -len(parent)])
-                condiments[rest] = [itm["meal"] for itm in items]
+            conds = [itm["meal"] for itm in items]
+            CONDIMENT_SET.update(x.lower() for x in conds)         #  teach the scraper
+
+            # attach to *first* meal in that same station (creates one if none)
+            if station not in cafe_entry:
+                cafe_entry[station] = [{
+                    "meal": station,
+                    "price": "",
+                    "toppings": conds
+                }]
             else:
-                extras[station] = [itm["meal"] for itm in items]
-
-        if condiments:
-            cafe_entry["condiments"] = condiments
-        if extras:
-            cafe_entry["extras"] = extras
-    
-    with open("condiment_mappings.json","r") as f:
-        FOOD_TO_CONDIMENTS = json.load(f)
-
-        for slot, cafes in full["time_slots"].items():
-            for cafe, stations in cafes.items():
-                for station_name, meals in stations.items():
-                    for meal in meals:
-                        if meal["meal"] in FOOD_TO_CONDIMENTS:
-                            meal["toppings"] = FOOD_TO_CONDIMENTS[meal["meal"]]
+                target_meal = cafe_entry[station][0]
+                target_meal["toppings"].extend(
+                    x for x in conds if x not in target_meal["toppings"]
+                )
 
     return full
 

@@ -6,85 +6,133 @@
         "Globe": [
           {
             "meal": "BLTA with Egg",
-            "price": "10.89",
+            "price": "reg.10.89",
             "toppings": []
           },
           {
             "meal": "2 Eggs Your Way",
-            "price": "4.38",
+            "price": "reg.4.38",
             "toppings": []
           },
           {
             "meal": "Plain Omelet / Sramble",
-            "price": "7.63",
+            "price": "reg.7.63",
             "toppings": []
           },
           {
             "meal": "Cheese Omelet / Scramble",
-            "price": "7.99",
+            "price": "reg.7.99",
             "toppings": []
           },
           {
             "meal": "French Toast (1)",
-            "price": "1.53",
+            "price": "reg.1.53",
             "toppings": []
           },
           {
             "meal": "Pancake (1)",
-            "price": "1.53",
+            "price": "reg.1.53",
             "toppings": []
           },
           {
             "meal": "Side of Breakfast Potatoes",
-            "price": "3.23",
+            "price": "reg.3.23",
             "toppings": []
           },
           {
             "meal": "Side of Breakfast Protein",
-            "price": "3.25",
+            "price": "reg.3.25",
             "toppings": []
           },
           {
             "meal": "Express Breakfast",
-            "price": "7.15",
+            "price": "reg.7.15",
             "toppings": []
           },
           {
             "meal": "Tofu Scrambled",
-            "price": "9.60",
+            "price": "reg.9.60",
             "toppings": []
           },
           {
             "meal": "French Toast (2)",
-            "price": "3.30",
+            "price": "reg.3.30",
             "toppings": []
           },
           {
             "meal": "Denver Omelet / Scramble",
-            "price": "10.03",
+            "price": "reg.10.03",
             "toppings": []
           },
           {
             "meal": "Pancake (2)",
-            "price": "3.30",
+            "price": "reg.3.30",
             "toppings": []
           },
           {
             "meal": "Scrambled Eggs",
             "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Tater Tots",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Bacon",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Chicken Apple Sausage",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Pancakes",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "French Toast",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Whole Cracked Egg",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Egg White",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Just Eggs (plant-based)",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Bacon",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Apple Chicken Sausage",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Ham",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Vegan Soyrizo",
+            "price": "",
             "toppings": [
-              "Tater Tots",
-              "Bacon",
-              "Chicken Apple Sausage",
-              "Pancakes",
-              "French Toast",
-              "Whole Cracked Egg",
-              "Egg White",
-              "Just Eggs (plant-based)",
-              "Bacon",
-              "Apple Chicken Sausage",
-              "Ham",
-              "Vegan Soyrizo",
               "Spinach",
               "Onion",
               "Mushroom",
@@ -96,33 +144,99 @@
         "La Parilla Breakfast": [
           {
             "meal": "Breakfast Protein Burrito",
-            "price": "8.79",
+            "price": "reg.8.79",
             "toppings": []
           },
           {
             "meal": "Breakfast Vegetarian Burrito Bowl",
-            "price": "6.19",
+            "price": "reg.6.19",
             "toppings": []
           },
           {
             "meal": "Vegetarian Breakfast Burrito",
-            "price": "6.09",
+            "price": "reg.6.09",
             "toppings": []
           },
           {
             "meal": "Vegan Breakfast Burrito Bowl",
-            "price": "6.29",
+            "price": "reg.6.29",
             "toppings": []
           },
           {
             "meal": "Wheat Tortilla",
             "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Flour Tortilla",
+            "price": "",
+            "toppings": [
+              "Monterey Jack Cheese"
+            ]
+          },
+          {
+            "meal": "Bacon",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Chorizo Sausage",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Chicken Apple Sausage",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Tater Tots",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Scrambled Eggs",
+            "price": "",
+            "toppings": [
+              "Salsa"
+            ]
+          },
+          {
+            "meal": "Sausage Vegan Soyrizo",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Chorizo Sausage",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Bacon",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Chicken Apple Sausage",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Sausage Vegan Soyrizo",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Tater Tots",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Egg",
+            "price": "",
             "toppings": [
               "Monterey Jack Cheese",
-              "Chorizo Sausage",
-              "Chicken Apple Sausage",
-              "Sausage Vegan Soyrizo",
-              "Scrambled Eggs",
+              "Salsa",
               "Salsa",
               "Roasted Tomato Salsa",
               "Salsa Verde",
@@ -136,14 +250,35 @@
           {
             "meal": "Acai",
             "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Banana",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Blueberries",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Mango",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Strawberry",
+            "price": "",
             "toppings": [
-              "Banana",
-              "Blueberries",
-              "Mango",
-              "Strawberry",
               "Chocolate Chips",
-              "Shredded Coconut",
-              "Oreo Cookie Crumbles",
+              "Shredded Coconut"
+            ]
+          },
+          {
+            "meal": "Oreo Cookie Crumbles",
+            "price": "",
+            "toppings": [
               "Plain Granola"
             ]
           }
@@ -152,13 +287,78 @@
           {
             "meal": "Strawberry Yogurt",
             "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Vanilla Yogurt",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Blueberries",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Strawberry",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Cantaloupe",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Honeydew",
+            "price": "",
             "toppings": [
-              "Blueberries",
-              "Strawberry",
-              "Cantaloupe",
-              "Honeydew",
               "Add Pineapple",
-              "Plain Granola"
+              "Granola"
+            ]
+          },
+          {
+            "meal": "Everything Bagel",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Plain Bagel",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Cinnamon Raisin Bread",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Whole-wheat Bread",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Sourdough Bread",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "White Bread",
+            "price": "",
+            "toppings": [
+              "Cream Cheese"
+            ]
+          },
+          {
+            "meal": "Strawberry Jelly Preserves",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Apricot Preserves",
+            "price": "",
+            "toppings": [
+              "Guacamole"
             ]
           }
         ]
@@ -169,24 +369,24 @@
         "The Spice Market": [
           {
             "meal": "General Tso's Chicken",
-            "price": "16.50",
+            "price": "reg.16.50",
             "toppings": []
           },
           {
             "meal": "General Tso's Tofu",
-            "price": "14.79",
+            "price": "reg.14.79",
             "toppings": []
           }
         ],
         "Simply Oasis": [
           {
             "meal": "Huli Huli Chicken",
-            "price": "15.79",
+            "price": "reg.15.79",
             "toppings": []
           },
           {
             "meal": "Fried Plantain with Jack Fruit",
-            "price": "14.79",
+            "price": "reg.14.79",
             "toppings": []
           }
         ],
@@ -199,9 +399,12 @@
           {
             "meal": "Margarita Pizza",
             "price": "1 slice6.50whole27.29",
-            "toppings": [
-              "Pesto Pasta Salad"
-            ]
+            "toppings": []
+          },
+          {
+            "meal": "Pesto Pasta Salad",
+            "price": "",
+            "toppings": []
           },
           {
             "meal": "Meatball Sub",
@@ -212,112 +415,140 @@
         "The Global Grill Lunch": [
           {
             "meal": "Asian Sticky Peking Pork Ribs",
-            "price": "16.19",
+            "price": "reg.16.19",
             "toppings": []
           },
           {
             "meal": "Asian Sticky Peking Tofu",
-            "price": "14.69",
+            "price": "reg.14.69",
             "toppings": []
           }
         ],
         "The Chef's Table": [
           {
             "meal": "Build Your Own Mediterranean Bowl",
-            "price": "16.79",
+            "price": "reg.16.79",
             "toppings": []
           }
         ],
         "The Fire": [
           {
             "meal": "Mozzarella Cheese Sticks",
-            "price": "8.89",
-            "toppings": [
-              "Chicken Rice Bowl",
-              "Samon Rice Bowl",
-              "Beef Patty Rice Bowl",
-              "Value Meal - Teriyaki Chicken Bowl"
-            ]
+            "price": "reg.8.89",
+            "toppings": []
+          },
+          {
+            "meal": "Chicken Rice Bowl",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Samon Rice Bowl",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Beef Patty Rice Bowl",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Value Meal - Teriyaki Chicken Bowl",
+            "price": "",
+            "toppings": []
           }
         ],
         "La Parilla": [
           {
             "meal": "SCU Burrito Bowl",
-            "price": "10.79",
-            "toppings": [
-              "Value Meal - Beans and Cheese Burrito"
-            ]
+            "price": "reg.10.79",
+            "toppings": []
+          },
+          {
+            "meal": "Value Meal - Beans and Cheese Burrito",
+            "price": "",
+            "toppings": []
           },
           {
             "meal": "Chips and Guacamole",
-            "price": "8.88",
+            "price": "reg.8.88",
             "toppings": []
           },
           {
             "meal": "Enchiladas Verdes",
-            "price": "10.00",
+            "price": "reg.10.00",
             "toppings": []
           },
           {
             "meal": "TJ Style Grilled Beef Tacos (3)",
-            "price": "9.38",
+            "price": "reg.9.38",
             "toppings": []
           },
           {
             "meal": "Torta De Carnitas",
-            "price": "13.93",
+            "price": "reg.13.93",
             "toppings": []
           },
           {
             "meal": "Quesadilla - Add-on Protein $2.02",
-            "price": "10.90",
+            "price": "reg.10.90",
             "toppings": []
           },
           {
             "meal": "BYO Tacos (ea)",
-            "price": "3.99",
+            "price": "reg.3.99",
             "toppings": []
           },
           {
             "meal": "Value Meal - Vegetarian Quesadilla",
-            "price": "9.00",
+            "price": "reg.9.00",
             "toppings": []
           },
           {
             "meal": "Wheat Tortilla",
             "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Flour Tortilla",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Mayocoba Beans",
+            "price": "",
             "toppings": [
-              "Monterey Jack Cheese",
-              "Chorizo Sausage",
-              "Chicken Apple Sausage",
-              "Sausage Vegan Soyrizo",
-              "Scrambled Eggs",
-              "Salsa",
-              "Roasted Tomato Salsa",
-              "Salsa Verde",
-              "Onion",
-              "Cilantro",
-              "Lime Wedges"
+              "Cilantro Rice"
             ]
           },
           {
             "meal": "Chicken",
-            "price": "2.02",
+            "price": "reg.2.02",
             "toppings": []
           },
           {
             "meal": "Beef",
-            "price": "2.02",
+            "price": "reg.2.02",
             "toppings": []
           },
           {
             "meal": "Pork",
-            "price": "2.02",
+            "price": "reg.2.02",
             "toppings": [
-              "Guacamole",
-              "Pico De Gallo",
-              "Roasted Tomato Salsa",
-              "Sour Cream",
+              "Guacamole"
+            ]
+          },
+          {
+            "meal": "Pico De Gallo",
+            "price": "",
+            "toppings": [
+              "Roasted Tomato Salsa"
+            ]
+          },
+          {
+            "meal": "Sour Cream",
+            "price": "",
+            "toppings": [
               "Corn Tortilla Chips"
             ]
           },
@@ -325,64 +556,169 @@
             "meal": "Black Beans",
             "price": "",
             "toppings": [
-              "Guacamole",
-              "Pico De Gallo",
-              "Sour Cream"
+              "Guacamole"
             ]
+          },
+          {
+            "meal": "Pico De Gallo",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Sour Cream",
+            "price": "",
+            "toppings": []
           }
         ],
         "Stacks Deli": [
           {
             "meal": "Tuna Salad",
             "price": "",
-            "toppings": [
-              "Smoked Turkey",
-              "Sliced Roast Beef",
-              "Ham",
-              "Salami"
-            ]
+            "toppings": []
+          },
+          {
+            "meal": "Smoked Turkey",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Sliced Roast Beef",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Ham",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Salami",
+            "price": "",
+            "toppings": []
           },
           {
             "meal": "Bacon",
-            "price": "2.21",
+            "price": "reg.2.21",
             "toppings": [
               "American Cheese",
               "Provolone Cheese",
               "Pepper Jack Cheese",
               "Swiss Cheese",
-              "Cheddar Cheese",
-              "Hummus",
-              "Mayonnaise",
-              "Mustard",
-              "Dijon Mustard",
-              "Shredded Lettuce",
-              "Spinach",
-              "Whole-wheat Bread",
-              "Rye Bread",
-              "White Bread",
-              "Hoagie Roll",
-              "Sourdough Bread",
-              "Ciabatta",
-              "Pickled Jalapeno",
-              "Pickle",
+              "Cheddar Cheese"
+            ]
+          },
+          {
+            "meal": "Hummus",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Mayonnaise",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Mustard",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Dijon Mustard",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Shredded Lettuce",
+            "price": "",
+            "toppings": [
+              "Spinach"
+            ]
+          },
+          {
+            "meal": "Whole-wheat Bread",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Rye Bread",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "White Bread",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Hoagie Roll",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Sourdough Bread",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Ciabatta",
+            "price": "",
+            "toppings": [
+              "Pickled Jalapeno"
+            ]
+          },
+          {
+            "meal": "Pickle",
+            "price": "",
+            "toppings": [
               "Pepperoncini",
               "Onion",
-              "Tomato",
-              "Cucumber",
-              "Bell Pepper",
-              "Pesto (no Nut)",
-              "Fat Free Italian Dressing",
-              "Avocado Spread",
-              "Herbed Cream Cheese",
-              "Honey Mustard Dressing",
-              "Eggplant",
-              "Zucchini",
+              "Tomato"
+            ]
+          },
+          {
+            "meal": "Cucumber",
+            "price": "",
+            "toppings": [
+              "Bell Pepper"
+            ]
+          },
+          {
+            "meal": "Pesto (no Nut)",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Fat Free Italian Dressing",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Avocado Spread",
+            "price": "",
+            "toppings": [
+              "Herbed Cream Cheese"
+            ]
+          },
+          {
+            "meal": "Honey Mustard Dressing",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Eggplant",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Zucchini",
+            "price": "",
+            "toppings": [
               "Portobello Mushroom"
             ]
           },
           {
             "meal": "Spinach Tortilla",
-            "price": "1.50",
+            "price": "reg.1.50",
             "toppings": [
               "Bell Peppers"
             ]
@@ -392,33 +728,88 @@
           {
             "meal": "Forsman Ranch Brown Rice",
             "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Spring Mix",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Forsman Ranch Sushi Rice",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Tuna",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Salmon",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Imitation Crab",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Tofu",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Shredded Carrots",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Diced Cucumber",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Sliced Scallion",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Diced Pineapple",
+            "price": "",
             "toppings": [
-              "Spring Mix",
-              "Forsman Ranch Sushi Rice",
-              "Tuna",
-              "Salmon",
-              "Imitation Crab",
-              "Tofu",
-              "Shredded Carrots",
-              "Diced Cucumber",
-              "Sliced Scallion",
-              "Diced Pineapple",
               "Diced Jalapeno"
             ]
           },
           {
             "meal": "Seaweed",
-            "price": "3.87",
-            "toppings": [
-              "Crispy Wontons",
-              "Sriracha Mayonnaise",
-              "Wasabi Mayonnaise",
-              "Sweet and Spicy Ponzu"
-            ]
+            "price": "reg.3.87",
+            "toppings": []
+          },
+          {
+            "meal": "Crispy Wontons",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Sriracha Mayonnaise",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Wasabi Mayonnaise",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Sweet and Spicy Ponzu",
+            "price": "",
+            "toppings": []
           },
           {
             "meal": "Avocado",
-            "price": "3.87",
+            "price": "reg.3.87",
             "toppings": [
               "Bell Pepper"
             ]
@@ -440,37 +831,81 @@
         "Trattoria": [
           {
             "meal": "Grilled Chicken Breast",
-            "price": "4.00",
+            "price": "reg.4.00",
             "toppings": []
           },
           {
             "meal": "Seasoned Ground Beef",
-            "price": "4.00",
+            "price": "reg.4.00",
             "toppings": []
           },
           {
             "meal": "Italian Sausages",
-            "price": "4.00",
+            "price": "reg.4.00",
             "toppings": []
           },
           {
             "meal": "Bacon",
-            "price": "2.00",
+            "price": "reg.2.00",
+            "toppings": []
+          },
+          {
+            "meal": "Whole Wheat Penne Pasta",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Gluten Free Penne Pasta",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Penne Pasta",
+            "price": "",
             "toppings": [
-              "Whole Wheat Penne Pasta",
-              "Gluten Free Penne Pasta",
-              "Penne Pasta",
-              "Marinara Sauce",
-              "Alfredo",
-              "Basil Parmesan Pesto (no Nuts)",
-              "Diced Zucchini",
-              "Sliced Mushrooms",
-              "Broccoli",
-              "Onion",
-              "Peas",
-              "Parmesan Cheese",
-              "Tofu",
-              "Oregano",
+              "Marinara Sauce"
+            ]
+          },
+          {
+            "meal": "Alfredo",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Basil Parmesan Pesto (no Nuts)",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Diced Zucchini",
+            "price": "",
+            "toppings": [
+              "Sliced Mushrooms"
+            ]
+          },
+          {
+            "meal": "Broccoli",
+            "price": "",
+            "toppings": [
+              "Onion"
+            ]
+          },
+          {
+            "meal": "Peas",
+            "price": "",
+            "toppings": [
+              "Parmesan Cheese"
+            ]
+          },
+          {
+            "meal": "Tofu",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Oregano",
+            "price": "",
+            "toppings": [
               "Spinach"
             ]
           }
@@ -479,14 +914,35 @@
           {
             "meal": "Acai",
             "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Banana",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Blueberries",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Mango",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Strawberry",
+            "price": "",
             "toppings": [
-              "Banana",
-              "Blueberries",
-              "Mango",
-              "Strawberry",
               "Chocolate Chips",
-              "Shredded Coconut",
-              "Oreo Cookie Crumbles",
+              "Shredded Coconut"
+            ]
+          },
+          {
+            "meal": "Oreo Cookie Crumbles",
+            "price": "",
+            "toppings": [
               "Plain Granola"
             ]
           }
@@ -495,13 +951,34 @@
           {
             "meal": "Strawberry Yogurt",
             "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Vanilla Yogurt",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Blueberries",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Strawberry",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Cantaloupe",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Honeydew",
+            "price": "",
             "toppings": [
-              "Blueberries",
-              "Strawberry",
-              "Cantaloupe",
-              "Honeydew",
               "Add Pineapple",
-              "Plain Granola"
+              "Granola"
             ]
           }
         ]
@@ -513,87 +990,228 @@
           {
             "meal": "Sesame Chicken Salad",
             "price": "",
-            "toppings": [
-              "Pesto Pasta Salad",
-              "Roasted Apple Wheat Berry Salad"
-            ]
+            "toppings": []
+          },
+          {
+            "meal": "Pesto Pasta Salad",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Roasted Apple Wheat Berry Salad",
+            "price": "",
+            "toppings": []
           },
           {
             "meal": "Spinach",
             "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Romaine Lettuce",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Spring Mix",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Kale",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Corn",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Blanched Broccoli",
+            "price": "",
             "toppings": [
-              "Romaine Lettuce",
-              "Spring Mix",
-              "Kale",
-              "Corn",
-              "Blanched Broccoli",
-              "Cherry Tomato",
-              "Sliced Cucumber",
-              "Shredded Carrots",
-              "Sliced Bell Pepper",
-              "Sliced Mushroom",
-              "Diced Zucchini",
-              "Sliced Red Onion",
-              "Peas",
-              "Beet",
-              "Parmesan Cheese",
-              "Feta Cheese",
-              "Blue Cheese",
-              "Monterey Jack Cheese",
-              "Black Olives",
-              "Garbanzo Beans",
-              "Kidney Beans",
-              "Fat Free Italian Dressing",
-              "Caesar Dressing",
-              "Thousand Island Dressing",
-              "Buttermilk Ranch Dressing",
-              "Crouton",
-              "Raisins",
-              "Dried Cranberry",
-              "Diced Chicken Breast",
-              "Hard Boiled Egg",
-              "Diced Tofu",
-              "Sunflower Seeds",
-              "Balsamic Vinegar",
-              "Roasted Potatoes",
-              "Roasted Cauliflower",
-              "Barley",
-              "Quinoa"
+              "Cherry Tomato"
             ]
           },
           {
-            "meal": "Avocado",
-            "price": "3.99",
+            "meal": "Sliced Cucumber",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Shredded Carrots",
+            "price": "",
             "toppings": [
-              "Sesame Soy Dressing",
-              "Grilled Shrimp"
+              "Sliced Bell Pepper",
+              "Sliced Mushroom"
             ]
+          },
+          {
+            "meal": "Diced Zucchini",
+            "price": "",
+            "toppings": [
+              "Sliced Red Onion"
+            ]
+          },
+          {
+            "meal": "Peas",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Beet",
+            "price": "",
+            "toppings": [
+              "Parmesan Cheese",
+              "Feta Cheese",
+              "Blue Cheese",
+              "Monterey Jack Cheese"
+            ]
+          },
+          {
+            "meal": "Black Olives",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Garbanzo Beans",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Kidney Beans",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Fat Free Italian Dressing",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Caesar Dressing",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Thousand Island Dressing",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Buttermilk Ranch Dressing",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Crouton",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Raisins",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Dried Cranberry",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Diced Chicken Breast",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Hard Boiled Egg",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Diced Tofu",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Sunflower Seeds",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Balsamic Vinegar",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Roasted Potatoes",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Roasted Cauliflower",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Barley",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Quinoa",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Avocado",
+            "price": "reg.3.99",
+            "toppings": []
+          },
+          {
+            "meal": "Sesame Soy Dressing",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Grilled Shrimp",
+            "price": "",
+            "toppings": []
           }
         ],
         "Soup": [
           {
             "meal": "Texas Three Bean Beef Chili",
-            "price": "5.00",
+            "price": "reg.5.00",
             "toppings": []
           },
           {
             "meal": "Chicken Tortilla Soup",
-            "price": "5.00",
+            "price": "reg.5.00",
             "toppings": []
           },
           {
             "meal": "Potato Leek Soup",
-            "price": "5.00",
+            "price": "reg.5.00",
             "toppings": []
           }
         ],
         "The Fire": [
           {
             "meal": "Fountain Soda",
-            "price": "3.50",
+            "price": "reg.3.50",
+            "toppings": []
+          },
+          {
+            "meal": "4 Pc Chicken Tenders with Fries",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Signature Smash Burger",
+            "price": "",
             "toppings": [
-              "4 Pc Chicken Tenders with Fries",
-              "Signature Smash Burger",
               "Cheese Burger Combo",
               "Bacon Cheese Burger Combo"
             ]
@@ -602,36 +1220,89 @@
             "meal": "Sliced Red Onion",
             "price": "",
             "toppings": [
-              "Sliced Tomato",
-              "Iceberg Lettuce",
-              "Pickles",
-              "Mayonnaise",
-              "Mustard",
-              "Ketchup",
-              "No-gluten Hamburger Bun",
-              "Brioche Bread",
-              "Ciabatta",
-              "Lettuce Wrap",
-              "Grilled Chicken Breast",
-              "Single Beef Patty"
+              "Sliced Tomato"
             ]
           },
           {
+            "meal": "Iceberg Lettuce",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Pickles",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Mayonnaise",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Mustard",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Ketchup",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "No-gluten Hamburger Bun",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Brioche Bread",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Ciabatta",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Lettuce Wrap",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Grilled Chicken Breast",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Single Beef Patty",
+            "price": "",
+            "toppings": []
+          },
+          {
             "meal": "Add-on Bacon",
-            "price": "2.79",
+            "price": "reg.2.79",
             "toppings": []
           },
           {
             "meal": "Double Beef Patties",
-            "price": "2.02",
+            "price": "reg.2.02",
+            "toppings": []
+          },
+          {
+            "meal": "Beyond Burger",
+            "price": "",
             "toppings": [
-              "Beyond Burger",
               "Pepper Jack Cheese",
               "Provolone Cheese",
               "American Cheese",
               "Cheddar Cheese",
-              "Swiss Cheese",
-              "Sourdough Bread",
+              "Swiss Cheese"
+            ]
+          },
+          {
+            "meal": "Sourdough Bread",
+            "price": "",
+            "toppings": [
               "Pepper Jack Cheese",
               "Provolone Cheese",
               "American Cheese",
@@ -641,45 +1312,59 @@
           },
           {
             "meal": "Bacon",
-            "price": "2.79",
+            "price": "reg.2.79",
             "toppings": []
           },
           {
             "meal": "French Fries",
-            "price": "4.03",
+            "price": "reg.4.03",
             "toppings": []
           },
           {
             "meal": "Sweet Potato Fries",
-            "price": "4.64",
+            "price": "reg.4.64",
             "toppings": []
           },
           {
             "meal": "French Fries / Curly Fries",
-            "price": "4.64",
+            "price": "reg.4.64",
             "toppings": []
           },
           {
             "meal": "French Fries",
             "price": "",
-            "toppings": [
-              "Sweet Potato Fries / Curly Fries",
-              "Grilled Chicken Breast"
-            ]
+            "toppings": []
+          },
+          {
+            "meal": "Sweet Potato Fries / Curly Fries",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Grilled Chicken Breast",
+            "price": "",
+            "toppings": []
           },
           {
             "meal": "Grilled Salmon Fillet",
-            "price": "9.08",
-            "toppings": [
-              "Grilled Vegetables",
-              "Brown Rice"
-            ]
+            "price": "reg.9.08",
+            "toppings": []
+          },
+          {
+            "meal": "Grilled Vegetables",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Brown Rice",
+            "price": "",
+            "toppings": []
           }
         ],
         "The Slice": [
           {
             "meal": "Slice - Vegetarian Pizza",
-            "price": "6.27",
+            "price": "reg.6.27",
             "toppings": []
           }
         ]
@@ -690,24 +1375,24 @@
         "The Spice Market": [
           {
             "meal": "Mongolian Beef",
-            "price": "$18.79",
+            "price": "reg.$18.79",
             "toppings": []
           },
           {
             "meal": "Mongolian Soy \"Flank Steak\"",
-            "price": "$16.79",
+            "price": "reg.$16.79",
             "toppings": []
           }
         ],
         "Simply Oasis": [
           {
             "meal": "Roasted Leg of Lamb with Gremolata",
-            "price": "16.99",
+            "price": "reg.16.99",
             "toppings": []
           },
           {
             "meal": "Grilled Vegetable Involtini",
-            "price": "13.69",
+            "price": "reg.13.69",
             "toppings": []
           }
         ],
@@ -720,9 +1405,12 @@
           {
             "meal": "Margarita Pizza",
             "price": "1 slice6.50whole27.29",
-            "toppings": [
-              "Pesto Pasta Salad"
-            ]
+            "toppings": []
+          },
+          {
+            "meal": "Pesto Pasta Salad",
+            "price": "",
+            "toppings": []
           },
           {
             "meal": "Meatball Sub",
@@ -733,105 +1421,133 @@
         "The Global Grill Dinner": [
           {
             "meal": "Grilled Tri Tip with Chimichurri Sauce",
-            "price": "19.79",
+            "price": "reg.19.79",
             "toppings": []
           },
           {
             "meal": "Grilled Portobello with Chimichurri Sauce",
-            "price": "14.79",
+            "price": "reg.14.79",
             "toppings": []
           }
         ],
         "The Fire": [
           {
             "meal": "Mozzarella Cheese Sticks",
-            "price": "8.89",
-            "toppings": [
-              "Chicken Rice Bowl",
-              "Samon Rice Bowl",
-              "Beef Patty Rice Bowl",
-              "Value Meal - Teriyaki Chicken Bowl"
-            ]
+            "price": "reg.8.89",
+            "toppings": []
+          },
+          {
+            "meal": "Chicken Rice Bowl",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Samon Rice Bowl",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Beef Patty Rice Bowl",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Value Meal - Teriyaki Chicken Bowl",
+            "price": "",
+            "toppings": []
           }
         ],
         "La Parilla": [
           {
             "meal": "SCU Burrito Bowl",
-            "price": "10.79",
-            "toppings": [
-              "Value Meal - Beans and Cheese Burrito"
-            ]
+            "price": "reg.10.79",
+            "toppings": []
+          },
+          {
+            "meal": "Value Meal - Beans and Cheese Burrito",
+            "price": "",
+            "toppings": []
           },
           {
             "meal": "Chips and Guacamole",
-            "price": "8.88",
+            "price": "reg.8.88",
             "toppings": []
           },
           {
             "meal": "Enchiladas Verdes",
-            "price": "10.00",
+            "price": "reg.10.00",
             "toppings": []
           },
           {
             "meal": "TJ Style Grilled Beef Tacos (3)",
-            "price": "9.38",
+            "price": "reg.9.38",
             "toppings": []
           },
           {
             "meal": "Torta De Carnitas",
-            "price": "13.93",
+            "price": "reg.13.93",
             "toppings": []
           },
           {
             "meal": "Quesadilla - Add-on Protein $2.02",
-            "price": "10.90",
+            "price": "reg.10.90",
             "toppings": []
           },
           {
             "meal": "BYO Tacos (ea)",
-            "price": "3.99",
+            "price": "reg.3.99",
             "toppings": []
           },
           {
             "meal": "Value Meal - Vegetarian Quesadilla",
-            "price": "9.00",
+            "price": "reg.9.00",
             "toppings": []
           },
           {
             "meal": "Wheat Tortilla",
             "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Flour Tortilla",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Mayocoba Beans",
+            "price": "",
             "toppings": [
-              "Monterey Jack Cheese",
-              "Chorizo Sausage",
-              "Chicken Apple Sausage",
-              "Sausage Vegan Soyrizo",
-              "Scrambled Eggs",
-              "Salsa",
-              "Roasted Tomato Salsa",
-              "Salsa Verde",
-              "Onion",
-              "Cilantro",
-              "Lime Wedges"
+              "Cilantro Rice"
             ]
           },
           {
             "meal": "Chicken",
-            "price": "2.02",
+            "price": "reg.2.02",
             "toppings": []
           },
           {
             "meal": "Beef",
-            "price": "2.02",
+            "price": "reg.2.02",
             "toppings": []
           },
           {
             "meal": "Pork",
-            "price": "2.02",
+            "price": "reg.2.02",
             "toppings": [
-              "Guacamole",
-              "Pico De Gallo",
-              "Roasted Tomato Salsa",
-              "Sour Cream",
+              "Guacamole"
+            ]
+          },
+          {
+            "meal": "Pico De Gallo",
+            "price": "",
+            "toppings": [
+              "Roasted Tomato Salsa"
+            ]
+          },
+          {
+            "meal": "Sour Cream",
+            "price": "",
+            "toppings": [
               "Corn Tortilla Chips"
             ]
           },
@@ -839,10 +1555,18 @@
             "meal": "Black Beans",
             "price": "",
             "toppings": [
-              "Guacamole",
-              "Pico De Gallo",
-              "Sour Cream"
+              "Guacamole"
             ]
+          },
+          {
+            "meal": "Pico De Gallo",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Sour Cream",
+            "price": "",
+            "toppings": []
           }
         ],
         "La Parilla Breakfast": [
@@ -861,37 +1585,81 @@
         "Trattoria": [
           {
             "meal": "Grilled Chicken Breast",
-            "price": "4.00",
+            "price": "reg.4.00",
             "toppings": []
           },
           {
             "meal": "Seasoned Ground Beef",
-            "price": "4.00",
+            "price": "reg.4.00",
             "toppings": []
           },
           {
             "meal": "Italian Sausages",
-            "price": "4.00",
+            "price": "reg.4.00",
             "toppings": []
           },
           {
             "meal": "Bacon",
-            "price": "2.00",
+            "price": "reg.2.00",
+            "toppings": []
+          },
+          {
+            "meal": "Whole Wheat Penne Pasta",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Gluten Free Penne Pasta",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Penne Pasta",
+            "price": "",
             "toppings": [
-              "Whole Wheat Penne Pasta",
-              "Gluten Free Penne Pasta",
-              "Penne Pasta",
-              "Marinara Sauce",
-              "Alfredo",
-              "Basil Parmesan Pesto (no Nuts)",
-              "Diced Zucchini",
-              "Sliced Mushrooms",
-              "Broccoli",
-              "Onion",
-              "Peas",
-              "Parmesan Cheese",
-              "Tofu",
-              "Oregano",
+              "Marinara Sauce"
+            ]
+          },
+          {
+            "meal": "Alfredo",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Basil Parmesan Pesto (no Nuts)",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Diced Zucchini",
+            "price": "",
+            "toppings": [
+              "Sliced Mushrooms"
+            ]
+          },
+          {
+            "meal": "Broccoli",
+            "price": "",
+            "toppings": [
+              "Onion"
+            ]
+          },
+          {
+            "meal": "Peas",
+            "price": "",
+            "toppings": [
+              "Parmesan Cheese"
+            ]
+          },
+          {
+            "meal": "Tofu",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Oregano",
+            "price": "",
+            "toppings": [
               "Spinach"
             ]
           }
@@ -900,13 +1668,34 @@
           {
             "meal": "Strawberry Yogurt",
             "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Vanilla Yogurt",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Blueberries",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Strawberry",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Cantaloupe",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Honeydew",
+            "price": "",
             "toppings": [
-              "Blueberries",
-              "Strawberry",
-              "Cantaloupe",
-              "Honeydew",
               "Add Pineapple",
-              "Plain Granola"
+              "Granola"
             ]
           }
         ]
@@ -917,212 +1706,212 @@
         "Cafe Items": [
           {
             "meal": "Caramel Macchiato",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Chai Latte",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Hot Apple Cider",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Hot Coffee",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Iced Coffee",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Lemonade",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Nitro Cold Brew",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Steamer",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "1 Espresso Shot",
-            "price": "$1.16",
+            "price": "reg.$1.16",
             "toppings": []
           },
           {
             "meal": "Cold Brew",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Espresso",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Hot Chocolate",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Hot Tea",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Iced Tea",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Italian Soda",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Latte",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Matcha Latte",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Mocha",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "White Mocha",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Pumpkin Spice Latte",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Praline Latte",
-            "price": "$0",
+            "price": "reg.$0",
             "toppings": []
           },
           {
             "meal": "Bronco Take Away Coffee - 96oz",
-            "price": "$45.00",
+            "price": "reg.$45.00",
             "toppings": []
           },
           {
             "meal": "Strawberry Milk Shake",
-            "price": "$7.31",
+            "price": "reg.$7.31",
             "toppings": []
           },
           {
             "meal": "Apple Fritter",
-            "price": "$3.29",
+            "price": "reg.$3.29",
             "toppings": []
           },
           {
             "meal": "Brownie",
-            "price": "$3.29",
+            "price": "reg.$3.29",
             "toppings": []
           },
           {
             "meal": "Cinnamon Twist Croissant",
-            "price": "$4.36",
+            "price": "reg.$4.36",
             "toppings": []
           },
           {
             "meal": "Cupcake",
-            "price": "$3.29",
+            "price": "reg.$3.29",
             "toppings": []
           },
           {
             "meal": "Danish",
-            "price": "$4.50",
+            "price": "reg.$4.50",
             "toppings": []
           },
           {
             "meal": "Ham and Cheese Croissant",
-            "price": "$4.79",
+            "price": "reg.$4.79",
             "toppings": []
           },
           {
             "meal": "Sliced Bread (Citrus or Marble)",
-            "price": "$4.50",
+            "price": "reg.$4.50",
             "toppings": []
           },
           {
             "meal": "Sweet Cheese Bun",
-            "price": "$4.50",
+            "price": "reg.$4.50",
             "toppings": []
           },
           {
             "meal": "Bagel with Cream Cheese (Plain, Whole Wheat, Everything)",
-            "price": "$3.61",
+            "price": "reg.$3.61",
             "toppings": []
           },
           {
             "meal": "Bagel without Cream Cheese (Plain, Whole Wheat, Everything)",
-            "price": "$2.66",
+            "price": "reg.$2.66",
             "toppings": []
           },
           {
             "meal": "Donut (Glazed, Chocolate, or Old Fashioned)",
-            "price": "$2.55",
+            "price": "reg.$2.55",
             "toppings": []
           },
           {
             "meal": "Cookies (Chocolate Chip, Double Chocolate, Oatmeal Raisin, or Sugar)",
-            "price": "$2.87",
+            "price": "reg.$2.87",
             "toppings": []
           },
           {
             "meal": "Butter Croissant",
-            "price": "$4.05",
+            "price": "reg.$4.05",
             "toppings": []
           },
           {
             "meal": "Chocolate Croissant",
-            "price": "$4.36",
+            "price": "reg.$4.36",
             "toppings": []
           },
           {
             "meal": "Morning Glory Muffin",
-            "price": "$3.72",
+            "price": "reg.$3.72",
             "toppings": []
           },
           {
             "meal": "Morning Bun",
-            "price": "$4.35",
+            "price": "reg.$4.35",
             "toppings": []
           },
           {
             "meal": "Muffin (Banana, Blueberry, or Chocolate Chip)",
-            "price": "$3.72",
+            "price": "reg.$3.72",
             "toppings": []
           },
           {
             "meal": "Rice Krispies",
-            "price": "$2.33",
+            "price": "reg.$2.33",
             "toppings": []
           },
           {
             "meal": "Scone",
-            "price": "$4.07",
+            "price": "reg.$4.07",
             "toppings": []
           }
         ]
@@ -1133,22 +1922,22 @@
         "Smoothies": [
           {
             "meal": "Strawnana",
-            "price": "7.65",
+            "price": "reg.7.65",
             "toppings": []
           },
           {
             "meal": "Mango Delight",
-            "price": "7.65",
+            "price": "reg.7.65",
             "toppings": []
           },
           {
             "meal": "Tropical Matcha Smoothie",
-            "price": "7.65",
+            "price": "reg.7.65",
             "toppings": []
           },
           {
             "meal": "Creamy Strawberries",
-            "price": "7.65",
+            "price": "reg.7.65",
             "toppings": []
           }
         ]
@@ -1159,42 +1948,42 @@
         "Tapas": [
           {
             "meal": "Cold Soba Noodle Salad",
-            "price": "8.23",
+            "price": "reg.8.23",
             "toppings": []
           },
           {
             "meal": "Soft Boiled Egg",
-            "price": "2.00",
+            "price": "reg.2.00",
             "toppings": []
           },
           {
             "meal": "Lemon Asparagus with Pecorino",
-            "price": "8.73",
+            "price": "reg.8.73",
             "toppings": []
           },
           {
             "meal": "Spicy Vegetarian Potstickers",
-            "price": "10.57",
+            "price": "reg.10.57",
             "toppings": []
           },
           {
             "meal": "Hot Cheetos Elote",
-            "price": "9.75",
+            "price": "reg.9.75",
             "toppings": []
           },
           {
             "meal": "Tuna & Watermelon Poke",
-            "price": "12.83",
+            "price": "reg.12.83",
             "toppings": []
           },
           {
             "meal": "Wagyu Beef Sliders Animal Style",
-            "price": "12.50",
+            "price": "reg.12.50",
             "toppings": []
           },
           {
             "meal": "Chicken 65",
-            "price": "11.55",
+            "price": "reg.11.55",
             "toppings": []
           }
         ]
@@ -1205,17 +1994,17 @@
         "Milk Tea Bar": [
           {
             "meal": "House Special Milk Tea",
-            "price": "7.25",
+            "price": "reg.7.25",
             "toppings": []
           },
           {
             "meal": "Matcha Series: Strawberry or Mango",
-            "price": "7.50",
+            "price": "reg.7.50",
             "toppings": []
           },
           {
             "meal": "Peach Black Tea",
-            "price": "7.50",
+            "price": "reg.7.50",
             "toppings": []
           }
         ]
@@ -1227,17 +2016,46 @@
           {
             "meal": "Chocolate Croissant",
             "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Butter Croissant",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Blueberry Muffin",
+            "price": "",
             "toppings": [
-              "Butter Croissant",
-              "Blueberry Muffin",
-              "Chocolate Chips Muffin",
-              "Whole Wheat Bagel",
-              "Everything Bagel",
-              "Plain Bagel",
-              "Chocolate Chips Cookie",
-              "Snicker Doodle Cookie",
-              "Oatmeal Raisin Cookie"
+              "Chocolate Chips Muffin"
             ]
+          },
+          {
+            "meal": "Whole Wheat Bagel",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Everything Bagel",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Plain Bagel",
+            "price": "",
+            "toppings": [
+              "Chocolate Chips Cookie"
+            ]
+          },
+          {
+            "meal": "Snicker Doodle Cookie",
+            "price": "",
+            "toppings": []
+          },
+          {
+            "meal": "Oatmeal Raisin Cookie",
+            "price": "",
+            "toppings": []
           }
         ]
       }
