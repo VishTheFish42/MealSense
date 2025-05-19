@@ -1,0 +1,17 @@
+3. Generating meal embeddings efficiently
+
+You do need your full detailed menu (e.g. current_meals.json) once, to produce your embeddings offline—after that you never pass the raw JSON into the LLM again. Here’s a workflow:
+
+Flatten each meal into a concise text snippet, e.g.:
+"Breakfast Protein Burrito — Breakfast — La Parilla — 550 kcal, 35 g protein, 200 mg cholesterol"
+Use your nutrition fields and station name to enrich the string .
+Batch-call the OpenAI Embeddings API (e.g. text-embedding-ada-002) on that list of meal strings.
+from openai import OpenAI
+client = OpenAI()
+embeds = client.embeddings.create(
+    model="text-embedding-ada-002",
+    input=meal_texts
+)
+Store the resulting vectors in a vector store like Pinecone, Qdrant, or pgvector.
+At query time, embed the user-profile text once, cosine_search(top_k=30), then pass those candidates into your LLM (with any extra nutrition info) for final selection.
+This keeps your context window small (only a few dozen candidates) while leveraging a rich, precomputed embedding index.
