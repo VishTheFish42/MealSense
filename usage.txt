@@ -5,3 +5,6 @@ ipconfig | find "IPv4" | find /V "" | CLIP
 mitmdump -p 8080 -s dump_menu.py
 // possibly add --set tls_version_client_min=SSL3
 python aggregate_requests.py
+
+// new parser
+python menu_parser.py jsons/*.json --outdir data --map benson=6212 sudi=6213

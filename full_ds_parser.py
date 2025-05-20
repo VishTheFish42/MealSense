@@ -1,159 +1,216 @@
+# menu_parser.py  — 2nd revision  (2025‑05‑19)
+"""Parse one *or many* Transact Campus "getmenu" JSON blobs ⇒ flat CSVs
+-----------------------------------------------------------------------
+Key features requested by the client (Victor):
+  ✔  capture *all* option / modifier trees
+  ✔  keep the `is_hidden` flag for production‑toggle logic
+  ✔  preserve the first‑online datetime so a once‑per‑day crawl is safe
+  ✔  parse n JSON files in one call and tag rows with `restaurant`
+
+Outputs
+•••••••
+* **foods.csv** – 1 row per base item (name, macros, price, flags …)
+* **options.csv** – exploded modifiers (itemid × option_group × value)
+* **availability.csv** – item × schedule mapping for meal‑period queries
+
+Usage (CLI)
+-----------
+$ python menu_parser.py  jsons/*.json  --outdir data  --map benson=6212 sudi=6213
+
+If you omit the --map flag the script infers `restaurant` from each
+filename (substring before first “_”).
+"""
+
+from __future__ import annotations
+
+import argparse
 import json
+import os
+import glob
 from datetime import datetime
 from pathlib import Path
-from typing import Tuple, List, Dict, Any
+from typing import Any, Dict, Iterable, List, Sequence, Tuple
 
 import pandas as pd
 
+# ──────────────────────────────────────────────────────────────────────────────
+# Core public helper
+# ──────────────────────────────────────────────────────────────────────────────
 
-###############################################################################
-# Public helpers – you will mainly interact with `parse_menu()`
-###############################################################################
-
-def parse_menu(json_path_or_obj) -> Tuple[pd.DataFrame, pd.DataFrame]:
-    """Parse the Transact Campus Fresh Bytes menu JSON.
+def parse_many(
+    json_dir: Sequence[Path | str],
+    *,
+    restaurant_map: Dict[str, str] | None = None,
+) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Parse multiple Transact menu blobs and return 3 normalised dataframes.
 
     Parameters
     ----------
-    json_path_or_obj : str | Path | dict
-        Either a path/str pointing to the raw *mobileorderprodapi* json file or an
-        already-loaded Python object.
+    json_paths : list[str|Path]
+        Files produced by *mobileorderprodapi* /api_user/getmenu.
+    restaurant_map : dict[str,str], optional
+        Map a filename‑stem (or slug) → human restaurant label.  If omitted the
+        stem of each file (text before first "_") is used.
 
     Returns
     -------
-    foods_df : pd.DataFrame
-        One row per *menu_item* with all nutrition + commercial metadata that is
-        present in the feed.  Suitable for ML / embeddings.
-
-    availability_df : pd.DataFrame
-        Normalised availability table mapping an itemid to every schedule it
-        belongs to, the section name (often corresponds to meal period), and
-        the window in which that schedule is marked *currently_available* in
-        the feed.
+    foods_df, options_df, availability_df
     """
 
-    # ---------------------------------------------------------------------
-    # 1.  Load JSON
-    # ---------------------------------------------------------------------
-    if isinstance(json_path_or_obj, (str, Path)):
-        with open(json_path_or_obj, "r", encoding="utf-8") as fp:
+    food_rows: list[dict[str, Any]] = []
+    opt_rows: list[dict[str, Any]] = []
+    avail_rows: list[dict[str, Any]] = []
+
+    # print(glob.glob(os.path.join(json_dir, "*.json")))
+    for path in glob.glob(os.path.join(json_dir, "*.json")):
+        path = Path(path)
+        with path.open("r", encoding="utf-8") as fp:
             raw = json.load(fp)
-    else:
-        raw = json_path_or_obj  # assume already‑parsed
 
+        rest_key = path.stem.split("_")[0]
+        restaurant = (
+            restaurant_map.get(rest_key, rest_key) if restaurant_map else rest_key
+        )
+
+        _foods, _opts, _av = _parse_one(raw, restaurant)
+        food_rows.extend(_foods)
+        opt_rows.extend(_opts)
+        avail_rows.extend(_av)
+
+    foods_df = pd.DataFrame(food_rows).drop_duplicates("itemid").reset_index(drop=True)
+    options_df = pd.DataFrame(opt_rows).drop_duplicates().reset_index(drop=True)
+    availability_df = (
+        pd.DataFrame(avail_rows).drop_duplicates().reset_index(drop=True)
+    )
+
+    return foods_df, options_df, availability_df
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Internal – single‑blob parser
+# ──────────────────────────────────────────────────────────────────────────────
+
+def _parse_one(raw: dict, restaurant: str):
     menu = raw.get("menu", {})
-
-    # Menu feed uses two parallel arrays (sections_1, sections_2). Join them.
     sections: List[Dict[str, Any]] = menu.get("sections_1", []) + menu.get(
         "sections_2", []
     )
 
-    # ---------------------------------------------------------------------
-    # 2.  Core item extraction
-    # ---------------------------------------------------------------------
-    food_records: List[Dict[str, Any]] = []
-    availability_records: List[Dict[str, Any]] = []
+    foods: list[dict[str, Any]] = []
+    opts: list[dict[str, Any]] = []
+    avs: list[dict[str, Any]] = []
 
     for sec in sections:
-        sec_name = sec.get("name")
+        sec_name = sec.get("name", "").strip()
         sec_sched_name = sec.get("currently_available_qp_schedule_name") or None
         sec_sched_ids = sec.get("scheduleids") or []
 
         for item in sec.get("items", []):
-            rec: Dict[str, Any] = {
-                # primary keys
-                "itemid": item.get("itemid"),
-                "name": item.get("qp_name") or item.get("name"),
-                "description": item.get("description"),
+            itemid = item.get("itemid")
+            is_hidden = bool(item.get("is_hidden"))
+            online_dt = _to_dt(item.get("manual_online_datetime"))
 
-                # commercial
-                "price_base": item.get("price_base"),
-                "price_display": item.get("price_display"),
-                "cover_picture_url": item.get("cover_picture_url"),
-
-                # nutrition
-                "calories": item.get("nutrition_calories"),
-                "fat_g": item.get("nutrition_fat"),
-                "protein_g": item.get("nutrition_protein"),
-                "carb_g": item.get("nutrition_carbohydrates"),
-                "fiber_g": item.get("nutrition_fiber"),
-                "sugar_g": item.get("nutrition_sugar"),
-                "cholesterol_mg": item.get("nutrition_cholesterol"),
-                "sodium_mg": item.get("nutrition_sodium"),
-
-                # availability meta
-                "section": sec_name,
-                "section_schedule_name": sec_sched_name,
-                "section_scheduleids": sec_sched_ids,
-                "item_scheduleids": item.get("scheduleids") or [],
-                "manual_online_datetime": _parse_date(item.get("manual_online_datetime")),
-                "currently_available": bool(item.get("mobile_stock_available", 0) and item.get("is_hidden", 0) == 0),
-            }
-            food_records.append(rec)
-
-            # explode availability rows for easier joins later
-            combined_scheds = (
-                rec["section_scheduleids"] + rec["item_scheduleids"] or [None]
+            foods.append(
+                {
+                    "restaurant": restaurant,
+                    "section": sec_name,
+                    "itemid": itemid,
+                    "name": item.get("qp_name") or item.get("name"),
+                    "description": item.get("description"),
+                    "price_base_c": item.get("price_base"),
+                    "price_disp_c": item.get("price_display"),
+                    # nutrition (may be 0 if missing):
+                    "calories": item.get("nutrition_calories"),
+                    "fat_g": item.get("nutrition_fat"),
+                    "protein_g": item.get("nutrition_protein"),
+                    "carb_g": item.get("nutrition_carbohydrates"),
+                    "fiber_g": item.get("nutrition_fiber"),
+                    "sugar_g": item.get("nutrition_sugar"),
+                    "cholesterol_mg": item.get("nutrition_cholesterol"),
+                    "sodium_mg": item.get("nutrition_sodium"),
+                    # flags / timing
+                    "is_hidden": is_hidden,
+                    "manual_online_datetime": online_dt,
+                    "currently_available": bool(item.get("mobile_stock_available")),
+                }
             )
-            if not combined_scheds:
-                combined_scheds = [None]
 
+            # ╭─ modifiers / options ─╮
+            for opt_group in item.get("options", []):
+                if opt_group.get("is_hidden"):
+                    continue
+                gname = opt_group.get("name")
+                gmax = opt_group.get("maximum", 1)
+                for val in opt_group.get("values", []):
+                    if val.get("is_hidden"):
+                        continue
+                    opts.append(
+                        {
+                            "restaurant": restaurant,
+                            "itemid": itemid,
+                            "option_group": gname,
+                            "max_select": gmax,
+                            "value": val.get("name"),
+                            "value_price_c": val.get("price"),
+                        }
+                    )
+
+            # ╭─ availability rows ─╮
+            combined_scheds = sec_sched_ids + (item.get("scheduleids") or [])
+            combined_scheds = combined_scheds or [None]
             for sid in combined_scheds:
-                availability_records.append(
+                avs.append(
                     {
-                        "itemid": rec["itemid"],
+                        "restaurant": restaurant,
+                        "itemid": itemid,
                         "scheduleid": sid,
                         "section": sec_name,
                         "section_schedule_name": sec_sched_name,
                     }
                 )
 
-    foods_df = pd.DataFrame(food_records).drop_duplicates("itemid")
-    availability_df = pd.DataFrame(availability_records).drop_duplicates()
-
-    return foods_df, availability_df
+    return foods, opts, avs
 
 
-###############################################################################
-# Internal utilities
-###############################################################################
-
-def _parse_date(date_str: str | None):
-    if not date_str:
+def _to_dt(s: str | None):
+    if not s:
         return None
     try:
-        return datetime.fromisoformat(date_str.strip())
+        return datetime.fromisoformat(s.strip())
     except ValueError:
         return None
 
 
-###############################################################################
-# CLI helper for quick‑n‑dirty runs
-###############################################################################
+# ──────────────────────────────────────────────────────────────────────────────
+# CLI – one‑shot parse & save
+# ──────────────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    import argparse, sys
-
-    ap = argparse.ArgumentParser(description="Parse Transact menu feed → CSVs")
-    ap.add_argument("--json", help="Path to mobileorderprodapi*.json file")
-    ap.add_argument("--json_dir", help="Path to mobileorderprodapi*.json file")
-    ap.add_argument("--outdir", default="out", help="Output directory")
+    ap = argparse.ArgumentParser(
+        description="Flatten Transact Campus menu JSON → CSVs (foods, options, availability)"
+    )
+    ap.add_argument(
+        "json_dir",
+        help="dir with jsons",
+    )
+    ap.add_argument("--outdir", default="out", help="directory for CSVs")
+    ap.add_argument(
+        "--map",
+        nargs="*",
+        metavar="slug=Restaurant Name",
+        help="Optional mapping from filename stem to display name",
+    )
     ns = ap.parse_args()
 
-    if ns.json_dir:
-        # aggregate all JSON files in the directory
-        json_files = list(Path(ns.json_dir).glob("*.json"))
-        if not json_files:
-            print(f"No JSON files found in {ns.json_dir}")
-            sys.exit(1)
-        ns.json = json_files
-        
-    for f in json_files:
-        print(f"Parsing {f}")
-        foods, avail = parse_menu(f)
-        outdir = Path(ns.outdir) / f.stem
-        outdir.mkdir(parents=True, exist_ok=True)
+    mapping = dict(split.split("=", 1) for split in ns.map) if ns.map else None
+    foods, opts, avs = parse_many(ns.json_dir, restaurant_map=mapping)
 
-        foods.to_csv(outdir / "foods.csv", index=False)
-        avail.to_csv(outdir / "availability.csv", index=False)
+    out = Path(ns.outdir)
+    out.mkdir(parents=True, exist_ok=True)
+    foods.to_csv(out / "foods.csv", index=False)
+    opts.to_csv(out / "options.csv", index=False)
+    avs.to_csv(out / "availability.csv", index=False)
 
-    print(f"Wrote {len(foods):,} foods and {len(avail):,} availability rows → {outdir}")
+    print(
+        f"✔ wrote {len(foods):,} foods, {len(opts):,} options, "
+        f"{len(avs):,} availability rows → {out}"
+    )
