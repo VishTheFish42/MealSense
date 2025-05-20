@@ -42,4 +42,6 @@ google-services.json
 
 # for python
 .venv
+.scraper-venv
 mealsense-firebase-access.json
+test.py
