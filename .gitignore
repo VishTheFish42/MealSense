@@ -175,4 +175,4 @@ cython_debug/
 mealsense-firebase-access.json
 google-services.json
 test.py
-.scraper-venv
+.packet-intercept
