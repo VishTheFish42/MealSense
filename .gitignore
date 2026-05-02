@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Expo / React Native
+mealsense-app/node_modules/
+mealsense-app/.expo/
+mealsense-app/dist/
+mealsense-app/web-build/
+mealsense-app/*.log
+
+# Environment variables — never commit these
+mealsense-app/.env
+mealsense-app/.env.local
+
+# Python API
+mealsense-api/venv/
+mealsense-api/.env
+**/__pycache__/
+**/*.pyc
