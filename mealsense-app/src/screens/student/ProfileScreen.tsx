@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView, Alert,
+  View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView, Alert, ActivityIndicator,
 } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../config/firebase';
+import { signOut, deleteUser } from 'firebase/auth';
+import { collection, deleteDoc, doc, getDocs, query, where, writeBatch } from 'firebase/firestore';
+import { auth, db } from '../../config/firebase';
 import { useAuth } from '../../contexts/AuthContext';
 import { colors } from '../../constants/colors';
 import { ProfileStackParamList } from '../../types';
@@ -55,12 +56,56 @@ function TagList({ label, values }: { label: string; values: string[] }) {
 
 export default function ProfileScreen({ navigation }: Props) {
   const { profile } = useAuth();
+  const [deleting, setDeleting] = useState(false);
 
   const handleSignOut = () => {
     Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
       { text: 'Cancel', style: 'cancel' },
       { text: 'Sign Out', style: 'destructive', onPress: () => signOut(auth) },
     ]);
+  };
+
+  const deleteAllMyData = async () => {
+    const user = auth.currentUser;
+    if (!user) return;
+    setDeleting(true);
+    try {
+      // Delete every order this student placed (firestore.rules allows
+      // owner-only delete on orders specifically for this flow).
+      const ordersSnap = await getDocs(query(collection(db, 'orders'), where('studentId', '==', user.uid)));
+      const batch = writeBatch(db);
+      ordersSnap.forEach((d) => batch.delete(d.ref));
+      await batch.commit();
+
+      // Delete the profile document (health data lives here).
+      await deleteDoc(doc(db, 'users', user.uid));
+
+      // Finally remove the auth account itself.
+      await deleteUser(user);
+    } catch (err: any) {
+      if (err?.code === 'auth/requires-recent-login') {
+        Alert.alert(
+          'Please sign in again',
+          'For your security, deleting your account requires a recent sign-in. Sign out, sign back in, then try again.',
+        );
+      } else {
+        console.error('Delete account error:', err);
+        Alert.alert('Error', 'Could not delete your data. Please try again.');
+      }
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+  const handleDeleteAccount = () => {
+    Alert.alert(
+      'Delete account and all data?',
+      'This permanently deletes your profile, dietary preferences, and full order history. This cannot be undone.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Delete Everything', style: 'destructive', onPress: deleteAllMyData },
+      ],
+    );
   };
 
   const initials = (profile?.displayName ?? '?')
@@ -116,6 +161,15 @@ export default function ProfileScreen({ navigation }: Props) {
         <TouchableOpacity style={styles.signOutBtn} onPress={handleSignOut}>
           <Text style={styles.signOutText}>Sign Out</Text>
         </TouchableOpacity>
+
+        {/* Delete account & data */}
+        <TouchableOpacity style={styles.deleteBtn} onPress={handleDeleteAccount} disabled={deleting}>
+          {deleting ? (
+            <ActivityIndicator color={colors.error} />
+          ) : (
+            <Text style={styles.deleteText}>Delete My Account & Data</Text>
+          )}
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -144,4 +198,6 @@ const styles = StyleSheet.create({
   emptyNote: { fontSize: 14, color: colors.textLight, fontStyle: 'italic' },
   signOutBtn: { backgroundColor: colors.error + '15', borderWidth: 1, borderColor: colors.error, borderRadius: 14, paddingVertical: 16, alignItems: 'center', marginTop: 8 },
   signOutText: { color: colors.error, fontSize: 16, fontWeight: '700' },
+  deleteBtn: { paddingVertical: 14, alignItems: 'center', marginTop: 4 },
+  deleteText: { color: colors.error, fontSize: 14, fontWeight: '600', textDecorationLine: 'underline' },
 });

@@ -9,20 +9,20 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../../config/firebase';
 import { colors } from '../../constants/colors';
-import { AuthStackParamList, StudentProfile, UserRole } from '../../types';
+import { AuthStackParamList, StudentProfile } from '../../types';
 
 type Props = { navigation: NativeStackNavigationProp<AuthStackParamList, 'Register'> };
 
-const ROLES: { label: string; value: UserRole }[] = [
-  { label: '🎓 Student', value: 'student' },
-  { label: '🍳 Kitchen Staff', value: 'kitchen' },
-];
+// Self-registration always creates a "student" account — firestore.rules
+// rejects any client-created user doc with role != "student", so a kitchen
+// role picker here would just produce a broken signup. Kitchen accounts are
+// provisioned out-of-band (Firebase Admin SDK or console), which bypasses
+// rules entirely. See mealsense-app/README-kitchen-accounts.md.
 
 export default function RegisterScreen({ navigation }: Props) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState<UserRole>('student');
   const [loading, setLoading] = useState(false);
 
   const handleRegister = async () => {
@@ -41,12 +41,12 @@ export default function RegisterScreen({ navigation }: Props) {
         uid: cred.user.uid,
         email: email.trim(),
         displayName: name.trim(),
-        role,
+        role: 'student',
         allergies: [],
         dietaryIdentity: [],
         conditions: [],
         nutritionalFocus: [],
-        onboardingComplete: role === 'kitchen',
+        onboardingComplete: false,
         createdAt: new Date().toISOString(),
       };
       await setDoc(doc(db, 'users', cred.user.uid), profile);
@@ -101,21 +101,6 @@ export default function RegisterScreen({ navigation }: Props) {
             returnKeyType="next"
           />
 
-          <Text style={styles.label}>I am a…</Text>
-          <View style={styles.roleRow}>
-            {ROLES.map((r) => (
-              <TouchableOpacity
-                key={r.value}
-                style={[styles.roleBtn, role === r.value && styles.roleBtnActive]}
-                onPress={() => setRole(r.value)}
-              >
-                <Text style={[styles.roleBtnText, role === r.value && styles.roleBtnTextActive]}>
-                  {r.label}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-
           <TouchableOpacity style={styles.primaryBtn} onPress={handleRegister} disabled={loading}>
             {loading ? (
               <ActivityIndicator color="#fff" />
@@ -165,19 +150,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.text,
   },
-  roleRow: { flexDirection: 'row', gap: 12, marginTop: 4 },
-  roleBtn: {
-    flex: 1,
-    paddingVertical: 14,
-    borderRadius: 12,
-    borderWidth: 1.5,
-    borderColor: colors.border,
-    alignItems: 'center',
-    backgroundColor: colors.card,
-  },
-  roleBtnActive: { borderColor: colors.primary, backgroundColor: '#EDF7F2' },
-  roleBtnText: { fontSize: 15, fontWeight: '600', color: colors.textSecondary },
-  roleBtnTextActive: { color: colors.primary },
   primaryBtn: {
     backgroundColor: colors.primary,
     borderRadius: 12,

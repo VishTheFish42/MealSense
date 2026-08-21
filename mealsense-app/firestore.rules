@@ -1,0 +1,105 @@
+rules_version = '2';
+
+// MealSense Firestore security rules.
+//
+// Data model:
+//   users/{uid}   — student profile (health data: allergies, conditions, etc.)
+//   orders/{id}   — { studentId, items, totalPrice, status, ... }
+//
+// Key invariant: `role` on a user doc can NEVER be set to "kitchen" by a
+// client write. Every account self-registers as "student". Kitchen accounts
+// must be provisioned out-of-band (Firebase Admin SDK or console), which
+// bypasses these rules entirely — see mealsense-app/README-kitchen-accounts.md.
+// This closes the privilege-escalation path where RegisterScreen used to let
+// anyone pick "Kitchen Staff" and get access to every student's order queue.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function roleOf(uid) {
+      return exists(/databases/$(database)/documents/users/$(uid))
+        ? get(/databases/$(database)/documents/users/$(uid)).data.role
+        : null;
+    }
+
+    function isKitchen() {
+      return isSignedIn() && roleOf(request.auth.uid) == 'kitchen';
+    }
+
+    // Fields actually changed by this write, compared to the existing doc.
+    function changedKeys() {
+      return request.resource.data.diff(resource.data).affectedKeys();
+    }
+
+    // ── users/{uid} ──────────────────────────────────────────────────────
+    // Health data (allergies, conditions) lives here. Owner-only, always.
+    // Kitchen staff never need to read a student's profile to fulfill an
+    // order — the order doc itself carries everything the kitchen needs.
+    match /users/{uid} {
+      allow read: if isOwner(uid);
+
+      allow create: if isOwner(uid)
+        && request.resource.data.uid == uid
+        && request.resource.data.role == 'student';
+
+      allow update: if isOwner(uid)
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.role == resource.data.role; // role is immutable post-create
+
+      allow delete: if isOwner(uid);
+    }
+
+    // ── orders/{orderId} ─────────────────────────────────────────────────
+    match /orders/{orderId} {
+      allow create: if isSignedIn()
+        && request.resource.data.studentId == request.auth.uid
+        && request.resource.data.status == 'placed'
+        && request.resource.data.paymentStatus == 'placeholder';
+
+      allow read: if isSignedIn()
+        && (resource.data.studentId == request.auth.uid || isKitchen());
+
+      // Two independent status-advance paths, matching the two places the
+      // app actually writes order status:
+      //   1. The student's own device (OrderStatusScreen's demo timer):
+      //      placed -> preparing -> ready, touching only status + its timestamp.
+      //   2. Kitchen staff (KitchenDashboardScreen): can mark an order ready
+      //      from either placed or preparing, and completed from ready.
+      // Neither path may touch items, totalPrice, or studentId.
+      allow update: if isSignedIn() && (
+        (
+          resource.data.studentId == request.auth.uid &&
+          (
+            (resource.data.status == 'placed' && request.resource.data.status == 'preparing' && changedKeys().hasOnly(['status', 'preparingAt'])) ||
+            (resource.data.status == 'preparing' && request.resource.data.status == 'ready' && changedKeys().hasOnly(['status', 'readyAt']))
+          )
+        ) || (
+          isKitchen() &&
+          (
+            (resource.data.status == 'placed' && request.resource.data.status == 'ready' && changedKeys().hasOnly(['status', 'readyAt'])) ||
+            (resource.data.status == 'preparing' && request.resource.data.status == 'ready' && changedKeys().hasOnly(['status', 'readyAt'])) ||
+            (resource.data.status == 'ready' && request.resource.data.status == 'completed' && changedKeys().hasOnly(['status', 'completedAt']))
+          )
+        )
+      );
+
+      // Owner-only delete, used by the "delete my data" flow to clear order
+      // history. Kitchen staff never delete orders.
+      allow delete: if isSignedIn() && resource.data.studentId == request.auth.uid;
+    }
+
+    // Default deny for anything else (menu data, if ever moved to Firestore,
+    // is intentionally not covered here yet — see tasks.md Phase 3).
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
