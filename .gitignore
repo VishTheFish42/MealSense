@@ -17,3 +17,5 @@ mealsense-api/venv/
 mealsense-api/.env
 **/__pycache__/
 **/*.pyc
+mealsense-api/.coverage
+mealsense-api/.pytest_cache/

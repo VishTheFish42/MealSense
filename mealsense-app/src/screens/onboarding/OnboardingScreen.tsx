@@ -8,6 +8,7 @@ import { signOut } from 'firebase/auth';
 import { auth, db } from '../../config/firebase';
 import { useAuth } from '../../contexts/AuthContext';
 import { colors } from '../../constants/colors';
+import { stripUndefined } from '../../utils/firestore';
 import {
   Sex, ActivityLevel, HealthGoal, StudentProfile,
 } from '../../types';
@@ -213,7 +214,7 @@ export default function OnboardingScreen() {
         nutritionalFocus: nutritionalFocus.filter((v) => v !== 'none'),
         onboardingComplete: true,
       };
-      await setDoc(doc(db, 'users', user.uid), updates, { merge: true });
+      await setDoc(doc(db, 'users', user.uid), stripUndefined(updates), { merge: true });
       await refreshProfile();
     } catch (err) {
       console.error('Onboarding save error:', err);

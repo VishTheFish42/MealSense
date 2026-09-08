@@ -5,12 +5,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
-  authDomain: "myproject-dc745.firebaseapp.com",
-  projectId: "myproject-dc745",
-  storageBucket: "myproject-dc745.firebasestorage.app",
-  messagingSenderId: "101801695589",
-  appId: "1:101801695589:web:7dd2b5f4b5129a548e698c",
-  measurementId: "G-6RMBG9TSF3"
+  authDomain: "mealsense-cb5ab.firebaseapp.com",
+  projectId: "mealsense-cb5ab",
+  storageBucket: "mealsense-cb5ab.firebasestorage.app",
+  messagingSenderId: "983327527722",
+  appId: "1:983327527722:web:b49f9f916ab83573758453",
+  measurementId: "G-KWQVSEVN21"
 };
 
 // Guard against duplicate initialization on hot reload

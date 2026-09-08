@@ -1,4 +1,4 @@
-// TODO: Replace with your Mac's local IP address.
-// How to find it: System Settings → Wi-Fi → Details (next to your network) → IP Address
-// Your iPhone and Mac must be on the same Wi-Fi network.
-export const API_BASE_URL = 'http://192.168.68.80:8000';
+// Physical device on the same Wi-Fi network as this Mac.
+// If this stops working, re-check: System Settings → Wi-Fi → Details
+// (next to your network) → IP Address — it can change between networks.
+export const API_BASE_URL = 'http://192.168.68.52:8000';

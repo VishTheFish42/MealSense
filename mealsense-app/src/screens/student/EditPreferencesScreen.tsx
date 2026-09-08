@@ -8,6 +8,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 import { useAuth } from '../../contexts/AuthContext';
 import { colors } from '../../constants/colors';
+import { stripUndefined } from '../../utils/firestore';
 import { ProfileStackParamList, Sex, ActivityLevel, HealthGoal, StudentProfile } from '../../types';
 
 type Props = { navigation: NativeStackNavigationProp<ProfileStackParamList, 'EditProfile'> };
@@ -177,7 +178,7 @@ export default function EditPreferencesScreen({ navigation }: Props) {
         conditions: conditions.filter((v) => v !== 'none'),
         nutritionalFocus: nutritionalFocus.filter((v) => v !== 'none'),
       };
-      await setDoc(doc(db, 'users', user.uid), updates, { merge: true });
+      await setDoc(doc(db, 'users', user.uid), stripUndefined(updates), { merge: true });
       await refreshProfile();
       navigation.goBack();
     } catch (err) {

@@ -8,7 +8,7 @@ Phases are ordered by risk and dependency, not by how interesting they are. Secu
 
 ---
 
-## Phase 1 — Security Hardening (do this first) ✅ code complete, one manual step left
+## Phase 1 — Security Hardening (do this first) ✅ done (2026-09-07)
 
 Traces to requirements §8. This is the biggest real gap in the project — not a stretch goal.
 
@@ -19,52 +19,54 @@ Traces to requirements §8. This is the biggest real gap in the project — not 
 - [x] 1.5 Audited how `role: "kitchen"` actually got assigned: **`RegisterScreen.tsx` let any user self-select it at signup with zero gatekeeping** — a real privilege-escalation bug, not hypothetical. Fixed by (a) rules that reject any client-created user doc with `role != "student"`, (b) removing the role picker from `RegisterScreen.tsx` entirely, (c) documenting the real provisioning path in `mealsense-app/README-kitchen-accounts.md` (manual console edit for now; a real admin flow is Phase 4)
 - [x] 1.6 Tested rules with the Firebase emulator (`@firebase/rules-unit-testing` + Node's built-in test runner, no Jest needed) — `mealsense-app/tests/firestore.rules.test.js`, 16/16 passing via `npm run test:rules`
 - [x] 1.7 Added a profile + associated data deletion flow — `ProfileScreen.tsx`'s "Delete My Account & Data" batch-deletes the student's orders, deletes their `users/{uid}` doc, then deletes the Auth account itself
-- [ ] 1.8 **Manual, needs you:** deploy the rules to the live project — `npx firebase login` then `npx firebase deploy --only firestore:rules` from `mealsense-app/`. Nothing above touches production until this runs; right now `firestore.rules` only governs the local emulator.
+- [x] 1.8 Deployed rules to the live project — a fresh Firebase project (`mealsense-cb5ab`) was created to replace the old auto-named `myproject-dc745` (whose live rules were undocumented), `.firebaserc`, `src/config/firebase.ts`, and `.env` were repointed at it, Firestore (Standard edition) and Email/Password Auth were enabled, and `npx firebase deploy --only firestore:rules` confirmed released. `firestore.rules` now actually governs production, not just the emulator.
 
-## Phase 2 — Testing Infrastructure
+## Phase 2 — Testing Infrastructure ✅ done (2026-09-05)
 
 Traces to requirements §9. Scoped tightly to the recommendation engine's real safety invariant (zero-false-negative allergen filtering) plus API route coverage.
 
+**Result:** 47/47 tests passing, `services/recommendation_engine.py` at 100% line coverage (target was ≥90%). Files: `mealsense-api/tests/conftest.py`, `test_recommendation_engine.py`, `test_routes.py`, `pytest.ini`, `requirements-dev.txt`. Run with `cd mealsense-api && venv/bin/python -m pytest --cov=services --cov-report=term-missing`. This unblocks Phase 6 (the bandit layer), which was explicitly gated on this phase landing first.
+
 ### 2.1 Test Infrastructure Setup
-- [ ] 2.1.1 Add `pytest` and `httpx` to `mealsense-api/requirements.txt` (or a new `requirements-dev.txt`)
-- [ ] 2.1.2 Create `mealsense-api/tests/` package with `__init__.py`
-- [ ] 2.1.3 Add `pytest.ini` (or `pyproject.toml` `[tool.pytest.ini_options]`) setting `testpaths = tests`
-- [ ] 2.1.4 Verify `pytest` runs from `mealsense-api/` with `python -m pytest`
-- [ ] 2.1.5 Add `conftest.py` with shared fixtures: a minimal valid student profile, a small fixture menu (allergen item, vegan item, high-protein item, off-period item)
+- [x] 2.1.1 Add `pytest` and `httpx` to `mealsense-api/requirements.txt` (or a new `requirements-dev.txt`)
+- [x] 2.1.2 Create `mealsense-api/tests/` package with `__init__.py`
+- [x] 2.1.3 Add `pytest.ini` (or `pyproject.toml` `[tool.pytest.ini_options]`) setting `testpaths = tests`
+- [x] 2.1.4 Verify `pytest` runs from `mealsense-api/` with `python -m pytest`
+- [x] 2.1.5 Add `conftest.py` with shared fixtures: a minimal valid student profile, a small fixture menu (allergen item, vegan item, high-protein item, off-period item)
 
 ### 2.2 Recommendation Engine Unit Tests (`test_recommendation_engine.py`)
-- [ ] 2.2.1 Allergen hard filter: single flagged allergen excludes matching item
-- [ ] 2.2.2 Allergen hard filter: case-insensitive matching
-- [ ] 2.2.3 Allergen hard filter: multiple simultaneous allergies all enforced
-- [ ] 2.2.4 Dietary identity filter: single identity (e.g. vegetarian) enforced
-- [ ] 2.2.5 Dietary identity filter: multiple identities enforced as AND, not OR
-- [ ] 2.2.6 Meal-period availability filter enforced correctly
-- [ ] 2.2.7 No-safe-items fallback returns `null` + `"no_safe_items"`
-- [ ] 2.2.8 Macro/calorie alignment score decreases monotonically as calories diverge from target
-- [ ] 2.2.9 Protein/fiber scores capped at reference max (50g / 15g)
-- [ ] 2.2.10 Variety penalty applied for items in `recent_ids`
-- [ ] 2.2.11 Final item score bounded to [0, 100]
-- [ ] 2.2.12 Diabetes profile shifts weight toward `sugar_sodium`
-- [ ] 2.2.13 Hypertension (without diabetes) applies the same shift
-- [ ] 2.2.14 Diabetes + hypertension together: no double-adjustment
-- [ ] 2.2.15 Adjusted weights sum to 1.0, parametrized over all condition combinations
-- [ ] 2.2.16 BMR fixed test vectors for male and female profiles
-- [ ] 2.2.17 All four activity multipliers applied correctly
-- [ ] 2.2.18 Goal adjustments (lose/gain/maintain) applied correctly
-- [ ] 2.2.19 Meal-period apportionment matches README §8.4 table
-- [ ] 2.2.20 Top recommendation is always the highest-scoring candidate
-- [ ] 2.2.21 Alternatives capped at 3, sorted descending
-- [ ] 2.2.22 Reasoning signals capped at 4
+- [x] 2.2.1 Allergen hard filter: single flagged allergen excludes matching item
+- [x] 2.2.2 Allergen hard filter: case-insensitive matching
+- [x] 2.2.3 Allergen hard filter: multiple simultaneous allergies all enforced
+- [x] 2.2.4 Dietary identity filter: single identity (e.g. vegetarian) enforced
+- [x] 2.2.5 Dietary identity filter: multiple identities enforced as AND, not OR
+- [x] 2.2.6 Meal-period availability filter enforced correctly
+- [x] 2.2.7 No-safe-items fallback returns `null` + `"no_safe_items"`
+- [x] 2.2.8 Macro/calorie alignment score decreases monotonically as calories diverge from target
+- [x] 2.2.9 Protein/fiber scores capped at reference max (50g / 15g)
+- [x] 2.2.10 Variety penalty applied for items in `recent_ids`
+- [x] 2.2.11 Final item score bounded to [0, 100]
+- [x] 2.2.12 Diabetes profile shifts weight toward `sugar_sodium`
+- [x] 2.2.13 Hypertension (without diabetes) applies the same shift
+- [x] 2.2.14 Diabetes + hypertension together: no double-adjustment
+- [x] 2.2.15 Adjusted weights sum to 1.0, parametrized over all condition combinations
+- [x] 2.2.16 BMR fixed test vectors for male and female profiles
+- [x] 2.2.17 All four activity multipliers applied correctly
+- [x] 2.2.18 Goal adjustments (lose/gain/maintain) applied correctly
+- [x] 2.2.19 Meal-period apportionment matches README §8.4 table
+- [x] 2.2.20 Top recommendation is always the highest-scoring candidate
+- [x] 2.2.21 Alternatives capped at 3, sorted descending
+- [x] 2.2.22 Reasoning signals capped at 4
 
 ### 2.3 API Route Tests (`test_routes.py`)
-- [ ] 2.3.1 `GET /menu` with no params returns all items + correct `count`
-- [ ] 2.3.2 `GET /menu?meal_period=X` filters correctly, including `all_day` items
-- [ ] 2.3.3 `POST /recommendation` with a minimal valid profile returns 200 + expected shape
-- [ ] 2.3.4 `POST /recommendation` with malformed/missing fields returns a 4xx (document actual behavior)
+- [x] 2.3.1 `GET /menu` with no params returns all items + correct `count`
+- [x] 2.3.2 `GET /menu?meal_period=X` filters correctly, including `all_day` items
+- [x] 2.3.3 `POST /recommendation` with a minimal valid profile returns 200 + expected shape
+- [x] 2.3.4 `POST /recommendation` with malformed/missing fields returns a 4xx (document actual behavior)
 
 ### 2.4 Coverage
-- [ ] 2.4.1 Add `pytest-cov`; run `pytest --cov=services --cov-report=term-missing`
-- [ ] 2.4.2 Confirm `services/recommendation_engine.py` hits ≥90% line coverage
+- [x] 2.4.1 Add `pytest-cov`; run `pytest --cov=services --cov-report=term-missing`
+- [x] 2.4.2 Confirm `services/recommendation_engine.py` hits ≥90% line coverage
 
 **Definition of done for the resume claim:** 2.1–2.3 complete. At that point "wrote a pytest suite covering the recommendation engine's hard-filter and scoring logic" is accurate and defensible in an interview.
 
@@ -73,7 +75,8 @@ Traces to requirements §9. Scoped tightly to the recommendation engine's real s
 Traces to requirements §3. Currently the entire menu is one hardcoded Python file; nothing here is built yet despite being a documented architecture decision.
 
 - [ ] 3.1 Design the `MenuItem` persistence layer (Firestore collection, matching `README.md §7.1` schema) — decide whether to keep the sample menu as a seed/fallback or replace it outright
-- [ ] 3.2 Build admin CSV/JSON upload endpoint (README §7.2 priority #2 — cheaper to build than a vendor integration, do this before #3.3)
+- [ ] 3.1a **Generic ingestion & normalization adapter** (design-spec.md §7.0) — build the pluggable mapping layer that takes any campus's raw daily feed (vendor API response, CSV, or an inconsistent ad hoc JSON export like MealSense's own school uses) and normalizes it into the canonical `MenuItem` schema before it hits the Menu Service. This is the actual "one integration any college can plug into" claim, not the vendor-specific work in 3.2/3.4 below — do this first, since 3.2 and 3.4 should be thin adapters written against this layer, not separate ingestion paths
+- [ ] 3.2 Build admin CSV/JSON upload endpoint (README §7.2 priority #2 — cheaper to build than a vendor integration, do this before #3.3), wired through the 3.1a adapter
 - [ ] 3.3 Build manual entry UI for dining staff (README §7.2 priority #3) — this is also the entry point needed for Phase 4's admin dashboard
 - [ ] 3.4 Research and scope a real vendor API integration (Nutrislice or Cbord, README §7.2 priority #1) — this depends on picking a target school with a known vendor (README §12 Open Question #1), so don't start building against a guessed API shape
 - [ ] 3.5 Implement `available_from`/`available_until` time-window availability logic server-side (currently only conceptual in README §7.3 — the sample menu has the fields but nothing computes "is this available right now" beyond the meal-period match in `_passes_hard_filters`)
@@ -86,6 +89,7 @@ Traces to requirements §6. Fully unbuilt — distinct from the Kitchen Dashboar
 - [ ] 4.2 Upload/sync UI wired to Phase 3.2's endpoint
 - [ ] 4.3 Mark items sold out / unavailable in real time
 - [ ] 4.4 Aggregate anonymized view: most-recommended items, common dietary constraints on campus (README §9.5) — needs an aggregation query or a scheduled rollup job; don't do this as a naive per-request scan once order volume is nonzero
+- [ ] 4.5 **Location-scoped kitchen isolation** (design-spec.md §2.3) — add a `locationId` field to kitchen-role user docs and to `orders`; update `firestore.rules` so every order read/write checks `locationId` match, not just `role == "kitchen"`. Today any kitchen account can see every dining hall's orders, which is fine for a single-location pilot but is a real gap the moment a second dining hall or a second university is onboarded. Extend `mealsense-app/tests/firestore.rules.test.js` with cross-location denial cases before considering this done. This is a hard prerequisite for Phase 7's multi-university rollout, not optional polish
 
 ## Phase 5 — Auth: University SSO
 

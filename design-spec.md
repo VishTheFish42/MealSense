@@ -65,6 +65,8 @@ Firebase Auth + University SSO
 
 **No async queue for v1.** Menu ingestion (CSV upload or vendor webhook) writes directly to the Menu Service. A message queue (SQS/Kafka) can be added in v2 if ingestion volume grows.
 
+**Location-scoped multi-tenant isolation (planned, not yet built).** Once a university runs more than one dining location, or once multiple universities are onboarded, every kitchen-role account must carry a `locationId`, and every Firestore rule governing `orders` reads/writes must check that the requesting account's `locationId` matches the order's `locationId` before allowing access — not just that the account has `role: "kitchen"`. Today's rules (`mealsense-app/firestore.rules`) enforce role but not location, so any kitchen account can currently see every order at every dining hall. This is tracked as its own hardening item — see `tasks.md` Phase 4.
+
 ---
 
 ## 3. Data Models
@@ -459,6 +461,10 @@ Admin users carry `"role": "admin"` and `"location_id"`. All admin endpoints ver
 ---
 
 ## 7. Menu Ingestion
+
+### 7.0 Generic Ingestion & Normalization Adapter (planned, not yet built)
+
+The actual product wedge isn't any single vendor integration, it's a normalization layer that sits in front of all of them. Every campus's daily menu feed, whether that's a clean Nutrislice/Cbord API response, a CSV, or a school's own ad hoc daily JSON export with inconsistent field names and missing allergen data, gets run through one adapter that maps it into the canonical `MenuItem` schema (§7.1 of README.md) before anything downstream ever sees it. This is the "central template any college can integrate into" piece: onboarding a new school means writing or selecting one adapter for their feed shape, not rebuilding the Menu Service. Adapters are pluggable and versioned per campus; a school with no usable feed at all falls back to the CSV/manual paths in §7.2. This is currently unbuilt — see `tasks.md` Phase 3.1a.
 
 ### 7.1 Vendor API (Primary Path)
 
