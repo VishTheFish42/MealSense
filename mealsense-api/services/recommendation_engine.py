@@ -2,6 +2,7 @@
 Recommendation engine implementing the scoring algorithm from design-spec.md §5.
 """
 from __future__ import annotations
+from datetime import datetime, time
 from typing import Any
 
 # ── Weight definitions ────────────────────────────────────────────────────────
@@ -26,6 +27,15 @@ MEAL_FRACTIONS: dict[str, float] = {
     "lunch": 0.35,
     "dinner": 0.35,
     "all_day": 0.33,
+}
+
+# README.md §7.3: "Items with no explicit time window default to their meal
+# period hours." These match the windows already used throughout
+# data/sample_menu.py.
+DEFAULT_MEAL_WINDOWS: dict[str, tuple[str, str]] = {
+    "breakfast": ("07:00", "10:30"),
+    "lunch": ("11:00", "15:00"),
+    "dinner": ("17:00", "21:00"),
 }
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -164,9 +174,61 @@ def _primary_reason(item: dict, profile: dict, signals: list[str]) -> str:
 
 # ── Hard filters ──────────────────────────────────────────────────────────────
 
-def _passes_hard_filters(item: dict, profile: dict, meal_period: str) -> bool:
+def _parse_time_str(value: str | None) -> time | None:
+    """Parse an 'HH:MM' string. Returns None for anything unparseable —
+    callers treat that as 'no usable window data', never as a block."""
+    if not value or not isinstance(value, str):
+        return None
+    try:
+        hh, mm = value.strip().split(":")
+        return time(int(hh), int(mm))
+    except (ValueError, TypeError):
+        return None
+
+
+def _is_available_at(item: dict, now: time | None) -> bool:
+    """README.md §7.3: an item is available if `now` falls within
+    [available_from, available_until]; items with no explicit window
+    default to their meal_period's standard hours (DEFAULT_MEAL_WINDOWS).
+
+    `now=None` means the caller hasn't opted into clock-time filtering —
+    the check is skipped entirely (returns True) rather than defaulting to
+    the real wall clock, so callers that only care about meal-period
+    bucketing (e.g. unit tests exercising other filters) aren't made
+    sensitive to whatever time it happens to be when they run.
+    """
+    if now is None:
+        return True
+
+    from_str = item.get("available_from")
+    until_str = item.get("available_until")
+    if not from_str or not until_str:
+        default = DEFAULT_MEAL_WINDOWS.get(item.get("meal_period", "all_day"))
+        if default is None:
+            return True  # all_day or unrecognized period with no explicit window
+        from_str, until_str = default
+
+    start, end = _parse_time_str(from_str), _parse_time_str(until_str)
+    if start is None or end is None:
+        return True  # unparseable window data — don't block on bad data here
+
+    return start <= now <= end
+
+
+def _passes_hard_filters(
+    item: dict, profile: dict, meal_period: str, now: time | None = None
+) -> bool:
+    raw_item_allergens = item.get("allergens")
+    if raw_item_allergens is None:
+        # Missing allergen data entirely (distinct from an explicit empty
+        # list, which means verified-safe) — fail closed and never surface
+        # this item, regardless of the student's own allergy list. Mirrors
+        # the ingestion layer's rejection rule (design-spec.md §7.0a); the
+        # engine must not rely solely on ingestion having already caught this.
+        return False
+
     allergens = set(a.lower() for a in profile.get("allergies", []))
-    item_allergens = set(a.lower() for a in item.get("allergens", []))
+    item_allergens = set(a.lower() for a in raw_item_allergens)
     if allergens & item_allergens:
         return False
 
@@ -180,6 +242,9 @@ def _passes_hard_filters(item: dict, profile: dict, meal_period: str) -> bool:
     if item_period != "all_day" and item_period != meal_period:
         return False
 
+    if not _is_available_at(item, now):
+        return False
+
     return True
 
 
@@ -190,16 +255,24 @@ def recommend(
     profile: dict,
     meal_period: str,
     recent_ids: list[str],
+    now: time | None = None,
 ) -> dict:
     """
     Run the full recommendation pipeline.
     Returns a dict matching the RecommendationResponse shape expected by the app.
+
+    `now` is the clock time used for §7.3 availability-window filtering.
+    Defaults to the real current time — pass it explicitly (as in tests) to
+    get deterministic results independent of when the code happens to run.
     """
+    if now is None:
+        now = datetime.now().time()
+
     recent_set = set(recent_ids)
     weights = _weights_for_profile(profile)
     calorie_target = _calorie_target(profile, meal_period)
 
-    candidates = [i for i in menu if _passes_hard_filters(i, profile, meal_period)]
+    candidates = [i for i in menu if _passes_hard_filters(i, profile, meal_period, now)]
 
     if not candidates:
         return {

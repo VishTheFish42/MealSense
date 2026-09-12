@@ -3,11 +3,14 @@ import {
   View, Text, StyleSheet, FlatList, SafeAreaView,
   ActivityIndicator, TouchableOpacity, Alert,
 } from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { collection, query, where, onSnapshot, updateDoc, doc, orderBy } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import { db, auth } from '../../config/firebase';
 import { colors } from '../../constants/colors';
-import { Order, OrderStatus } from '../../types';
+import { Order, OrderStatus, KitchenStackParamList } from '../../types';
+
+type Props = { navigation: NativeStackNavigationProp<KitchenStackParamList, 'Dashboard'> };
 
 const ACTIVE_STATUSES: OrderStatus[] = ['placed', 'preparing'];
 
@@ -39,7 +42,7 @@ function timeSince(dateStr: string | any): string {
   }
 }
 
-export default function KitchenDashboardScreen() {
+export default function KitchenDashboardScreen({ navigation }: Props) {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<'active' | 'ready'>('active');
@@ -82,14 +85,19 @@ export default function KitchenDashboardScreen() {
           <Text style={styles.title}>Kitchen Dashboard</Text>
           <Text style={styles.subtitle}>{orders.filter(o => ACTIVE_STATUSES.includes(o.status)).length} active orders</Text>
         </View>
-        <TouchableOpacity
-          onPress={() => Alert.alert('Sign Out', 'Sign out of kitchen view?', [
-            { text: 'Cancel', style: 'cancel' },
-            { text: 'Sign Out', style: 'destructive', onPress: () => signOut(auth) },
-          ])}
-        >
-          <Text style={styles.signOutText}>Sign Out</Text>
-        </TouchableOpacity>
+        <View style={styles.headerActions}>
+          <TouchableOpacity style={styles.addMenuBtn} onPress={() => navigation.navigate('AddMenuItem')}>
+            <Text style={styles.addMenuBtnText}>+ Menu Item</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => Alert.alert('Sign Out', 'Sign out of kitchen view?', [
+              { text: 'Cancel', style: 'cancel' },
+              { text: 'Sign Out', style: 'destructive', onPress: () => signOut(auth) },
+            ])}
+          >
+            <Text style={styles.signOutText}>Sign Out</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* Tabs */}
@@ -192,7 +200,10 @@ const styles = StyleSheet.create({
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', padding: 20, borderBottomWidth: 1, borderBottomColor: colors.border, backgroundColor: colors.card },
   title: { fontSize: 22, fontWeight: '800', color: colors.text },
   subtitle: { fontSize: 14, color: colors.textSecondary, marginTop: 2 },
-  signOutText: { color: colors.error, fontSize: 14, fontWeight: '600', marginTop: 4 },
+  headerActions: { alignItems: 'flex-end', gap: 10 },
+  addMenuBtn: { backgroundColor: colors.primary, borderRadius: 8, paddingHorizontal: 12, paddingVertical: 7 },
+  addMenuBtnText: { color: '#fff', fontSize: 13, fontWeight: '700' },
+  signOutText: { color: colors.error, fontSize: 14, fontWeight: '600' },
   tabBar: { flexDirection: 'row', backgroundColor: colors.card, borderBottomWidth: 1, borderBottomColor: colors.border },
   tab: { flex: 1, paddingVertical: 14, alignItems: 'center' },
   tabActive: { borderBottomWidth: 2, borderBottomColor: colors.primary },

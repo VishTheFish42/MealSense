@@ -1,6 +1,11 @@
+from dotenv import load_dotenv
+load_dotenv()  # reads mealsense-api/.env (gitignored) — must run before any
+                # module reads os.environ, e.g. services/menu_ingestion/
+                # llm_enrichment.py's ANTHROPIC_API_KEY lookup
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import recommendations, menu
+from routers import recommendations, menu, admin_menu
 
 app = FastAPI(title="MealSense API", version="1.0.0")
 
@@ -13,6 +18,7 @@ app.add_middleware(
 
 app.include_router(recommendations.router)
 app.include_router(menu.router)
+app.include_router(admin_menu.router)
 
 
 @app.get("/health")

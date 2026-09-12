@@ -24,7 +24,8 @@ Every requirement below is tagged against what's actually in the repo, not the s
 
 ## 2. Recommendation Engine
 
-- ✅ Hard filters: allergen exclusion, dietary identity matching, meal-period availability — `mealsense-api/services/recommendation_engine.py::_passes_hard_filters`
+- ✅ Hard filters: allergen exclusion, dietary identity matching, meal-period bucket, **and real clock-time availability window** — `mealsense-api/services/recommendation_engine.py::_passes_hard_filters`
+- ✅ **Fixed (2026-09-11, tasks.md 3.5):** real `available_from`/`available_until` time-window filtering, previously only conceptual (README §7.3). An item is now excluded from recommendations if the current time falls outside its window, defaulting to standard per-meal-period hours when a source doesn't specify one.
 - ✅ Five-signal weighted scoring (macro/calorie, protein, fiber, sugar/sodium, variety) — `_score_item`
 - ✅ Condition-based weight reweighting (diabetes, hypertension, high cholesterol, IBS) — `_weights_for_profile`
 - ✅ Mifflin-St Jeor calorie targeting with activity multiplier + meal apportionment — `_calorie_target`
@@ -35,12 +36,15 @@ Every requirement below is tagged against what's actually in the repo, not the s
 
 ## 3. Menu Data
 
-- 🟡 **Static only.** `mealsense-api/data/sample_menu.py` is a hardcoded 20-item Python list. Both `/menu` and `/recommendation` read from it directly.
-- ❌ Vendor API integration (Nutrislice/Cbord, README §7.2 priority #1) — not started
+- ✅ **Firestore-backed, with a static fallback** (2026-09-08) — `mealsense-api/services/menu_store.py`, layout `menus/{servedOn}/items/{itemId}`. `/menu` and `/recommendation` now read via `menu_store.get_menu_for_date`, falling back to the static 20-item `sample_menu.py` list only when nothing has been uploaded for the requested date (or when Firestore isn't configured in the current environment at all). This is the first time `mealsense-api` has talked to Firestore — access goes through `google.cloud.firestore.Client` directly rather than `firebase_admin.firestore.client()`, since the latter's credential loading fails against the emulator with no real GCP environment configured.
+- ✅ **Admin upload endpoint** (2026-09-08) — `POST /admin/menu/upload` (`routers/admin_menu.py`), accepts either CSV or the messy-ad-hoc-JSON shape, runs it through the matching `menu_ingestion` adapter, and persists accepted items. Requires a verified Firebase ID token belonging to a `kitchen`-role account (`services/auth.py`); no separate `admin` role exists yet, so this is intentionally scoped to reuse `kitchen` for now.
+- ✅ **Vendor integration — Santa Clara University** (tasks.md 3.4, done 2026-09-11) — `mealsense-api/services/vendor_ingestion/`, live-verified against `scudining.cafebonappetit.com` (Bon Appétit, not Nutrislice/Cbord as originally guessed). Their documented JSON API now requires vendor credentials we don't have; instead scrapes each café's public page's embedded `Bamco.dayparts`/`Bamco.menu_items` data — real, structured, but not a contract Bon Appétit committed to. Config-driven per campus (`campus_config.py`) so a second Bon Appétit school is one new entry, not new code. Allergen icons are trusted positive-only — zero icons means unknown and routes to the new admin review queue (`services/menu_review_queue.py`), never silently treated as safe. Triggered via `POST /admin/menu/sync-vendor`, manually (no nightly job — no scheduler infra exists yet, Phase 7).
 - ❌ Admin CSV/JSON upload (README §7.2 priority #2) — not started
-- ❌ Manual entry by dining staff (README §7.2 priority #3) — not started
+- ✅ **Manual entry by dining staff** (README §7.2 priority #3) — `mealsense-app/src/screens/kitchen/AddMenuItemScreen.tsx` (tasks.md 3.3, done 2026-09-11), reachable from `KitchenDashboardScreen.tsx`. A full form for every `MenuItem` field, submitting through the existing `POST /admin/menu/upload` endpoint (3.2) rather than a new route. Surfaced and fixed a real gap in `messy_json_adapter.py`: `available_from`/`available_until` were hardcoded to `None` regardless of the source record, and `ingredients`/`description` were never extracted at all.
 - ❌ Any persistence layer for menu data — Firestore isn't used for menu at all; nothing survives a backend restart or varies by day/campus
-- ❌ **Generic ingestion/normalization adapter** (design-spec.md §7.0, tasks.md 3.1a) — the "one integration any college plugs into regardless of feed shape" claim has no code behind it yet; there is one hardcoded Python list, not an adapter layer
+- ✅ **Generic ingestion/normalization adapter** (design-spec.md §7.0, tasks.md 3.1a) — `mealsense-api/services/menu_ingestion/`, a CSV adapter and a messy-ad-hoc-JSON adapter both normalize into one canonical schema, verified to produce identical stable IDs for the same logical dish regardless of which adapter processed it. Enforces missing-allergen-data rejection at the ingestion boundary, not just as a documented intent. 97/97 tests, 99% coverage. **Not yet wired to anything** — no FastAPI route or Firestore write calls these adapters; `/menu` and `/recommendation` still read the static sample list exclusively.
+- ✅ **Incomplete data handling** (design-spec.md §7.0a, tasks.md 3.6, done 2026-09-11) — `mealsense-api/services/menu_ingestion/llm_enrichment.py`, Claude-backed (`claude-opus-5`, structured JSON output), wired into the vendor-sync path (`bon_appetit.py`) only — CSV/messy-JSON manual uploads still reject on missing data, unchanged. Missing nutrition fields are estimated and flagged per-field (`estimated_fields`); missing allergen data with ingredient text present is only accepted at ≥90% extraction confidence, and even then still lands in the review queue for a human to double-check — an LLM clearing the safety bar is never treated as equivalent to a vendor's own structured data. Price is deliberately excluded from LLM estimation (money-safety, not recommendation-quality). 19 new tests, all using an injectable fake client — no live API calls in the test suite.
+- ✅ **Fixed (2026-09-08, tasks.md 3.7):** the engine's own hard filter (`recommendation_engine.py::_passes_hard_filters`) previously defaulted a missing `allergens` key to fail-*open* (treated as zero allergens), the opposite of the ingestion layer's fail-closed rule. Harmless in practice only because the current menu source is always complete, but a real defense-in-depth gap. Now fails closed independently of the ingestion layer, rejecting a missing allergens field unconditionally before ever comparing against the student's own allergy list.
 
 ## 4. Ordering (Cart → Checkout → Status)
 
@@ -49,6 +53,7 @@ Every requirement below is tagged against what's actually in the repo, not the s
 - ✅ Placeholder payment UI, clearly labeled "Demo — no charge," no real processing — matches README §4 non-goal
 - ✅ Real-time order status via Firestore `onSnapshot` — `OrderStatusScreen.tsx`
 - ✅ Timer-based status progression (30s placed→preparing, 90s preparing→ready) — `constants/orderTimers.ts`. Intentionally a demo mechanism per README §9.8; not read as a shortcoming, but the timer fires from the **client**, so it silently stops if the student closes the app before it elapses — no server-side or kitchen-triggered fallback.
+- ✅ **Fixed (2026-09-11, tasks.md 3.6a):** `price` is now a required field at ingestion, validated and parsed the same way as the seven nutrition fields (`schema.py::build_menu_item` — missing or unparseable `price` is rejected, not defaulted to `null`). `csv_adapter.py` reads a `price` column (added to the documented column spec, design-spec.md §7.2) and `messy_json_adapter.py` accepts `price`/`Price`/`cost`/`Cost` key aliases, parsed through the same currency-symbol-tolerant `_parse_numeric` used for calorie/macro values (`"$9.50"` → `9.50`). This closes both the immediate crash (`HomeScreen.tsx`'s unguarded `item.price.toFixed(2)`, already patched 2026-09-10) and the quieter one: `CartScreen.tsx`/`CheckoutScreen.tsx`/`OrderStatusScreen.tsx` can no longer silently order a priceless item as free, since no item without a valid price can pass ingestion at all. 6 new tests added to `test_menu_ingestion.py` and `test_admin_menu.py` fixtures updated; 123/123 passing, 98% coverage maintained.
 - ✅ **Live-verified end to end (2026-09-07):** registration → onboarding → recommendation (scoring, allergen exclusion, and reasoning text all cross-checked directly against `recommendation_engine.py`) → cart → checkout → all three real-time order-status transitions → order history, all confirmed on a physical device against the deployed `mealsense-cb5ab` project, not just inferred from reading the code.
 - ✅ Order history list — `OrderHistoryScreen.tsx`
 
@@ -61,7 +66,7 @@ Every requirement below is tagged against what's actually in the repo, not the s
 
 ## 6. Admin Dashboard (Dining Staff — README §9.5)
 
-- ❌ **Entirely unbuilt.** No screen, no route, no navigator branch exists for menu upload/sync, marking items sold out, or the aggregate anonymized-data view. This is a distinct, fully-missing feature from the Kitchen Dashboard (§5 above), which only handles order fulfillment.
+- 🟡 **Menu entry exists (via the Kitchen Dashboard, tasks.md 3.3); the rest is unbuilt.** `AddMenuItemScreen.tsx` covers menu upload/sync (one item at a time, manually — no CSV file picker in-app yet, only the API endpoint). No screen or route exists yet for marking items sold out in real time, or the aggregate anonymized-data view (most-recommended items, common dietary constraints). No separate admin role or navigator branch either — this reuses the kitchen role and kitchen navigation stack, per 3.2's scope decision, not a distinct Admin Dashboard as README §9.5 originally envisioned. Full scope remains tasks.md Phase 4.
 
 ## 7. Auth
 
@@ -78,7 +83,8 @@ Every requirement below is tagged against what's actually in the repo, not the s
 
 ## 9. Testing
 
-- ✅ **Backend recommendation engine and API routes** — `mealsense-api/tests/` (`conftest.py`, `test_recommendation_engine.py`, `test_routes.py`), 47/47 passing, `services/recommendation_engine.py` at 100% line coverage. Covers the allergen-safety hard filter (case-insensitivity, multi-allergy, zero-false-negative), dietary-identity AND logic, condition-based weight reweighting, Mifflin-St Jeor targeting, and the `/menu` and `/recommendation` routes. See `tasks.md` Phase 2.
+- ✅ **Backend recommendation engine and API routes** — `mealsense-api/tests/` (`conftest.py`, `test_recommendation_engine.py`, `test_routes.py`), 47/47 passing, `services/recommendation_engine.py` at 100% line coverage. Covers the allergen-safety hard filter (case-insensitivity, multi-allergy, zero-false-negative, and fail-closed on missing allergen data), dietary-identity AND logic, condition-based weight reweighting, Mifflin-St Jeor targeting, and the `/menu` and `/recommendation` routes. See `tasks.md` Phase 2.
+- ✅ **Menu ingestion, persistence, and upload** — `test_menu_ingestion.py` (97 tests, adapter-agnostic), `test_menu_store.py` and `test_admin_menu.py` (against a real local Firestore emulator, not mocked), `test_auth.py` (the upload endpoint's role-gating logic). 116/116 tests passing overall, 98% coverage across `services/` and `routers/`; the Firestore/Firestore-dependent tests skip cleanly with a clear reason if the emulator isn't running, rather than the rest of the suite requiring it.
 - ❌ **Frontend has no test setup** — no equivalent coverage exists for `mealsense-app/src` beyond the already-passing `firestore.rules.test.js` (§8).
 
 ## 10. Deployment & Infrastructure
@@ -103,12 +109,13 @@ All nine metrics in the table (profile completion rate, recommendation relevance
 | Onboarding/Profile | 🟡 mostly done, missing deletion |
 | Recommendation engine (rule-based) | ✅ done |
 | Recommendation engine (ML/bandit) | ❌ design only |
-| Menu data pipeline | ❌ hardcoded sample only |
-| Generic ingestion/normalization adapter | ❌ not started (design-spec.md §7.0) |
+| Menu data pipeline | ✅ Firestore-backed with sample-menu fallback; adapters + admin upload endpoint + live SCU vendor sync all wired |
+| Generic ingestion/normalization adapter | ✅ done, tested, and now wired into a live endpoint (design-spec.md §7.0) |
+| LLM-assisted incomplete-data handling | ✅ done (design-spec.md §7.0a) — Claude-backed nutrition estimation + confidence-gated allergen extraction, vendor-sync path only |
 | Ordering flow | ✅ done (demo payment, as intended) |
 | Kitchen dashboard | ✅ done |
 | Multi-location kitchen isolation | ❌ not started (design-spec.md §2.3) |
-| Admin dashboard | ❌ not started |
+| Admin dashboard | 🟡 manual menu entry only (via Kitchen Dashboard); sold-out toggle + analytics still not started |
 | Auth | 🟡 email/password only, no SSO |
 | Security rules | ✅ written, tested, and deployed to production |
 | Testing | 🟡 recommendation engine + API routes covered (100% on the engine); frontend uncovered |

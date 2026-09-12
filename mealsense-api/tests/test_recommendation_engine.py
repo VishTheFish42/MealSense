@@ -1,11 +1,15 @@
 import itertools
+from datetime import time
 
 import pytest
 
 from services.recommendation_engine import (
     ACTIVITY_MULTIPLIERS,
+    DEFAULT_MEAL_WINDOWS,
     MEAL_FRACTIONS,
     _calorie_target,
+    _is_available_at,
+    _parse_time_str,
     _passes_hard_filters,
     _score_item,
     _weights_for_profile,
@@ -13,6 +17,10 @@ from services.recommendation_engine import (
 )
 
 ALL_CONDITIONS = ["diabetes", "hypertension", "high_cholesterol", "ibs"]
+
+# A fixed clock time inside the default lunch window (11:00-15:00), used to
+# keep recommend() calls deterministic regardless of when tests actually run.
+NOON = time(12, 0)
 
 
 # ── 2.2.1-2.2.3: Allergen hard filter ──────────────────────────────────────
@@ -34,6 +42,25 @@ def test_allergen_filter_multiple_allergies_all_enforced(make_profile, make_item
     assert _passes_hard_filters(make_item(allergens=["dairy"]), profile, "lunch") is False
     assert _passes_hard_filters(make_item(allergens=["shellfish"]), profile, "lunch") is False
     assert _passes_hard_filters(make_item(allergens=["gluten"]), profile, "lunch") is True
+
+
+def test_allergen_filter_fails_closed_on_missing_allergen_data(make_profile, make_item):
+    """A missing `allergens` key (not an explicit empty list) means the source
+    never told us — the item must be excluded even for a profile with zero
+    allergies, mirroring the ingestion layer's fail-closed rule (design-spec.md
+    §7.0a). The engine must not rely solely on ingestion having caught this."""
+    profile = make_profile(allergies=[])
+    item = make_item()
+    del item["allergens"]
+    assert _passes_hard_filters(item, profile, "lunch") is False
+
+
+def test_allergen_filter_accepts_explicit_empty_allergen_list(make_profile, make_item):
+    """An explicit empty list means verified-safe and must still pass —
+    distinct from the missing-key case above."""
+    profile = make_profile(allergies=[])
+    item = make_item(allergens=[])
+    assert _passes_hard_filters(item, profile, "lunch") is True
 
 
 # ── 2.2.4-2.2.5: Dietary identity filter ───────────────────────────────────
@@ -68,12 +95,74 @@ def test_meal_period_filter(make_profile, make_item):
     assert _passes_hard_filters(all_day_item, profile, "breakfast") is True
 
 
+# ── 3.5: Real time-window availability (design-spec.md §7.0, README §7.3) ──
+
+def test_availability_ignored_when_now_not_provided(make_profile, make_item):
+    """now=None (the default in direct _passes_hard_filters calls) means the
+    caller hasn't opted into clock-time filtering — items with an explicit
+    window that would currently exclude them still pass, preserving every
+    pre-existing test in this file that doesn't care about time of day."""
+    profile = make_profile()
+    item = make_item(available_from="11:00", available_until="15:00")
+    assert _passes_hard_filters(item, profile, "lunch", now=None) is True
+
+
+def test_availability_window_excludes_item_outside_explicit_range(make_profile, make_item):
+    profile = make_profile()
+    item = make_item(meal_period="lunch", available_from="11:00", available_until="15:00")
+    assert _passes_hard_filters(item, profile, "lunch", now=time(10, 59)) is False
+    assert _passes_hard_filters(item, profile, "lunch", now=time(15, 1)) is False
+
+
+def test_availability_window_includes_item_inside_explicit_range():
+    item = {"available_from": "11:00", "available_until": "15:00", "meal_period": "lunch"}
+    assert _is_available_at(item, time(11, 0)) is True
+    assert _is_available_at(item, time(14, 59)) is True
+    assert _is_available_at(item, time(15, 0)) is True
+
+
+def test_availability_window_defaults_to_meal_period_hours_when_missing(make_profile, make_item):
+    """README §7.3: no explicit window means the item defaults to its
+    meal_period's standard hours (DEFAULT_MEAL_WINDOWS), not 'always available'."""
+    profile = make_profile()
+    item = make_item(meal_period="lunch")
+    assert "available_from" not in item
+    assert _passes_hard_filters(item, profile, "lunch", now=time(12, 0)) is True
+    assert _passes_hard_filters(item, profile, "lunch", now=time(6, 0)) is False
+
+
+def test_availability_window_all_day_item_has_no_default_restriction():
+    item = {"meal_period": "all_day"}
+    assert _is_available_at(item, time(3, 0)) is True
+
+
+def test_availability_window_unparseable_explicit_value_does_not_block():
+    item = {"available_from": "not-a-time", "available_until": "15:00", "meal_period": "lunch"}
+    assert _is_available_at(item, time(12, 0)) is True
+
+
+def test_parse_time_str_accepts_hh_mm_and_rejects_garbage():
+    assert _parse_time_str("11:00") == time(11, 0)
+    assert _parse_time_str("07:05") == time(7, 5)
+    assert _parse_time_str(None) is None
+    assert _parse_time_str("") is None
+    assert _parse_time_str("garbage") is None
+
+
+def test_recommend_excludes_item_outside_its_availability_window(minimal_profile, make_item):
+    item = make_item(id="afternoon_only", meal_period="lunch",
+                      available_from="11:00", available_until="15:00")
+    result = recommend([item], minimal_profile, "lunch", [], now=time(20, 0))
+    assert result["recommendation"] is None
+    assert result["reason"] == "no_safe_items"
+
+
 # ── 2.2.7: No-safe-items fallback ──────────────────────────────────────────
 
 def test_no_safe_items_fallback(make_profile, make_item):
     profile = make_profile(allergies=["nuts"])
     menu = [make_item(id="x", allergens=["nuts"])]
-    result = recommend(menu, profile, "lunch", [])
+    result = recommend(menu, profile, "lunch", [], now=NOON)
     assert result["recommendation"] is None
     assert result["reason"] == "no_safe_items"
     assert result["alternatives"] == []
@@ -269,7 +358,7 @@ def test_top_recommendation_is_highest_scoring(minimal_profile, make_item):
         make_item(id="high", protein_g=45.0),
         make_item(id="mid", protein_g=20.0),
     ]
-    result = recommend(items, minimal_profile, "lunch", [])
+    result = recommend(items, minimal_profile, "lunch", [], now=NOON)
     assert result["recommendation"]["menuItem"]["id"] == "high"
 
     scores = [result["recommendation"]["score"]] + [a["score"] for a in result["alternatives"]]
@@ -280,7 +369,7 @@ def test_top_recommendation_is_highest_scoring(minimal_profile, make_item):
 
 def test_alternatives_capped_at_three_and_sorted(minimal_profile, make_item):
     items = [make_item(id=f"item{i}", protein_g=float(i)) for i in range(10)]
-    result = recommend(items, minimal_profile, "lunch", [])
+    result = recommend(items, minimal_profile, "lunch", [], now=NOON)
 
     assert len(result["alternatives"]) == 3
     scores = [a["score"] for a in result["alternatives"]]
@@ -295,7 +384,7 @@ def test_reasoning_signals_capped_at_four(make_profile, make_item):
     # low_sugar, low_sodium, and low_fat (via the high_cholesterol condition).
     item = make_item(protein_g=40.0, fiber_g=10.0, sugar_g=2.0, sodium_mg=200.0, fat_g=5.0)
 
-    result = recommend([item], profile, "lunch", [])
+    result = recommend([item], profile, "lunch", [], now=NOON)
     signals = result["recommendation"]["reasoning"]["signals"]
 
     assert len(signals) <= 4

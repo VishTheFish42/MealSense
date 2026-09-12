@@ -195,7 +195,9 @@ function RecommendationCard({
       )}
 
       <View style={styles.cardFooter}>
-        <Text style={styles.priceText}>${item.price.toFixed(2)}</Text>
+        <Text style={styles.priceText}>
+          {item.price != null ? `$${item.price.toFixed(2)}` : 'Price unavailable'}
+        </Text>
         <TouchableOpacity style={styles.orderBtn} onPress={() => onOrder(result)}>
           <Text style={styles.orderBtnText}>Order This</Text>
         </TouchableOpacity>

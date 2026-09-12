@@ -109,3 +109,8 @@ export type ProfileStackParamList = {
   ProfileMain: undefined;
   EditProfile: undefined;
 };
+
+export type KitchenStackParamList = {
+  Dashboard: undefined;
+  AddMenuItem: undefined;
+};
