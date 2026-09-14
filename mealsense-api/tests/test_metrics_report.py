@@ -90,9 +90,9 @@ def test_feedback_metrics_counts_correctly():
     db = get_firestore_client()
 
     student = _uid()
-    rec_up = write_recommendation(student, "item-1", 90.0, "lunch")
-    rec_down = write_recommendation(student, "item-2", 60.0, "lunch")
-    write_recommendation(student, "item-3", 50.0, "lunch")  # no feedback
+    rec_up = write_recommendation(student, "item-1", "Item 1", 90.0, "lunch")
+    rec_down = write_recommendation(student, "item-2", "Item 2", 60.0, "lunch")
+    write_recommendation(student, "item-3", "Item 3", 50.0, "lunch")  # no feedback
     set_feedback(rec_up, "thumbs_up")
     set_feedback(rec_down, "thumbs_down")
 
@@ -129,8 +129,8 @@ def test_order_conversion_rate_counts_orders_with_matching_recommendation_id():
     db = get_firestore_client()
 
     student = _uid()
-    rec_id = write_recommendation(student, "item-1", 90.0, "lunch")
-    write_recommendation(student, "item-2", 80.0, "lunch")  # never ordered
+    rec_id = write_recommendation(student, "item-1", "Item 1", 90.0, "lunch")
+    write_recommendation(student, "item-2", "Item 2", 80.0, "lunch")  # never ordered
 
     db.collection("orders").add({
         "studentId": student, "items": [], "totalPrice": 9.0,
@@ -158,7 +158,7 @@ def test_main_prints_a_report_without_crashing(capsys):
 
     student = _uid()
     db.collection("users").document(student).set({"onboardingComplete": True})
-    rec_id = write_recommendation(student, "item-1", 90.0, "lunch")
+    rec_id = write_recommendation(student, "item-1", "Item 1", 90.0, "lunch")
     set_feedback(rec_id, "thumbs_up")
     db.collection("analytics_events").add({
         "type": "recommendation_fetch", "studentId": student, "durationMs": 1500,

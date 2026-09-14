@@ -104,6 +104,9 @@ export default function KitchenDashboardScreen({ navigation }: Props) {
             <TouchableOpacity style={styles.addMenuBtn} onPress={() => navigation.navigate('TodaysMenu')}>
               <Text style={styles.addMenuBtnText}>Today's Menu</Text>
             </TouchableOpacity>
+            <TouchableOpacity style={styles.addMenuBtn} onPress={() => navigation.navigate('AdminAnalytics')}>
+              <Text style={styles.addMenuBtnText}>Analytics</Text>
+            </TouchableOpacity>
           </View>
           <TouchableOpacity
             onPress={() => Alert.alert('Sign Out', 'Sign out of kitchen view?', [

@@ -57,7 +57,7 @@ def test_write_then_read_round_trips_a_recommendation():
     from services.recommendation_history import get_recommendation, write_recommendation
 
     student_id = _unique_student_id()
-    rec_id = write_recommendation(student_id, "item-1", 87.4, "lunch")
+    rec_id = write_recommendation(student_id, "item-1", "Item 1", 87.4, "lunch")
 
     record = get_recommendation(rec_id)
     assert record["studentId"] == student_id
@@ -75,7 +75,7 @@ def test_get_recommendation_returns_none_for_unknown_id():
 def test_set_feedback_updates_the_record():
     from services.recommendation_history import get_recommendation, set_feedback, write_recommendation
 
-    rec_id = write_recommendation(_unique_student_id(), "item-1", 87.4, "lunch")
+    rec_id = write_recommendation(_unique_student_id(), "item-1", "Item 1", 87.4, "lunch")
     set_feedback(rec_id, "thumbs_up")
 
     assert get_recommendation(rec_id)["feedback"] == "thumbs_up"
@@ -84,7 +84,7 @@ def test_set_feedback_updates_the_record():
 def test_set_feedback_is_changeable_not_one_shot():
     from services.recommendation_history import get_recommendation, set_feedback, write_recommendation
 
-    rec_id = write_recommendation(_unique_student_id(), "item-1", 87.4, "lunch")
+    rec_id = write_recommendation(_unique_student_id(), "item-1", "Item 1", 87.4, "lunch")
     set_feedback(rec_id, "thumbs_up")
     set_feedback(rec_id, "thumbs_down")
 
@@ -94,7 +94,7 @@ def test_set_feedback_is_changeable_not_one_shot():
 def test_set_feedback_rejects_invalid_value():
     from services.recommendation_history import set_feedback, write_recommendation
 
-    rec_id = write_recommendation(_unique_student_id(), "item-1", 87.4, "lunch")
+    rec_id = write_recommendation(_unique_student_id(), "item-1", "Item 1", 87.4, "lunch")
     with pytest.raises(ValueError):
         set_feedback(rec_id, "love_it")
 
@@ -192,7 +192,7 @@ def test_feedback_route_updates_the_record():
     from services.recommendation_history import get_recommendation, write_recommendation
 
     client = TestClient(app)
-    rec_id = write_recommendation(_unique_student_id(), "item-1", 87.4, "lunch")
+    rec_id = write_recommendation(_unique_student_id(), "item-1", "Item 1", 87.4, "lunch")
 
     resp = client.post(f"/recommendation/{rec_id}/feedback", json={"feedback": "thumbs_up"})
 
@@ -206,7 +206,7 @@ def test_feedback_route_rejects_invalid_value():
     from services.recommendation_history import write_recommendation
 
     client = TestClient(app)
-    rec_id = write_recommendation(_unique_student_id(), "item-1", 87.4, "lunch")
+    rec_id = write_recommendation(_unique_student_id(), "item-1", "Item 1", 87.4, "lunch")
 
     resp = client.post(f"/recommendation/{rec_id}/feedback", json={"feedback": "love_it"})
     assert resp.status_code == 422

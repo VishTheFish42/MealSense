@@ -21,15 +21,26 @@ _COLLECTION = "recommendation_history"
 VALID_FEEDBACK = {"thumbs_up", "thumbs_down"}
 
 
-def write_recommendation(student_id: str, menu_item_id: str, score: float, meal_period: str) -> str:
+def write_recommendation(
+    student_id: str, menu_item_id: str, menu_item_name: str, score: float, meal_period: str
+) -> str:
     """Writes one history record for a served top recommendation. Returns
     the new document's id — the client references this id when later
-    submitting feedback via set_feedback."""
+    submitting feedback via set_feedback.
+
+    menu_item_name is denormalized (stored here, not just looked up via
+    menu_item_id) for tasks.md 4.4's aggregate reporting: recommendation
+    history spans many days, each with its own menus/{date}/items
+    subcollection, so there's no single "today's menu" to resolve a
+    historical id against. Storing the name at write time is the simplest
+    correct fix — the alternative (join against every day's menu at
+    report time) is real complexity this reporting feature doesn't need."""
     db = get_firestore_client()
     doc_ref = db.collection(_COLLECTION).document()
     doc_ref.set({
         "studentId": student_id,
         "menuItemId": menu_item_id,
+        "menuItemName": menu_item_name,
         "score": score,
         "mealPeriod": meal_period,
         "recommendedAt": datetime.now(timezone.utc).isoformat(),

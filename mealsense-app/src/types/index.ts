@@ -143,4 +143,5 @@ export type KitchenStackParamList = {
   Dashboard: undefined;
   AddMenuItem: undefined;
   TodaysMenu: undefined;
+  AdminAnalytics: undefined;
 };

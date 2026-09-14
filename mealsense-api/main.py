@@ -5,7 +5,7 @@ load_dotenv()  # reads mealsense-api/.env (gitignored) — must run before any
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import recommendations, menu, admin_menu
+from routers import recommendations, menu, admin_menu, admin_analytics
 
 app = FastAPI(title="MealSense API", version="1.0.0")
 
@@ -19,6 +19,7 @@ app.add_middleware(
 app.include_router(recommendations.router)
 app.include_router(menu.router)
 app.include_router(admin_menu.router)
+app.include_router(admin_analytics.router)
 
 
 @app.get("/health")

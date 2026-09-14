@@ -34,6 +34,7 @@ def get_recommendation(req: RecommendationRequest):
                 result["recommendation_id"] = write_recommendation(
                     student_id=student_id,
                     menu_item_id=result["recommendation"]["menuItem"]["id"],
+                    menu_item_name=result["recommendation"]["menuItem"]["name"],
                     score=result["recommendation"]["score"],
                     meal_period=req.meal_period,
                 )

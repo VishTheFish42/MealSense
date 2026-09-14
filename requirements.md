@@ -69,7 +69,7 @@ Every requirement below is tagged against what's actually in the repo, not the s
 
 ## 6. Admin Dashboard (Dining Staff — README §9.5)
 
-- 🟡 **Menu entry and sold-out toggling exist (via the Kitchen Dashboard, tasks.md 3.3 + 4.3); the aggregate analytics view is still unbuilt.** `AddMenuItemScreen.tsx` covers menu upload/sync (one item at a time, manually — no CSV file picker in-app yet, only the API endpoint). `TodaysMenuScreen.tsx` (tasks.md 4.3, done 2026-09-13) lists today's menu with a per-item sold-out `Switch`, backed by `PATCH /admin/menu/{item_id}/availability` — the recommendation engine's hard filter now excludes sold-out items independently of the time-window check from 3.5. No screen exists yet for the aggregate anonymized-data view (most-recommended items, common dietary constraints). No separate admin role or navigator branch either — this reuses the kitchen role and kitchen navigation stack, per 3.2's scope decision, not a distinct Admin Dashboard as README §9.5 originally envisioned. Remaining scope: tasks.md 4.4 (analytics) and 4.5 (location isolation).
+- ✅ **Menu entry, sold-out toggling, and aggregate analytics all now exist (via the Kitchen Dashboard, tasks.md 3.3 + 4.3 + 4.4).** `AddMenuItemScreen.tsx` covers menu upload/sync (one item at a time, manually — no CSV file picker in-app yet, only the API endpoint). `TodaysMenuScreen.tsx` lists today's menu with a per-item sold-out `Switch`. `AdminAnalyticsScreen.tsx` (tasks.md 4.4, done 2026-09-14) shows most-recommended items and campus-wide dietary constraint frequencies, fully anonymized, backed by `GET /admin/analytics`. No separate admin role or navigator branch — this reuses the kitchen role and kitchen navigation stack, per 3.2's scope decision, not a distinct Admin Dashboard as README §9.5 originally envisioned; functionally, everything README §9.5 asked for now exists somewhere in the Kitchen Dashboard.
 
 ## 7. Auth
 
@@ -119,7 +119,7 @@ Every requirement below is tagged against what's actually in the repo, not the s
 | Ordering flow | ✅ done (demo payment, as intended) |
 | Kitchen dashboard | ✅ done |
 | Multi-location kitchen isolation | ✅ done — rules enforced, only a single placeholder location actually exists so far |
-| Admin dashboard | 🟡 manual menu entry + sold-out toggle (via Kitchen Dashboard); aggregate analytics still not started |
+| Admin dashboard | ✅ menu entry + sold-out toggle + aggregate analytics, all via Kitchen Dashboard (reused role, not a separate Admin surface) |
 | Auth | 🟡 email/password only, no SSO |
 | Security rules | ✅ written, tested, and deployed to production |
 | Testing | 🟡 recommendation engine + API routes covered (100% on the engine); frontend uncovered |
