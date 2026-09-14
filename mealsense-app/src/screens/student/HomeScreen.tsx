@@ -8,6 +8,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { colors } from '../../constants/colors';
 import { API_BASE_URL } from '../../config/api';
 import { FeedbackValue, HomeStackParamList, MealPeriod, RecommendationResponse, RecommendationResult } from '../../types';
+import { logRecommendationFetchTiming } from '../../utils/analytics';
 
 type Props = { navigation: NativeStackNavigationProp<HomeStackParamList, 'Home'> };
 
@@ -59,6 +60,7 @@ export default function HomeScreen({ navigation }: Props) {
 
   const fetchRecommendation = useCallback(async () => {
     if (!profile) return;
+    const startedAt = Date.now();
     try {
       const resp = await fetch(`${API_BASE_URL}/recommendation`, {
         method: 'POST',
@@ -67,6 +69,7 @@ export default function HomeScreen({ navigation }: Props) {
       });
       if (!resp.ok) throw new Error('API error');
       setData(await resp.json());
+      logRecommendationFetchTiming(profile.uid, Date.now() - startedAt);
     } catch {
       Alert.alert('Could not load recommendation', 'Make sure the MealSense API server is running on your Mac.');
     } finally {
@@ -82,8 +85,8 @@ export default function HomeScreen({ navigation }: Props) {
     fetchRecommendation();
   };
 
-  const handleOrder = (result: RecommendationResult) => {
-    navigation.navigate('Cart', { item: result.menuItem });
+  const handleOrder = (result: RecommendationResult, recommendationId?: string) => {
+    navigation.navigate('Cart', { item: result.menuItem, recommendationId });
   };
 
   return (
@@ -126,7 +129,7 @@ export default function HomeScreen({ navigation }: Props) {
             <Text style={styles.sectionLabel}>TODAY'S TOP PICK</Text>
             <RecommendationCard
               result={data.recommendation}
-              onOrder={handleOrder}
+              onOrder={(r) => handleOrder(r, data.recommendation_id)}
               recommendationId={data.recommendation_id}
             />
 

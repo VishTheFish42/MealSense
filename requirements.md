@@ -58,6 +58,7 @@ Every requirement below is tagged against what's actually in the repo, not the s
 - ✅ **Fixed (2026-09-11, tasks.md 3.6a):** `price` is now a required field at ingestion, validated and parsed the same way as the seven nutrition fields (`schema.py::build_menu_item` — missing or unparseable `price` is rejected, not defaulted to `null`). `csv_adapter.py` reads a `price` column (added to the documented column spec, design-spec.md §7.2) and `messy_json_adapter.py` accepts `price`/`Price`/`cost`/`Cost` key aliases, parsed through the same currency-symbol-tolerant `_parse_numeric` used for calorie/macro values (`"$9.50"` → `9.50`). This closes both the immediate crash (`HomeScreen.tsx`'s unguarded `item.price.toFixed(2)`, already patched 2026-09-10) and the quieter one: `CartScreen.tsx`/`CheckoutScreen.tsx`/`OrderStatusScreen.tsx` can no longer silently order a priceless item as free, since no item without a valid price can pass ingestion at all. 6 new tests added to `test_menu_ingestion.py` and `test_admin_menu.py` fixtures updated; 123/123 passing, 98% coverage maintained.
 - ✅ **Live-verified end to end (2026-09-07):** registration → onboarding → recommendation (scoring, allergen exclusion, and reasoning text all cross-checked directly against `recommendation_engine.py`) → cart → checkout → all three real-time order-status transitions → order history, all confirmed on a physical device against the deployed `mealsense-cb5ab` project, not just inferred from reading the code.
 - ✅ Order history list — `OrderHistoryScreen.tsx`
+- ✅ **Added (2026-09-13, tasks.md 8.2):** orders placed straight from the top recommendation card now carry a `recommendationId` field, threaded through `HomeScreen.tsx` → `CartScreen.tsx` → `CheckoutScreen.tsx`. Absent (not null) for anything else — ordering an alternative, or navigating to Cart some other way. Feeds `scripts/metrics_report.py`'s order-conversion-rate calculation; not otherwise read anywhere in the app.
 
 ## 5. Kitchen Dashboard (Staff)
 
@@ -100,7 +101,8 @@ Every requirement below is tagged against what's actually in the repo, not the s
 
 ## 11. Success Metrics (README §14)
 
-All nine metrics in the table (profile completion rate, recommendation relevance, allergen-safe rate, time-to-recommendation, WAU, ML thumbs-up vs. baseline, feedback submission rate, order conversion, order status accuracy) are **targets with no instrumentation** — no analytics/event tracking exists anywhere in the app to measure any of them.
+- ✅ **Five of nine metrics now measurable** (tasks.md Phase 8, done 2026-09-13): profile completion rate (derived from existing `onboardingComplete` data, no new instrumentation needed), recommendation relevance and feedback submission rate (from Phase 8.0's `recommendation_history`), time-to-recommendation (new `analytics_events` Firestore collection, logged client-side around the `/recommendation` fetch), and order conversion rate (`recommendationId` threaded from the top recommendation card through to the placed order). `mealsense-api/scripts/metrics_report.py` computes and prints all five against their README §14 targets — a script, not a dashboard, per tasks.md 8.3's own scope.
+- ❌ **Four metrics remain unmeasured, deliberately**: allergen-safe recommendation rate is a structural guarantee proved by `recommendation_engine.py`'s own test suite, not something live instrumentation would add anything to; weekly active users and order-status accuracy were never part of Phase 8's agreed scope (tasks.md 8.2); the ML thumbs-up-vs-baseline metric has no meaning until Phase 6 (the bandit) exists at all.
 
 ---
 
@@ -122,6 +124,6 @@ All nine metrics in the table (profile completion rate, recommendation relevance
 | Security rules | ✅ written, tested, and deployed to production |
 | Testing | 🟡 recommendation engine + API routes covered (100% on the engine); frontend uncovered |
 | Deployment | ❌ local-only |
-| Metrics instrumentation | ❌ not started |
+| Metrics instrumentation | 🟡 5 of 9 README §14 metrics measurable via `scripts/metrics_report.py`; the other 4 deliberately out of scope (see §11) |
 
 This is a working prototype of the core ordering + rule-based recommendation loop, not the platform described end-to-end in the README.

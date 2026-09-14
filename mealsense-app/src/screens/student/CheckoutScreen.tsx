@@ -9,6 +9,7 @@ import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 import { useAuth } from '../../contexts/AuthContext';
 import { colors } from '../../constants/colors';
+import { stripUndefined } from '../../utils/firestore';
 import { HomeStackParamList, Order } from '../../types';
 
 type Props = {
@@ -17,7 +18,7 @@ type Props = {
 };
 
 export default function CheckoutScreen({ navigation, route }: Props) {
-  const { items, totalPrice } = route.params;
+  const { items, totalPrice, recommendationId } = route.params;
   const { user, profile } = useAuth();
 
   // Fake payment fields (pre-filled, no real processing)
@@ -32,7 +33,7 @@ export default function CheckoutScreen({ navigation, route }: Props) {
     if (!user) return;
     setPlacing(true);
     try {
-      const orderData: Omit<Order, 'id'> = {
+      const orderData: Omit<Order, 'id'> = stripUndefined({
         studentId: user.uid,
         items,
         totalPrice,
@@ -40,7 +41,13 @@ export default function CheckoutScreen({ navigation, route }: Props) {
         placedAt: new Date().toISOString(),
         paymentStatus: 'placeholder',
         notes: notes.trim(),
-      };
+        // Absent (not null) when ordering an alternative or browsing in
+        // directly — only the top recommendation card supplies this.
+        // stripUndefined matters here: Firestore's client SDK throws on
+        // any literal `undefined` field value (the exact bug this project
+        // already hit once with onboarding's optional fields).
+        recommendationId,
+      }) as Omit<Order, 'id'>;
       const docRef = await addDoc(collection(db, 'orders'), {
         ...orderData,
         placedAt: serverTimestamp(),

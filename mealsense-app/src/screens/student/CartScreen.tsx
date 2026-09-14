@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default function CartScreen({ navigation, route }: Props) {
-  const { item } = route.params;
+  const { item, recommendationId } = route.params;
   const [quantity, setQuantity] = useState(1);
 
   const totalPrice = item.price * quantity;
@@ -22,7 +22,7 @@ export default function CartScreen({ navigation, route }: Props) {
     const orderItems: OrderItem[] = [
       { menuItemId: item.id, name: item.name, quantity, price: item.price },
     ];
-    navigation.navigate('Checkout', { items: orderItems, totalPrice });
+    navigation.navigate('Checkout', { items: orderItems, totalPrice, recommendationId });
   };
 
   return (

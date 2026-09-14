@@ -95,6 +95,10 @@ export interface Order {
   completedAt?: string;
   paymentStatus: 'placeholder';
   notes?: string;
+  // Set only when the order was placed straight from the top recommendation
+  // card (never an alternative) — README §14's "order conversion rate"
+  // metric, tasks.md 8.2. Absent, not null, when ordering anything else.
+  recommendationId?: string;
 }
 
 // Navigation param lists
@@ -109,8 +113,8 @@ export type OnboardingStackParamList = {
 
 export type HomeStackParamList = {
   Home: undefined;
-  Cart: { item: MenuItem };
-  Checkout: { items: OrderItem[]; totalPrice: number };
+  Cart: { item: MenuItem; recommendationId?: string };
+  Checkout: { items: OrderItem[]; totalPrice: number; recommendationId?: string };
   OrderStatus: { orderId: string };
 };
 

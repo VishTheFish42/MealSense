@@ -245,6 +245,55 @@ test('the order owner can delete their own order (data-deletion flow)', async ()
   await assertSucceeds(deleteDoc(doc(db, 'orders', 'order-1')));
 });
 
+// ── analytics_events/{eventId} ────────────────────────────────────────────
+
+test('a student can create their own analytics event', async () => {
+  const db = testEnv.authenticatedContext(STUDENT_A).firestore();
+  await assertSucceeds(
+    setDoc(doc(db, 'analytics_events', 'event-1'), {
+      type: 'recommendation_fetch',
+      studentId: STUDENT_A,
+      durationMs: 1200,
+    }),
+  );
+});
+
+test('a student cannot create an analytics event under someone else\'s studentId', async () => {
+  const db = testEnv.authenticatedContext(STUDENT_A).firestore();
+  await assertFails(
+    setDoc(doc(db, 'analytics_events', 'event-1'), {
+      type: 'recommendation_fetch',
+      studentId: STUDENT_B,
+      durationMs: 1200,
+    }),
+  );
+});
+
+test('a student cannot read back an analytics event, even their own', async () => {
+  await testEnv.withSecurityRulesDisabled(async (ctx) => {
+    await setDoc(doc(ctx.firestore(), 'analytics_events', 'event-1'), {
+      type: 'recommendation_fetch',
+      studentId: STUDENT_A,
+      durationMs: 1200,
+    });
+  });
+  const db = testEnv.authenticatedContext(STUDENT_A).firestore();
+  await assertFails(getDoc(doc(db, 'analytics_events', 'event-1')));
+});
+
+test('a student cannot update or delete an analytics event', async () => {
+  await testEnv.withSecurityRulesDisabled(async (ctx) => {
+    await setDoc(doc(ctx.firestore(), 'analytics_events', 'event-1'), {
+      type: 'recommendation_fetch',
+      studentId: STUDENT_A,
+      durationMs: 1200,
+    });
+  });
+  const db = testEnv.authenticatedContext(STUDENT_A).firestore();
+  await assertFails(updateDoc(doc(db, 'analytics_events', 'event-1'), { durationMs: 500 }));
+  await assertFails(deleteDoc(doc(db, 'analytics_events', 'event-1')));
+});
+
 test('an unauthenticated client cannot read or write anything', async () => {
   await seedOrder('order-1', STUDENT_A, 'placed');
   const db = testEnv.unauthenticatedContext().firestore();

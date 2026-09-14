@@ -96,6 +96,18 @@ service cloud.firestore {
       allow delete: if isSignedIn() && resource.data.studentId == request.auth.uid;
     }
 
+    // ── analytics_events/{eventId} ──────────────────────────────────────
+    // Write-only from the client (tasks.md 8.2's "time to recommendation"
+    // instrumentation) — a student can log an event for themselves, but
+    // never read, update, or delete one back. Reporting reads happen via
+    // the backend's service-account access (scripts/metrics_report.py),
+    // which bypasses these rules entirely by design, same reasoning as
+    // menus/{date}/items in tasks.md 3.1.4.
+    match /analytics_events/{eventId} {
+      allow create: if isSignedIn() && request.resource.data.studentId == request.auth.uid;
+      allow read, update, delete: if false;
+    }
+
     // Default deny for anything else (menu data, if ever moved to Firestore,
     // is intentionally not covered here yet — see tasks.md Phase 3).
     match /{document=**} {
