@@ -6,7 +6,7 @@ from typing import Any, Optional
 from services.firestore_client import FirestoreNotConfiguredError
 from services.menu_store import get_menu_for_date
 from services.recommendation_engine import recommend
-from services.recommendation_history import set_feedback, write_recommendation
+from services.recommendation_history import get_recent_recommendations, set_feedback, write_recommendation
 
 router = APIRouter()
 
@@ -46,6 +46,17 @@ def get_recommendation(req: RecommendationRequest):
                 pass
 
     return result
+
+
+@router.get("/recommendation/history")
+def get_recommendation_history(student_id: str, days: int = 7):
+    """README §9.4: "view recommendation history (last 7 days)." No auth
+    token verification here — matches the rest of this route family's
+    existing trust model (POST /recommendation already trusts a
+    client-supplied profile.uid with no server-side identity check); this
+    doesn't introduce a new gap, just reads via the same trust boundary
+    that already exists."""
+    return {"history": get_recent_recommendations(student_id, days=days)}
 
 
 class FeedbackRequest(BaseModel):

@@ -137,6 +137,7 @@ export type MainTabParamList = {
 export type ProfileStackParamList = {
   ProfileMain: undefined;
   EditProfile: undefined;
+  RecommendationHistory: undefined;
 };
 
 export type KitchenStackParamList = {

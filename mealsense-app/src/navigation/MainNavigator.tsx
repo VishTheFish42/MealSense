@@ -12,6 +12,7 @@ import OrderStatusScreen from '../screens/student/OrderStatusScreen';
 import OrderHistoryScreen from '../screens/student/OrderHistoryScreen';
 import ProfileScreen from '../screens/student/ProfileScreen';
 import EditPreferencesScreen from '../screens/student/EditPreferencesScreen';
+import RecommendationHistoryScreen from '../screens/student/RecommendationHistoryScreen';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
@@ -33,6 +34,7 @@ function ProfileStackNavigator() {
     <ProfileStack.Navigator screenOptions={{ headerShown: false }}>
       <ProfileStack.Screen name="ProfileMain" component={ProfileScreen} />
       <ProfileStack.Screen name="EditProfile" component={EditPreferencesScreen} />
+      <ProfileStack.Screen name="RecommendationHistory" component={RecommendationHistoryScreen} />
     </ProfileStack.Navigator>
   );
 }

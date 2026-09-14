@@ -157,6 +157,12 @@ export default function ProfileScreen({ navigation }: Props) {
           )}
         </View>
 
+        {/* Recommendation history */}
+        <TouchableOpacity style={styles.historyBtn} onPress={() => navigation.navigate('RecommendationHistory')}>
+          <Ionicons name="time-outline" size={18} color={colors.primary} />
+          <Text style={styles.historyBtnText}>Recommendation History</Text>
+        </TouchableOpacity>
+
         {/* Sign out */}
         <TouchableOpacity style={styles.signOutBtn} onPress={handleSignOut}>
           <Text style={styles.signOutText}>Sign Out</Text>
@@ -196,6 +202,8 @@ const styles = StyleSheet.create({
   tag: { backgroundColor: colors.primaryLight + '25', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 6 },
   tagText: { fontSize: 13, color: colors.primary, fontWeight: '600', textTransform: 'capitalize' },
   emptyNote: { fontSize: 14, color: colors.textLight, fontStyle: 'italic' },
+  historyBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: colors.card, borderWidth: 1, borderColor: colors.border, borderRadius: 14, paddingVertical: 16, marginTop: 4 },
+  historyBtnText: { color: colors.primary, fontSize: 15, fontWeight: '700' },
   signOutBtn: { backgroundColor: colors.error + '15', borderWidth: 1, borderColor: colors.error, borderRadius: 14, paddingVertical: 16, alignItems: 'center', marginTop: 8 },
   signOutText: { color: colors.error, fontSize: 16, fontWeight: '700' },
   deleteBtn: { paddingVertical: 14, alignItems: 'center', marginTop: 4 },

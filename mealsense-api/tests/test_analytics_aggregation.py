@@ -65,7 +65,7 @@ def test_most_recommended_items_counts_and_sorts_descending():
     write_recommendation(student, popular_id, "Popular Dish", 88.0, "lunch")
     write_recommendation(student, rare_id, "Rare Dish", 60.0, "lunch")
 
-    results = most_recommended_items(db, limit=50)
+    results = most_recommended_items(db, limit=100000)
     by_id = {r["menu_item_id"]: r for r in results}
 
     assert by_id[popular_id]["count"] == 3
@@ -99,7 +99,7 @@ def test_most_recommended_items_skips_records_with_no_menu_item_id():
         # no menuItemId at all — a malformed record shouldn't crash the report
     })
 
-    results = most_recommended_items(db, limit=50)  # must not raise
+    results = most_recommended_items(db, limit=100000)  # must not raise
     assert all(r["menu_item_id"] for r in results)
 
 
@@ -114,7 +114,7 @@ def test_most_recommended_items_falls_back_to_id_when_name_missing():
         # no menuItemName — simulates a record from before this field existed
     })
 
-    results = most_recommended_items(db, limit=50)
+    results = most_recommended_items(db, limit=100000)
     match = next(r for r in results if r["menu_item_id"] == item_id)
     assert match["name"] == item_id
 

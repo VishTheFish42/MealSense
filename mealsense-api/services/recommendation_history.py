@@ -13,7 +13,9 @@ item actually served; there's no clean interpretation for feedback on an
 item the scoring function didn't choose to serve.
 """
 from __future__ import annotations
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+
+from google.cloud.firestore_v1.base_query import FieldFilter
 
 from .firestore_client import get_firestore_client
 
@@ -62,12 +64,38 @@ def set_feedback(recommendation_id: str, feedback: str) -> None:
 
 
 def get_recommendation(recommendation_id: str) -> dict | None:
-    """Test/verification helper — also the read path a future
-    recommendation-history view (README §9.4, still unbuilt) would need.
-    Returns None rather than raising for an unknown id, since "does this
-    exist" is a legitimate question here, not necessarily an error."""
+    """Test/verification helper — also the read path the recommendation-
+    history view (README §9.4) uses to check a single record. Returns
+    None rather than raising for an unknown id, since "does this exist"
+    is a legitimate question here, not necessarily an error."""
     db = get_firestore_client()
     doc = db.collection(_COLLECTION).document(recommendation_id).get()
     if not doc.exists:
         return None
     return {"id": doc.id, **doc.to_dict()}
+
+
+def get_recent_recommendations(student_id: str, days: int = 7, limit: int = 50) -> list[dict]:
+    """This student's own recommendation history from the last `days`
+    days, most recent first — README §9.4's "view recommendation history
+    (last 7 days)."
+
+    A single equality filter (studentId) — the 7-day cutoff and
+    descending sort both happen in Python, not via a second Firestore
+    condition, so this needs no new composite index. String comparison
+    on recommendedAt works correctly here (not just happens to): every
+    value is written by write_recommendation via the same
+    datetime.now(timezone.utc).isoformat() format, and ISO 8601 UTC
+    timestamps sort lexicographically in chronological order. Fine at
+    this pilot's real per-student history volume — same "naive scan is
+    fine for now" stance as 4.4's aggregation queries."""
+    db = get_firestore_client()
+    cutoff_iso = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
+
+    entries = [
+        {"id": d.id, **d.to_dict()}
+        for d in db.collection(_COLLECTION).where(filter=FieldFilter("studentId", "==", student_id)).stream()
+    ]
+    recent = [e for e in entries if e.get("recommendedAt", "") >= cutoff_iso]
+    recent.sort(key=lambda e: e.get("recommendedAt", ""), reverse=True)
+    return recent[:limit]
