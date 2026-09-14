@@ -64,3 +64,58 @@ def test_post_recommendation_missing_meal_period_returns_422():
 def test_post_recommendation_missing_profile_returns_422():
     resp = client.post("/recommendation", json={"meal_period": "lunch"})
     assert resp.status_code == 422
+
+
+def test_post_recommendation_with_uid_still_succeeds_without_firestore_configured():
+    """This file deliberately runs with no Firestore emulator configured
+    (test_recommendation_history.py covers the emulator-backed history
+    write itself). A profile with a uid must still hit the
+    write_recommendation attempt and gracefully skip it on
+    FirestoreNotConfiguredError — the recommendation response itself
+    must not fail just because history/feedback isn't available here."""
+    payload = {
+        "profile": {
+            "uid": "some-student-uid",
+            "age": 21,
+            "sex": "male",
+            "weightKg": 70.0,
+            "heightCm": 175.0,
+            "activityLevel": "moderate",
+            "healthGoal": "maintain",
+            "allergies": [],
+            "dietaryIdentity": [],
+            "conditions": [],
+        },
+        "meal_period": "lunch",
+    }
+    resp = client.post("/recommendation", json=payload)
+    assert resp.status_code == 200
+    assert "recommendation_id" not in resp.json()
+
+
+def test_post_recommendation_catches_firestore_not_configured_when_writing_history(monkeypatch):
+    """Directly forces entry into the write_recommendation try/except
+    (routers/recommendations.py) regardless of what real time it is —
+    the test above can't guarantee reaching this branch on its own, since
+    whether recommend() returns a real recommendation depends on the
+    live wall clock (3.5's real availability filtering)."""
+    import routers.recommendations as recommendations_module
+
+    monkeypatch.setattr(recommendations_module, "recommend", lambda **kw: {
+        "recommendation": {
+            "menuItem": {"id": "item-1", "name": "Grilled Chicken Bowl"},
+            "score": 87.4,
+            "reasoning": {"primary": "Fits your goal.", "signals": []},
+        },
+        "alternatives": [],
+        "meal_period": "lunch",
+    })
+
+    payload = {
+        "profile": {"uid": "some-student-uid"},
+        "meal_period": "lunch",
+    }
+    resp = client.post("/recommendation", json=payload)
+
+    assert resp.status_code == 200
+    assert "recommendation_id" not in resp.json()

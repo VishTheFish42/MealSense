@@ -33,7 +33,8 @@ Every requirement below is tagged against what's actually in the repo, not the s
 - ✅ "Why this?" human-readable reasoning string — `_primary_reason`
 - ✅ No-safe-items fallback (`reason: "no_safe_items"`) instead of a bad recommendation
 - ❌ **ML-enhanced scoring (Profile-Adaptive Contextual Bandit, design-spec §14)** — fully designed (LinUCB, k=15 clustering, cold-start handling, shadow-mode/A-B rollout) but zero implementation. This is the piece the old resume bullets described as done — it is not.
-- ❌ Recommendation history view (README §9.4: "view recommendation history (last 7 days)") — not stored or displayed anywhere
+- 🟡 **Recommendation history is now stored (tasks.md 8.0, 2026-09-13), but there's still no view for it.** `services/recommendation_history.py` writes one record per served top recommendation and captures thumbs-up/down feedback against it — the storage half of README §9.4's "view recommendation history (last 7 days)." The viewing UI itself doesn't exist yet; `get_recommendation` is the read path it would use.
+- ✅ **Thumbs-up/down feedback** (README §9.2/§13, tasks.md 8.0, done 2026-09-13) — previously claimed as "already collected in v1" but wasn't; now actually built. `POST /recommendation/{id}/feedback`, buttons on `HomeScreen.tsx`'s top pick only (not alternatives — the bandit's reward signal in design-spec.md §14.2 only has a causal story for the item actually served).
 
 ## 3. Menu Data
 

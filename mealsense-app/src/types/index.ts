@@ -67,7 +67,14 @@ export interface RecommendationResponse {
   alternatives: RecommendationResult[];
   meal_period: MealPeriod;
   reason?: string;
+  // Present only when the backend could persist a history record for the
+  // top pick (Firestore configured + the profile carried a uid) — that's
+  // what thumbs-up/down feedback attaches to. Absent for alternatives;
+  // feedback is scoped to the top pick only (see tasks.md's write-up).
+  recommendation_id?: string;
 }
+
+export type FeedbackValue = 'thumbs_up' | 'thumbs_down';
 
 export interface OrderItem {
   menuItemId: string;

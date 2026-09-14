@@ -7,7 +7,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAuth } from '../../contexts/AuthContext';
 import { colors } from '../../constants/colors';
 import { API_BASE_URL } from '../../config/api';
-import { HomeStackParamList, MealPeriod, RecommendationResponse, RecommendationResult } from '../../types';
+import { FeedbackValue, HomeStackParamList, MealPeriod, RecommendationResponse, RecommendationResult } from '../../types';
 
 type Props = { navigation: NativeStackNavigationProp<HomeStackParamList, 'Home'> };
 
@@ -124,7 +124,11 @@ export default function HomeScreen({ navigation }: Props) {
         {!loading && data?.recommendation && (
           <>
             <Text style={styles.sectionLabel}>TODAY'S TOP PICK</Text>
-            <RecommendationCard result={data.recommendation} onOrder={handleOrder} />
+            <RecommendationCard
+              result={data.recommendation}
+              onOrder={handleOrder}
+              recommendationId={data.recommendation_id}
+            />
 
             {data.alternatives.length > 0 && (
               <>
@@ -147,14 +151,41 @@ export default function HomeScreen({ navigation }: Props) {
 }
 
 function RecommendationCard({
-  result, onOrder, compact = false,
+  result, onOrder, compact = false, recommendationId,
 }: {
   result: RecommendationResult;
   onOrder: (r: RecommendationResult) => void;
   compact?: boolean;
+  // Only ever set for the top pick, never for alternatives — feedback is
+  // scoped to the item actually served, since that's the only one the
+  // scoring function's reward signal (design-spec.md §14.2) has a causal
+  // story for.
+  recommendationId?: string;
 }) {
   const { menuItem: item, score, reasoning } = result;
   const [showWhy, setShowWhy] = useState(false);
+  const [feedback, setFeedback] = useState<FeedbackValue | null>(null);
+
+  // A pulled-to-refresh recommendation is a new one, even if it's the
+  // same dish — reset so the buttons don't show a stale vote.
+  useEffect(() => { setFeedback(null); }, [recommendationId]);
+
+  const submitFeedback = async (value: FeedbackValue) => {
+    if (!recommendationId) return;
+    const previous = feedback;
+    setFeedback(value);
+    try {
+      const resp = await fetch(`${API_BASE_URL}/recommendation/${recommendationId}/feedback`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ feedback: value }),
+      });
+      if (!resp.ok) throw new Error('feedback failed');
+    } catch {
+      setFeedback(previous);
+      Alert.alert('Could not save feedback', 'Please try again.');
+    }
+  };
 
   return (
     <View style={[styles.card, compact && styles.cardCompact]}>
@@ -188,6 +219,26 @@ function RecommendationCard({
                     <Text style={styles.signalText}>{s.replace(/_/g, ' ')}</Text>
                   </View>
                 ))}
+              </View>
+            </View>
+          )}
+
+          {recommendationId && (
+            <View style={styles.feedbackRow}>
+              <Text style={styles.feedbackLabel}>Good pick?</Text>
+              <View style={styles.feedbackButtons}>
+                <TouchableOpacity
+                  style={[styles.feedbackBtn, feedback === 'thumbs_up' && styles.feedbackBtnUpActive]}
+                  onPress={() => submitFeedback('thumbs_up')}
+                >
+                  <Text style={styles.feedbackBtnIcon}>👍</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.feedbackBtn, feedback === 'thumbs_down' && styles.feedbackBtnDownActive]}
+                  onPress={() => submitFeedback('thumbs_down')}
+                >
+                  <Text style={styles.feedbackBtnIcon}>👎</Text>
+                </TouchableOpacity>
               </View>
             </View>
           )}
@@ -242,6 +293,13 @@ const styles = StyleSheet.create({
   signalRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 6 },
   signalBadge: { backgroundColor: colors.primaryLight + '30', borderRadius: 6, paddingHorizontal: 8, paddingVertical: 3 },
   signalText: { fontSize: 12, color: colors.primary, fontWeight: '600' },
+  feedbackRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 4, marginBottom: 4 },
+  feedbackLabel: { fontSize: 13, color: colors.textSecondary, fontWeight: '600' },
+  feedbackButtons: { flexDirection: 'row', gap: 8 },
+  feedbackBtn: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.background, borderWidth: 1, borderColor: colors.border },
+  feedbackBtnUpActive: { backgroundColor: colors.success + '22', borderColor: colors.success },
+  feedbackBtnDownActive: { backgroundColor: colors.error + '22', borderColor: colors.error },
+  feedbackBtnIcon: { fontSize: 16 },
   cardFooter: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 8 },
   priceText: { fontSize: 20, fontWeight: '800', color: colors.text },
   orderBtn: { backgroundColor: colors.accent, borderRadius: 10, paddingHorizontal: 20, paddingVertical: 12 },
