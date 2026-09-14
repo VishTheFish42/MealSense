@@ -26,6 +26,7 @@ Every requirement below is tagged against what's actually in the repo, not the s
 
 - ✅ Hard filters: allergen exclusion, dietary identity matching, meal-period bucket, **and real clock-time availability window** — `mealsense-api/services/recommendation_engine.py::_passes_hard_filters`
 - ✅ **Fixed (2026-09-11, tasks.md 3.5):** real `available_from`/`available_until` time-window filtering, previously only conceptual (README §7.3). An item is now excluded from recommendations if the current time falls outside its window, defaulting to standard per-meal-period hours when a source doesn't specify one.
+- ✅ **Added (2026-09-13, tasks.md 4.3):** a sold-out hard filter, independent of the time-window check — items dining staff mark sold out via `TodaysMenuScreen.tsx` are excluded from recommendations immediately, no caching layer.
 - ✅ Five-signal weighted scoring (macro/calorie, protein, fiber, sugar/sodium, variety) — `_score_item`
 - ✅ Condition-based weight reweighting (diabetes, hypertension, high cholesterol, IBS) — `_weights_for_profile`
 - ✅ Mifflin-St Jeor calorie targeting with activity multiplier + meal apportionment — `_calorie_target`
@@ -66,7 +67,7 @@ Every requirement below is tagged against what's actually in the repo, not the s
 
 ## 6. Admin Dashboard (Dining Staff — README §9.5)
 
-- 🟡 **Menu entry exists (via the Kitchen Dashboard, tasks.md 3.3); the rest is unbuilt.** `AddMenuItemScreen.tsx` covers menu upload/sync (one item at a time, manually — no CSV file picker in-app yet, only the API endpoint). No screen or route exists yet for marking items sold out in real time, or the aggregate anonymized-data view (most-recommended items, common dietary constraints). No separate admin role or navigator branch either — this reuses the kitchen role and kitchen navigation stack, per 3.2's scope decision, not a distinct Admin Dashboard as README §9.5 originally envisioned. Full scope remains tasks.md Phase 4.
+- 🟡 **Menu entry and sold-out toggling exist (via the Kitchen Dashboard, tasks.md 3.3 + 4.3); the aggregate analytics view is still unbuilt.** `AddMenuItemScreen.tsx` covers menu upload/sync (one item at a time, manually — no CSV file picker in-app yet, only the API endpoint). `TodaysMenuScreen.tsx` (tasks.md 4.3, done 2026-09-13) lists today's menu with a per-item sold-out `Switch`, backed by `PATCH /admin/menu/{item_id}/availability` — the recommendation engine's hard filter now excludes sold-out items independently of the time-window check from 3.5. No screen exists yet for the aggregate anonymized-data view (most-recommended items, common dietary constraints). No separate admin role or navigator branch either — this reuses the kitchen role and kitchen navigation stack, per 3.2's scope decision, not a distinct Admin Dashboard as README §9.5 originally envisioned. Remaining scope: tasks.md 4.4 (analytics) and 4.5 (location isolation).
 
 ## 7. Auth
 
@@ -115,7 +116,7 @@ All nine metrics in the table (profile completion rate, recommendation relevance
 | Ordering flow | ✅ done (demo payment, as intended) |
 | Kitchen dashboard | ✅ done |
 | Multi-location kitchen isolation | ❌ not started (design-spec.md §2.3) |
-| Admin dashboard | 🟡 manual menu entry only (via Kitchen Dashboard); sold-out toggle + analytics still not started |
+| Admin dashboard | 🟡 manual menu entry + sold-out toggle (via Kitchen Dashboard); aggregate analytics still not started |
 | Auth | 🟡 email/password only, no SSO |
 | Security rules | ✅ written, tested, and deployed to production |
 | Testing | 🟡 recommendation engine + API routes covered (100% on the engine); frontend uncovered |

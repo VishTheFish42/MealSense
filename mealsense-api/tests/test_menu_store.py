@@ -90,3 +90,56 @@ def test_re_uploading_same_day_overwrites_matching_ids_not_duplicates():
 def test_write_menu_items_handles_empty_list_without_error():
     from services.menu_store import write_menu_items
     write_menu_items(_unique_served_on(), [])  # should not raise
+
+
+# ── set_item_availability (README §9.5, design-spec.md §7.3) ───────────────
+
+def test_set_item_availability_marks_item_sold_out():
+    from services.menu_store import get_menu_for_date, set_item_availability, write_menu_items
+
+    served_on = _unique_served_on()
+    write_menu_items(served_on, [{"id": "dish-1", "name": "Soup", "allergens": []}])
+
+    set_item_availability(served_on, "dish-1", True)
+
+    menu = get_menu_for_date(served_on)
+    assert menu[0]["sold_out"] is True
+
+
+def test_set_item_availability_can_toggle_back_to_available():
+    from services.menu_store import get_menu_for_date, set_item_availability, write_menu_items
+
+    served_on = _unique_served_on()
+    write_menu_items(served_on, [{"id": "dish-1", "name": "Soup", "allergens": []}])
+    set_item_availability(served_on, "dish-1", True)
+
+    set_item_availability(served_on, "dish-1", False)
+
+    menu = get_menu_for_date(served_on)
+    assert menu[0]["sold_out"] is False
+
+
+def test_set_item_availability_raises_not_found_for_unknown_item():
+    from google.api_core.exceptions import NotFound
+    from services.menu_store import set_item_availability
+
+    with pytest.raises(NotFound):
+        set_item_availability(_unique_served_on(), "does-not-exist", True)
+
+
+def test_re_uploading_preserves_sold_out_status_via_merge():
+    """The core behavioral fix this feature needed: re-syncing a vendor
+    feed or re-uploading a CSV mid-day must not silently un-mark a dish
+    staff already flagged sold out, since ingestion itself never sets or
+    clears this field."""
+    from services.menu_store import get_menu_for_date, set_item_availability, write_menu_items
+
+    served_on = _unique_served_on()
+    write_menu_items(served_on, [{"id": "dish-1", "name": "Original Name", "allergens": []}])
+    set_item_availability(served_on, "dish-1", True)
+
+    write_menu_items(served_on, [{"id": "dish-1", "name": "Updated Name", "allergens": []}])
+
+    menu = get_menu_for_date(served_on)
+    assert menu[0]["name"] == "Updated Name"
+    assert menu[0]["sold_out"] is True

@@ -44,9 +44,9 @@ export default function CartScreen({ navigation, route }: Props) {
             <View style={styles.nutritionRow}>
               {[
                 { label: 'Cal', value: item.calories },
-                { label: 'Protein', value: `${item.proteinG}g` },
-                { label: 'Carbs', value: `${item.carbsG}g` },
-                { label: 'Fat', value: `${item.fatG}g` },
+                { label: 'Protein', value: `${item.protein_g}g` },
+                { label: 'Carbs', value: `${item.carbs_g}g` },
+                { label: 'Fat', value: `${item.fat_g}g` },
               ].map(({ label, value }) => (
                 <View key={label} style={styles.nutritionPill}>
                   <Text style={styles.nutritionValue}>{value}</Text>

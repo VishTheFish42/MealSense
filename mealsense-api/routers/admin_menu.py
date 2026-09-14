@@ -1,11 +1,13 @@
 from datetime import date
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
+from google.api_core.exceptions import NotFound
+from pydantic import BaseModel
 
 from services.auth import require_kitchen_role
 from services.menu_ingestion.csv_adapter import CsvMenuAdapter
 from services.menu_ingestion.messy_json_adapter import MessyJsonMenuAdapter
-from services.menu_store import write_menu_items
+from services.menu_store import set_item_availability, write_menu_items
 from services.menu_review_queue import write_review_items
 from services.vendor_ingestion.campus_config import get_campus_config
 from services.vendor_ingestion.bon_appetit import fetch_campus_menu
@@ -104,3 +106,29 @@ async def sync_vendor_menu(
         "rejected": [{"raw": r.raw, "reason": r.reason} for r in result.rejected],
         "queued_for_review": queued,
     }
+
+
+class AvailabilityUpdate(BaseModel):
+    sold_out: bool
+
+
+@router.patch("/admin/menu/{item_id}/availability")
+async def update_item_availability(
+    item_id: str,
+    body: AvailabilityUpdate,
+    served_on: str | None = Query(None, description="YYYY-MM-DD, defaults to today"),
+    uid: str = Depends(require_kitchen_role),
+):
+    """README §9.5 / design-spec.md §7.3: dining staff mark an item sold
+    out or available again, in real time, without touching anything else
+    about the item. The recommendation engine's hard filter
+    (recommendation_engine.py::_passes_hard_filters) checks this on every
+    request — no caching layer, so the change takes effect immediately."""
+    try:
+        set_item_availability(served_on or date.today().isoformat(), item_id, body.sold_out)
+    except NotFound:
+        raise HTTPException(
+            status_code=404,
+            detail=f"No menu item {item_id!r} found for that date",
+        )
+    return {"item_id": item_id, "sold_out": body.sold_out}

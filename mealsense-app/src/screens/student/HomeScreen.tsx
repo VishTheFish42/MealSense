@@ -163,16 +163,16 @@ function RecommendationCard({
           <Text style={[styles.itemName, compact && styles.itemNameCompact]}>{item.name}</Text>
           <ScoreBadge score={score} />
         </View>
-        <Text style={styles.stationText}>{item.station} · {item.availableUntil ? `Until ${item.availableUntil}` : ''}</Text>
+        <Text style={styles.stationText}>{item.station} · {item.available_until ? `Until ${item.available_until}` : ''}</Text>
       </View>
 
       {!compact && (
         <>
           <View style={styles.nutritionRow}>
             <NutritionPill label="cal" value={item.calories} unit="" />
-            <NutritionPill label="protein" value={item.proteinG} unit="g" />
-            <NutritionPill label="carbs" value={item.carbsG} unit="g" />
-            <NutritionPill label="fat" value={item.fatG} unit="g" />
+            <NutritionPill label="protein" value={item.protein_g} unit="g" />
+            <NutritionPill label="carbs" value={item.carbs_g} unit="g" />
+            <NutritionPill label="fat" value={item.fat_g} unit="g" />
           </View>
 
           <TouchableOpacity onPress={() => setShowWhy(!showWhy)} style={styles.whyBtn}>

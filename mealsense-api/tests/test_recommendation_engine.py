@@ -157,6 +157,37 @@ def test_recommend_excludes_item_outside_its_availability_window(minimal_profile
     assert result["reason"] == "no_safe_items"
 
 
+# ── Sold-out override (README §9.5, design-spec.md §7.3) ───────────────────
+
+def test_sold_out_item_excluded(make_profile, make_item):
+    profile = make_profile()
+    item = make_item(sold_out=True)
+    assert _passes_hard_filters(item, profile, "lunch") is False
+
+
+def test_not_sold_out_item_passes(make_profile, make_item):
+    profile = make_profile()
+    item = make_item(sold_out=False)
+    assert _passes_hard_filters(item, profile, "lunch") is True
+
+
+def test_item_with_no_sold_out_key_defaults_to_available(make_profile, make_item):
+    """Every existing item (the static sample menu, anything ingested
+    before this field existed) has no `sold_out` key at all — must default
+    to available, not be excluded by a field it never had an opinion on."""
+    profile = make_profile()
+    item = make_item()
+    assert "sold_out" not in item
+    assert _passes_hard_filters(item, profile, "lunch") is True
+
+
+def test_recommend_excludes_sold_out_item(minimal_profile, make_item):
+    item = make_item(id="86d", sold_out=True)
+    result = recommend([item], minimal_profile, "lunch", [], now=NOON)
+    assert result["recommendation"] is None
+    assert result["reason"] == "no_safe_items"
+
+
 # ── 2.2.7: No-safe-items fallback ──────────────────────────────────────────
 
 def test_no_safe_items_fallback(make_profile, make_item):

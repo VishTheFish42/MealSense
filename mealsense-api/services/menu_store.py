@@ -36,12 +36,31 @@ def write_menu_items(served_on: str, items: list[dict]) -> None:
     """Batch-writes normalized menu items for a given date. Each item's
     own `id` (from menu_ingestion.schema.stable_item_id) is used as the
     Firestore document ID, so re-uploading the same day's menu overwrites
-    matching dishes instead of duplicating them."""
+    matching dishes instead of duplicating them.
+
+    Uses a merge write, not a full overwrite: ingestion (build_menu_item)
+    never sets a `sold_out` field at all — that's only ever set by
+    set_item_availability below — so a merge write means re-syncing a
+    vendor feed or re-uploading a CSV mid-day updates every field the
+    source actually supplies (fresh nutrition, price, etc.) without
+    silently resetting a dish staff already marked sold out back to
+    available."""
     if not items:
         return
     db = get_firestore_client()
     collection = _items_collection(served_on)
     batch = db.batch()
     for item in items:
-        batch.set(collection.document(item["id"]), item)
+        batch.set(collection.document(item["id"]), item, merge=True)
     batch.commit()
+
+
+def set_item_availability(served_on: str, item_id: str, sold_out: bool) -> None:
+    """Toggles an item's sold-out status without re-ingesting the whole
+    record — README §9.5 / design-spec.md §7.3's "mark items sold out in
+    real time." Uses `update`, not `set`, so this raises
+    google.api_core.exceptions.NotFound for an item that was never
+    actually ingested for this date, rather than silently creating a bare
+    {"sold_out": ...} stub document."""
+    db = get_firestore_client()
+    _items_collection(served_on).document(item_id).update({"sold_out": sold_out})

@@ -217,3 +217,50 @@ def test_sync_vendor_persists_accepted_items_and_queues_allergen_rejections(auth
     from services.menu_review_queue import get_review_queue
     queue = get_review_queue(campus_id="santa_clara")
     assert any(e["raw"]["item"]["label"] == "Mystery Item" for e in queue)
+
+
+# ── PATCH /admin/menu/{item_id}/availability ────────────────────────────────
+
+def test_update_availability_marks_item_sold_out(authed_client):
+    served_on = _unique_served_on()
+    csv_text = CSV_HEADER + (
+        f"Grilled Chicken,Grill,lunch,11:00,15:00,{served_on},"
+        "450,38,20,12,3,410,2,9.50,dairy,,\n"
+    )
+    authed_client.post(
+        f"/admin/menu/upload?format=csv&served_on={served_on}",
+        content=csv_text,
+        headers={"Authorization": "Bearer fake"},
+    )
+    from services.menu_store import get_menu_for_date
+    item_id = get_menu_for_date(served_on)[0]["id"]
+
+    resp = authed_client.patch(
+        f"/admin/menu/{item_id}/availability?served_on={served_on}",
+        json={"sold_out": True},
+        headers={"Authorization": "Bearer fake"},
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"item_id": item_id, "sold_out": True}
+
+    menu = get_menu_for_date(served_on)
+    assert menu[0]["sold_out"] is True
+
+
+def test_update_availability_unknown_item_returns_404(authed_client):
+    resp = authed_client.patch(
+        f"/admin/menu/does-not-exist/availability?served_on={_unique_served_on()}",
+        json={"sold_out": True},
+        headers={"Authorization": "Bearer fake"},
+    )
+    assert resp.status_code == 404
+
+
+def test_update_availability_without_auth_header_returns_401():
+    from main import app
+    client = TestClient(app)
+    resp = client.patch(
+        f"/admin/menu/some-item/availability?served_on={_unique_served_on()}",
+        json={"sold_out": True},
+    )
+    assert resp.status_code == 401

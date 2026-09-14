@@ -24,25 +24,33 @@ export interface StudentProfile {
   createdAt: string;
 }
 
+// Field names match the backend's actual JSON exactly (snake_case, same
+// as schema.py::build_menu_item's canonical shape) — NOT camelCase. This
+// interface previously declared camelCase names (mealPeriod, proteinG,
+// availableUntil, ...) that never matched the real API response, so those
+// fields silently read as `undefined` at runtime (fixed 2026-09-13,
+// tasks.md 4.3's follow-up — see HomeScreen.tsx/CartScreen.tsx for where
+// this actually surfaced).
 export interface MenuItem {
   id: string;
   name: string;
   station: string;
-  mealPeriod: MealPeriod;
-  availableFrom?: string;
-  availableUntil?: string;
+  meal_period: MealPeriod;
+  available_from?: string;
+  available_until?: string;
   calories: number;
-  proteinG: number;
-  carbsG: number;
-  fatG: number;
-  fiberG: number;
-  sodiumMg: number;
-  sugarG: number;
+  protein_g: number;
+  carbs_g: number;
+  fat_g: number;
+  fiber_g: number;
+  sodium_mg: number;
+  sugar_g: number;
   allergens: string[];
-  dietaryTags: string[];
+  dietary_tags: string[];
   ingredients: string[];
   price: number;
   description: string;
+  sold_out?: boolean;
 }
 
 export interface RecommendationResult {
@@ -57,7 +65,7 @@ export interface RecommendationResult {
 export interface RecommendationResponse {
   recommendation: RecommendationResult | null;
   alternatives: RecommendationResult[];
-  mealPeriod: MealPeriod;
+  meal_period: MealPeriod;
   reason?: string;
 }
 
@@ -113,4 +121,5 @@ export type ProfileStackParamList = {
 export type KitchenStackParamList = {
   Dashboard: undefined;
   AddMenuItem: undefined;
+  TodaysMenu: undefined;
 };

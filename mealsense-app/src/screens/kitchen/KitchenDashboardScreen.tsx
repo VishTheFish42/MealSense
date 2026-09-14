@@ -86,9 +86,14 @@ export default function KitchenDashboardScreen({ navigation }: Props) {
           <Text style={styles.subtitle}>{orders.filter(o => ACTIVE_STATUSES.includes(o.status)).length} active orders</Text>
         </View>
         <View style={styles.headerActions}>
-          <TouchableOpacity style={styles.addMenuBtn} onPress={() => navigation.navigate('AddMenuItem')}>
-            <Text style={styles.addMenuBtnText}>+ Menu Item</Text>
-          </TouchableOpacity>
+          <View style={styles.headerActionsRow}>
+            <TouchableOpacity style={styles.addMenuBtn} onPress={() => navigation.navigate('AddMenuItem')}>
+              <Text style={styles.addMenuBtnText}>+ Menu Item</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.addMenuBtn} onPress={() => navigation.navigate('TodaysMenu')}>
+              <Text style={styles.addMenuBtnText}>Today's Menu</Text>
+            </TouchableOpacity>
+          </View>
           <TouchableOpacity
             onPress={() => Alert.alert('Sign Out', 'Sign out of kitchen view?', [
               { text: 'Cancel', style: 'cancel' },
@@ -201,6 +206,7 @@ const styles = StyleSheet.create({
   title: { fontSize: 22, fontWeight: '800', color: colors.text },
   subtitle: { fontSize: 14, color: colors.textSecondary, marginTop: 2 },
   headerActions: { alignItems: 'flex-end', gap: 10 },
+  headerActionsRow: { flexDirection: 'row', gap: 8 },
   addMenuBtn: { backgroundColor: colors.primary, borderRadius: 8, paddingHorizontal: 12, paddingVertical: 7 },
   addMenuBtnText: { color: '#fff', fontSize: 13, fontWeight: '700' },
   signOutText: { color: colors.error, fontSize: 14, fontWeight: '600' },

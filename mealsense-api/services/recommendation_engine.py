@@ -245,6 +245,9 @@ def _passes_hard_filters(
     if not _is_available_at(item, now):
         return False
 
+    if item.get("sold_out"):
+        return False
+
     return True
 
 
