@@ -10,6 +10,7 @@ import { db } from '../../config/firebase';
 import { useAuth } from '../../contexts/AuthContext';
 import { colors } from '../../constants/colors';
 import { stripUndefined } from '../../utils/firestore';
+import { DEFAULT_LOCATION_ID } from '../../constants/location';
 import { HomeStackParamList, Order } from '../../types';
 
 type Props = {
@@ -47,6 +48,10 @@ export default function CheckoutScreen({ navigation, route }: Props) {
         // any literal `undefined` field value (the exact bug this project
         // already hit once with onboarding's optional fields).
         recommendationId,
+        // Required — firestore.rules rejects order creation without it
+        // (tasks.md 4.5). No per-location selection UI exists yet, so
+        // every order gets the pilot's single default.
+        locationId: DEFAULT_LOCATION_ID,
       }) as Omit<Order, 'id'>;
       const docRef = await addDoc(collection(db, 'orders'), {
         ...orderData,

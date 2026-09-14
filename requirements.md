@@ -65,7 +65,7 @@ Every requirement below is tagged against what's actually in the repo, not the s
 - ✅ Live order queue via Firestore subscription, active/ready tabs, mark-ready/mark-complete actions — `screens/kitchen/KitchenDashboardScreen.tsx`
 - ✅ **Live-verified end to end (2026-09-07):** a manually-provisioned kitchen account correctly routed to the dashboard, saw a real student-placed order in the Ready tab, and marking it "Picked Up" both correctly exercised the kitchen-only `ready → completed` rule transition (student accounts cannot make this specific transition per `firestore.rules`) and correctly reflected back as "Completed" in the student's own Order History.
 - ❌ Role-based routing has no server-side enforcement — `RootNavigator.tsx` routes to the kitchen view purely off a client-read `profile.role` field with no Firestore rule verifying who can set that field (see §8 below)
-- ❌ **Multi-location isolation** (design-spec.md §2.3, tasks.md 4.5) — there is no `locationId` anywhere in the schema or rules; any kitchen account can read and act on every dining hall's orders. Fine for a single-kitchen pilot, a real gap for more than one dining hall or more than one university
+- ✅ **Multi-location isolation** (design-spec.md §2.3, tasks.md 4.5, done 2026-09-14) — `firestore.rules` now scopes a kitchen account's order read/update access to orders sharing its own `locationId`, fail-closed for any kitchen account with the field unset. Every order today still carries the same placeholder value (`src/constants/location.ts`'s `DEFAULT_LOCATION_ID`, since there's no per-location selection UI for students yet) — the security mechanism is real and enforced, but exercising it with genuinely different locations needs a second location to actually be provisioned first (`README-kitchen-accounts.md` now documents that step).
 
 ## 6. Admin Dashboard (Dining Staff — README §9.5)
 
@@ -82,7 +82,7 @@ Every requirement below is tagged against what's actually in the repo, not the s
 - ✅ Students can only read/write their own `users/{uid}` and `orders`; kitchen-only writes are gated on a server-verified `role` field, not client navigation logic
 - ✅ **Found and closed a real privilege-escalation bug**: `RegisterScreen.tsx` previously let any user self-select `role: "kitchen"` at signup with no gatekeeping, granting full access to every student's order queue. Rules now reject any client-created profile with `role != "student"`; the picker UI is removed; kitchen provisioning is documented in `mealsense-app/README-kitchen-accounts.md`.
 - ✅ Profile + associated data deletion — `ProfileScreen.tsx` "Delete My Account & Data" (§1)
-- ✅ **Rules deployed to production** (2026-09-07) — a fresh Firebase project (`mealsense-cb5ab`, Standard-edition Firestore, Email/Password Auth) replaced the old undocumented `myproject-dc745`; `firestore.rules` is now confirmed released via `firebase deploy --only firestore:rules`, not just governing the local emulator.
+- ✅ **Rules and indexes deployed to production** — initial deploy 2026-09-07 to a fresh Firebase project (`mealsense-cb5ab`, Standard-edition Firestore, Email/Password Auth), replacing the old undocumented `myproject-dc745`. Re-deployed 2026-09-14 (`firebase deploy --only firestore:rules,firestore:indexes`) to release the two rules changes since then: `analytics_events` (Phase 8) and location-scoped kitchen isolation (4.5), plus the new `(locationId, status, placedAt)` composite index 4.5 needed. **Operational follow-up required, not yet done:** any real kitchen account already provisioned in `mealsense-cb5ab` needs `locationId` set on its `users/{uid}` doc via the Firebase console (`README-kitchen-accounts.md`) — until that happens, that account will see zero orders (the new rule fails closed, not open, so this is a visibility gap for kitchen staff, not a security hole). This session had no production Firestore read/write access to check whether such an account already exists or to set it directly.
 
 ## 9. Testing
 
@@ -118,7 +118,7 @@ Every requirement below is tagged against what's actually in the repo, not the s
 | LLM-assisted incomplete-data handling | ✅ done (design-spec.md §7.0a) — Claude-backed nutrition estimation + confidence-gated allergen extraction, vendor-sync path only |
 | Ordering flow | ✅ done (demo payment, as intended) |
 | Kitchen dashboard | ✅ done |
-| Multi-location kitchen isolation | ❌ not started (design-spec.md §2.3) |
+| Multi-location kitchen isolation | ✅ done — rules enforced, only a single placeholder location actually exists so far |
 | Admin dashboard | 🟡 manual menu entry + sold-out toggle (via Kitchen Dashboard); aggregate analytics still not started |
 | Auth | 🟡 email/password only, no SSO |
 | Security rules | ✅ written, tested, and deployed to production |

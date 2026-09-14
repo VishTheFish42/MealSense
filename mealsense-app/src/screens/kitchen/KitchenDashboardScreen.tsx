@@ -8,6 +8,7 @@ import { collection, query, where, onSnapshot, updateDoc, doc, orderBy } from 'f
 import { signOut } from 'firebase/auth';
 import { db, auth } from '../../config/firebase';
 import { colors } from '../../constants/colors';
+import { useAuth } from '../../contexts/AuthContext';
 import { Order, OrderStatus, KitchenStackParamList } from '../../types';
 
 type Props = { navigation: NativeStackNavigationProp<KitchenStackParamList, 'Dashboard'> };
@@ -43,13 +44,23 @@ function timeSince(dateStr: string | any): string {
 }
 
 export default function KitchenDashboardScreen({ navigation }: Props) {
+  const { profile } = useAuth();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<'active' | 'ready'>('active');
 
   useEffect(() => {
+    // firestore.rules only allows this kitchen account to read orders at
+    // its own locationId (design-spec.md §2.3, tasks.md 4.5) — the query
+    // itself must filter on locationId too, or Firestore rejects the
+    // whole `list` with permission-denied: rules can't statically prove
+    // every possible matching doc satisfies a per-document check unless
+    // the query already constrains that field.
+    if (!profile?.locationId) return;
+
     const q = query(
       collection(db, 'orders'),
+      where('locationId', '==', profile.locationId),
       where('status', 'in', ['placed', 'preparing', 'ready']),
       orderBy('placedAt', 'asc'),
     );
@@ -58,7 +69,7 @@ export default function KitchenDashboardScreen({ navigation }: Props) {
       setLoading(false);
     });
     return unsub;
-  }, []);
+  }, [profile?.locationId]);
 
   const handleMarkReady = async (orderId: string) => {
     await updateDoc(doc(db, 'orders', orderId), {

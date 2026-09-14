@@ -22,6 +22,9 @@ const { doc, getDoc, setDoc, updateDoc, deleteDoc } = require('firebase/firestor
 const STUDENT_A = 'student-a';
 const STUDENT_B = 'student-b';
 const KITCHEN = 'kitchen-1';
+const KITCHEN_OTHER_LOCATION = 'kitchen-2';
+const LOCATION_MAIN = 'main';
+const LOCATION_OTHER = 'other-hall';
 
 let testEnv;
 
@@ -61,13 +64,14 @@ async function seedStudentProfile(uid) {
   });
 }
 
-async function seedKitchenAccount(uid) {
+async function seedKitchenAccount(uid, locationId = LOCATION_MAIN) {
   await testEnv.withSecurityRulesDisabled(async (ctx) => {
     await setDoc(doc(ctx.firestore(), 'users', uid), {
       uid,
       email: `${uid}@example.com`,
       displayName: uid,
       role: 'kitchen',
+      locationId,
       allergies: [],
       dietaryIdentity: [],
       conditions: [],
@@ -87,6 +91,7 @@ async function seedOrder(orderId, studentId, status, extra = {}) {
       status,
       placedAt: new Date().toISOString(),
       paymentStatus: 'placeholder',
+      locationId: LOCATION_MAIN,
       ...extra,
     });
   });
@@ -160,6 +165,7 @@ test('a student can create an order for themselves', async () => {
       status: 'placed',
       placedAt: new Date().toISOString(),
       paymentStatus: 'placeholder',
+      locationId: LOCATION_MAIN,
     }),
   );
 });
@@ -174,8 +180,70 @@ test('a student cannot create an order under someone else\'s studentId', async (
       status: 'placed',
       placedAt: new Date().toISOString(),
       paymentStatus: 'placeholder',
+      locationId: LOCATION_MAIN,
     }),
   );
+});
+
+// ── orders/{orderId}: locationId (tasks.md 4.5) ─────────────────────────
+
+test('a student cannot create an order with no locationId', async () => {
+  const db = testEnv.authenticatedContext(STUDENT_A).firestore();
+  await assertFails(
+    setDoc(doc(db, 'orders', 'order-1'), {
+      studentId: STUDENT_A,
+      items: [{ menuItemId: 'l001', name: 'Grilled Chicken Bowl', quantity: 1, price: 9.5 }],
+      totalPrice: 9.5,
+      status: 'placed',
+      placedAt: new Date().toISOString(),
+      paymentStatus: 'placeholder',
+    }),
+  );
+});
+
+test('a student cannot create an order with an empty-string locationId', async () => {
+  const db = testEnv.authenticatedContext(STUDENT_A).firestore();
+  await assertFails(
+    setDoc(doc(db, 'orders', 'order-1'), {
+      studentId: STUDENT_A,
+      items: [{ menuItemId: 'l001', name: 'Grilled Chicken Bowl', quantity: 1, price: 9.5 }],
+      totalPrice: 9.5,
+      status: 'placed',
+      placedAt: new Date().toISOString(),
+      paymentStatus: 'placeholder',
+      locationId: '',
+    }),
+  );
+});
+
+test('a kitchen account cannot read an order at a different location', async () => {
+  await seedOrder('order-1', STUDENT_A, 'placed'); // locationId: LOCATION_MAIN
+  await seedKitchenAccount(KITCHEN_OTHER_LOCATION, LOCATION_OTHER);
+  const db = testEnv.authenticatedContext(KITCHEN_OTHER_LOCATION).firestore();
+  await assertFails(getDoc(doc(db, 'orders', 'order-1')));
+});
+
+test('a kitchen account cannot advance an order at a different location', async () => {
+  await seedOrder('order-1', STUDENT_A, 'placed'); // locationId: LOCATION_MAIN
+  await seedKitchenAccount(KITCHEN_OTHER_LOCATION, LOCATION_OTHER);
+  const db = testEnv.authenticatedContext(KITCHEN_OTHER_LOCATION).firestore();
+  await assertFails(
+    updateDoc(doc(db, 'orders', 'order-1'), { status: 'ready', readyAt: new Date().toISOString() }),
+  );
+});
+
+test('a kitchen account with no locationId set cannot read any order (fails closed)', async () => {
+  await seedOrder('order-1', STUDENT_A, 'placed');
+  await testEnv.withSecurityRulesDisabled(async (ctx) => {
+    await setDoc(doc(ctx.firestore(), 'users', KITCHEN), {
+      uid: KITCHEN, email: `${KITCHEN}@example.com`, displayName: KITCHEN, role: 'kitchen',
+      // no locationId
+      allergies: [], dietaryIdentity: [], conditions: [], nutritionalFocus: [],
+      onboardingComplete: true, createdAt: new Date().toISOString(),
+    });
+  });
+  const db = testEnv.authenticatedContext(KITCHEN).firestore();
+  await assertFails(getDoc(doc(db, 'orders', 'order-1')));
 });
 
 test('a student cannot read another student\'s order', async () => {
@@ -184,7 +252,7 @@ test('a student cannot read another student\'s order', async () => {
   await assertFails(getDoc(doc(db, 'orders', 'order-1')));
 });
 
-test('kitchen staff can read any order', async () => {
+test('kitchen staff can read an order at their own location', async () => {
   await seedOrder('order-1', STUDENT_A, 'placed');
   await seedKitchenAccount(KITCHEN);
   const db = testEnv.authenticatedContext(KITCHEN).firestore();

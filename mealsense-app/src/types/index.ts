@@ -22,6 +22,11 @@ export interface StudentProfile {
   nutritionalFocus: string[];
   onboardingComplete: boolean;
   createdAt: string;
+  // Kitchen accounts only (design-spec.md §2.3, tasks.md 4.5) — which
+  // dining location this kitchen account is scoped to. Set manually
+  // during provisioning (README-kitchen-accounts.md), never by the app.
+  // Meaningless on a student doc; students don't have their own location.
+  locationId?: string;
 }
 
 // Field names match the backend's actual JSON exactly (snake_case, same
@@ -99,6 +104,11 @@ export interface Order {
   // card (never an alternative) — README §14's "order conversion rate"
   // metric, tasks.md 8.2. Absent, not null, when ordering anything else.
   recommendationId?: string;
+  // Required, unlike recommendationId — design-spec.md §2.3 / tasks.md
+  // 4.5. firestore.rules rejects order creation without this field. Every
+  // order today gets DEFAULT_LOCATION_ID (src/constants/location.ts);
+  // there's no per-location selection UI yet.
+  locationId: string;
 }
 
 // Navigation param lists

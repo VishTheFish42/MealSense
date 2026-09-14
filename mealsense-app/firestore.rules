@@ -3,8 +3,9 @@ rules_version = '2';
 // MealSense Firestore security rules.
 //
 // Data model:
-//   users/{uid}   — student profile (health data: allergies, conditions, etc.)
-//   orders/{id}   — { studentId, items, totalPrice, status, ... }
+//   users/{uid}   — student profile (health data: allergies, conditions,
+//                   etc.); kitchen accounts additionally carry `locationId`
+//   orders/{id}   — { studentId, items, totalPrice, status, locationId, ... }
 //
 // Key invariant: `role` on a user doc can NEVER be set to "kitchen" by a
 // client write. Every account self-registers as "student". Kitchen accounts
@@ -12,6 +13,12 @@ rules_version = '2';
 // bypasses these rules entirely — see mealsense-app/README-kitchen-accounts.md.
 // This closes the privilege-escalation path where RegisterScreen used to let
 // anyone pick "Kitchen Staff" and get access to every student's order queue.
+//
+// Second invariant, added tasks.md 4.5: a kitchen account can only read or
+// act on orders whose `locationId` matches its own (see isKitchenForLocation
+// below) — not just any order, everywhere, the moment `role == "kitchen"`.
+// Closes design-spec.md §2.3's multi-tenant gap ahead of a second dining
+// location or university actually being onboarded.
 
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -32,6 +39,21 @@ service cloud.firestore {
 
     function isKitchen() {
       return isSignedIn() && roleOf(request.auth.uid) == 'kitchen';
+    }
+
+    function locationOf(uid) {
+      return exists(/databases/$(database)/documents/users/$(uid))
+        ? get(/databases/$(database)/documents/users/$(uid)).data.locationId
+        : null;
+    }
+
+    // Location-scoped kitchen isolation (design-spec.md §2.3, tasks.md 4.5):
+    // a kitchen account may only touch orders whose locationId matches its
+    // own. Any kitchen account with no locationId set (locationOf == null)
+    // matches nothing — fails closed, not open, the same posture the
+    // allergen hard filter already takes for missing data.
+    function isKitchenForLocation(locationId) {
+      return isKitchen() && locationOf(request.auth.uid) == locationId;
     }
 
     // Fields actually changed by this write, compared to the existing doc.
@@ -62,18 +84,32 @@ service cloud.firestore {
       allow create: if isSignedIn()
         && request.resource.data.studentId == request.auth.uid
         && request.resource.data.status == 'placed'
-        && request.resource.data.paymentStatus == 'placeholder';
+        && request.resource.data.paymentStatus == 'placeholder'
+        // Location-scoped kitchen isolation (design-spec.md §2.3, tasks.md
+        // 4.5): every order must carry a locationId so kitchen-side reads
+        // and updates below can actually be scoped to it. There's no
+        // per-location selection UI yet — the app stamps every order with
+        // one shared default (src/constants/location.ts) — but the rule
+        // itself doesn't know or care what the value is, only that it's
+        // a real, non-empty location.
+        && request.resource.data.locationId is string
+        && request.resource.data.locationId.size() > 0;
 
       allow read: if isSignedIn()
-        && (resource.data.studentId == request.auth.uid || isKitchen());
+        && (resource.data.studentId == request.auth.uid || isKitchenForLocation(resource.data.locationId));
 
       // Two independent status-advance paths, matching the two places the
       // app actually writes order status:
       //   1. The student's own device (OrderStatusScreen's demo timer):
       //      placed -> preparing -> ready, touching only status + its timestamp.
       //   2. Kitchen staff (KitchenDashboardScreen): can mark an order ready
-      //      from either placed or preparing, and completed from ready.
-      // Neither path may touch items, totalPrice, or studentId.
+      //      from either placed or preparing, and completed from ready —
+      //      but ONLY for their own location (tasks.md 4.5); a kitchen
+      //      account scoped to a different location is treated exactly
+      //      like a non-kitchen account for this order.
+      // Neither path may touch items, totalPrice, studentId, or locationId
+      // (changedKeys().hasOnly([...]) already makes locationId immutable
+      // here, same as every other field not explicitly listed).
       allow update: if isSignedIn() && (
         (
           resource.data.studentId == request.auth.uid &&
@@ -82,7 +118,7 @@ service cloud.firestore {
             (resource.data.status == 'preparing' && request.resource.data.status == 'ready' && changedKeys().hasOnly(['status', 'readyAt']))
           )
         ) || (
-          isKitchen() &&
+          isKitchenForLocation(resource.data.locationId) &&
           (
             (resource.data.status == 'placed' && request.resource.data.status == 'ready' && changedKeys().hasOnly(['status', 'readyAt'])) ||
             (resource.data.status == 'preparing' && request.resource.data.status == 'ready' && changedKeys().hasOnly(['status', 'readyAt'])) ||
