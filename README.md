@@ -225,7 +225,7 @@ Mobile App (React Native + Expo Go)
       ▼
 API Gateway (Vercel)
       │
-      ├── Auth Service (Firebase Auth + University SSO)
+      ├── Auth Service (Firebase Auth, email/password)
       ├── Profile Service (stores/retrieves student profiles)
       ├── Menu Service (ingests, stores, serves cafeteria data)
       └── Recommendation Service (runs scoring engine per request)
@@ -239,7 +239,7 @@ API Gateway (Vercel)
 - **Frontend:** React Native + Expo Go (TypeScript). Targets iOS and Android via a single codebase.
 - **Backend:** Python + FastAPI, deployed on Vercel serverless functions.
 - **Database:** Firebase Firestore for student profiles, menu data, and recommendation history.
-- **Auth:** Firebase Authentication + University SSO (OAuth 2.0 / SAML). Firebase Auth handles token lifecycle; SSO provides the identity.
+- **Auth:** Firebase Authentication, email/password — the decided v1 strategy (see Open Question #4). University SSO (OAuth 2.0 / SAML) is deliberately deferred: it needs a real identity-provider relationship with the pilot school's IT department, not just engineering time.
 - **Data storage:** Student profiles encrypted at rest in Firestore. No sale or sharing of health data.
 
 ---
@@ -260,7 +260,7 @@ API Gateway (Vercel)
 | 1 | Which cafeteria data vendor/API does the target school use? | PM | — |
 | 2 | Should the app support multiple campus dining locations? (v1 scope?) | PM | — |
 | 3 | How do we handle items where the dining vendor's allergen data is incomplete? Default-exclude or flag-and-show? | Eng + Legal | — |
-| 4 | Is university SSO required, or do we also need email/password fallback? | PM | — |
+| 4 | ~~Is university SSO required, or do we also need email/password fallback?~~ **Resolved 2026-09-15:** email/password is the v1 auth strategy. SSO is deferred until there's a real IT relationship with the pilot school (Santa Clara University) — see requirements.md §7. | PM | 2026-09-15 |
 | 5 | What platform first — iOS, Android, or web? | PM + Eng | — |
 
 ---

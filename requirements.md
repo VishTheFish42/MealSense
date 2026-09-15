@@ -73,8 +73,8 @@ Every requirement below is tagged against what's actually in the repo, not the s
 
 ## 7. Auth
 
-- 🟡 Firebase email/password sign-in and registration — `screens/auth/LoginScreen.tsx`, `RegisterScreen.tsx`
-- ❌ University SSO (OAuth 2.0 / SAML, README §10) — not implemented; any student with an email can register regardless of campus affiliation
+- ✅ Firebase email/password sign-in and registration — `screens/auth/LoginScreen.tsx`, `RegisterScreen.tsx`. **This is the decided v1 auth strategy** (tasks.md Phase 5, closed 2026-09-15, resolves README §12 Open Question #4) — not a placeholder pending SSO.
+- ❌ University SSO (OAuth 2.0 / SAML, README §10) — **deliberately not built for v1**, not an oversight: real SCU-specific SSO needs an actual SCU IT identity-provider relationship (SAML/OAuth against whatever campus system they run) this project doesn't have, not just engineering time. Any student with an email can currently register regardless of campus affiliation as a result — an accepted v1 tradeoff, not a silently-missed requirement. Revisit once there's a real SCU IT relationship.
 
 ## 8. Security & Privacy
 
@@ -123,7 +123,7 @@ Every requirement below is tagged against what's actually in the repo, not the s
 | Kitchen dashboard | ✅ done |
 | Multi-location kitchen isolation | ✅ done — rules enforced, only a single placeholder location actually exists so far |
 | Admin dashboard | ✅ menu entry + sold-out toggle + aggregate analytics, all via Kitchen Dashboard (reused role, not a separate Admin surface) |
-| Auth | 🟡 email/password only, no SSO |
+| Auth | ✅ email/password, decided as the v1 strategy — SSO deliberately deferred (§7) |
 | Security rules | ✅ written, tested, and deployed to production |
 | Testing | 🟡 recommendation engine + API routes covered (100% on the engine); frontend uncovered |
 | Deployment | 🟡 backend live on Cloud Run + app pointed at it + CI running the test suite on push; no env separation yet |

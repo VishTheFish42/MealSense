@@ -580,7 +580,7 @@ Dining staff mark items sold out via `PATCH /v1/admin/menu/:id/availability`. Th
 | 1 | Which dining vendor API does the target school use? (Nutrislice vs. Cbord vs. other) | PM | — |
 | 2 | Multi-location support in v1 or deferred? Impacts `dining_locations` schema usage. | PM | — |
 | 3 | Default-exclude or flag-and-show for items with incomplete allergen data? | Eng + Legal | — |
-| 4 | Is university SSO required, or do we also need email/password fallback? Affects Auth Service scope. | PM | — |
+| 4 | ~~Is university SSO required, or do we also need email/password fallback? Affects Auth Service scope.~~ **Resolved 2026-09-15:** email/password is the v1 auth strategy (tasks.md/requirements.md Phase 5). The SSO handshake design in §4/§7 below stays as the documented future design, not built now — deferred until there's a real IT relationship with the pilot school (Santa Clara University). | PM | 2026-09-15 |
 | 5 | Which platform ships first — iOS, Android, or web (PWA)? | PM + Eng | — |
 | 6 | What is the expected peak concurrent user count? (needed to finalize ECS task sizing and DB instance class) | Eng | — |
 | 7 | Should recommendation history be shown to students beyond the 7-day window in the spec? | PM | — |

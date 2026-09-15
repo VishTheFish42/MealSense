@@ -132,13 +132,13 @@ Traces to requirements §6. Originally scoped as "distinct from the Kitchen Dash
   - **Not done as part of this task, deliberately:** no location-selection UI for students, no per-location menu scoping, no second location actually provisioned. This closes the *security* gap ahead of a second location existing, per the task's own framing ("prerequisite," not "build multi-location support now").
   - **Deployed to production 2026-09-14** (`firebase deploy --only firestore:rules,firestore:indexes`, project `mealsense-cb5ab`) — this is live, not just emulator-tested. One manual follow-up remains, outside what this session could do (no production Firestore access): any real kitchen account already provisioned there needs `locationId` set via the Firebase console before it can see any orders again — see `README-kitchen-accounts.md`.
 
-## Phase 5 — Auth: University SSO
+## Phase 5 — Auth: University SSO ✅ closed for v1 (2026-09-15)
 
 Traces to requirements §7.
 
-- [ ] 5.1 Resolve README §12 Open Question #4 (is SSO required for v1, or is email/password an acceptable fallback?) before building — this determines whether this phase is in scope at all
-- [ ] 5.2 If required: integrate OAuth 2.0/SAML per the target university's IdP
-- [ ] 5.3 If not required: explicitly close this out as "email/password is the v1 auth strategy" rather than leaving it as a silent gap against the README
+- [x] 5.1 **Resolved README §12 Open Question #4** ✅ done (2026-09-15) — **email/password is the v1 auth strategy; SSO is explicit future scope, not built now.** Decided with the user directly (not deferred to an unnamed "PM" as the README table had it), even though the pilot school (Santa Clara University) is already known — SCU-specific SSO would mean integrating against SCU IT's actual identity provider (SAML or OAuth via whatever campus SSO system they run, e.g. Okta/Shibboleth-style), which requires a real institutional relationship/registration this project doesn't have, not just an engineering task. Building against a generic or mocked IdP instead would produce integration code with no real target to validate against — false progress, not a working feature. Revisit once there's an actual SCU IT relationship, not before.
+- [x] 5.2 **Not built** ✅ correctly out of scope per 5.1 — no OAuth 2.0/SAML integration exists. This is *why* it isn't built, not a gap to come back to on its own; it depends on 5.1's institutional prerequisite, not more engineering time.
+- [x] 5.3 **Closed out explicitly** ✅ done (2026-09-15) — README §10's architecture diagram and Auth bullet, and §12 Open Question #4, updated to state this as decided (see README changes). No longer a silent gap: the README now says what's actually true instead of describing a feature that doesn't exist.
 
 ## Phase 6 — ML-Enhanced Recommendation (Post-v1)
 
