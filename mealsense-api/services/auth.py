@@ -28,7 +28,17 @@ def _ensure_firebase_admin_initialized() -> None:
     — nothing else in this codebase calls initialize_app(), since Firestore
     access deliberately goes through google.cloud.firestore.Client directly
     instead (see firestore_client.py). This is the one place that actually
-    needs firebase_admin proper, for real ID token verification."""
+    needs firebase_admin proper, for real ID token verification.
+
+    Falls back to Application Default Credentials when
+    GOOGLE_APPLICATION_CREDENTIALS isn't set — the same fix
+    firestore_client.py needed for Cloud Run (tasks.md Phase 7), which
+    provides ADC automatically via its metadata server, no key file to
+    manage. Before this existed, every /admin/* request would have failed
+    on Cloud Run with a misleading 401 "Invalid or expired token" — the
+    real problem (this app never initializing at all) was a RuntimeError
+    silently swallowed by require_kitchen_role's generic
+    `except Exception`, not a real token or auth failure."""
     import firebase_admin
     from firebase_admin import credentials
 
@@ -36,13 +46,17 @@ def _ensure_firebase_admin_initialized() -> None:
         return
 
     key_path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
-    if not key_path:
-        raise RuntimeError(
-            "GOOGLE_APPLICATION_CREDENTIALS is not set — required to verify "
-            "real Firebase ID tokens. Tests should override the "
-            "require_kitchen_role dependency instead of hitting this path."
-        )
-    firebase_admin.initialize_app(credentials.Certificate(key_path))
+    if key_path:
+        firebase_admin.initialize_app(credentials.Certificate(key_path))
+    else:
+        # No explicit key file — initialize_app() with no credential
+        # argument uses Application Default Credentials automatically
+        # (works on Cloud Run; locally after
+        # `gcloud auth application-default login`). If ADC genuinely
+        # isn't available either, this raises at use time, same
+        # "misleading 401" outcome as before for a truly unconfigured
+        # environment — not a regression, just no longer the *only* path.
+        firebase_admin.initialize_app()
 
 
 def _default_verifier(token: str) -> dict:

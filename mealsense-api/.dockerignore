@@ -1,0 +1,17 @@
+# Never bake secrets into the image — .env holds a real ANTHROPIC_API_KEY
+# locally. Real config on Cloud Run comes from --set-env-vars / Secret
+# Manager at deploy time, never from a file copied into the image.
+.env
+.env.*
+!.env.example
+
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+tests/
+
+.git/
+.gitignore
+README*.md

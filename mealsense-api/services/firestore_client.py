@@ -7,27 +7,57 @@ Uses google.cloud.firestore.Client directly rather than
 firebase_admin.firestore.client(), since the latter's credential loading
 goes through google.auth.default() even when FIRESTORE_EMULATOR_HOST is
 set, which fails with no GCP environment configured. Anonymous credentials
-against the emulator, a real service account file in production.
+against the emulator; in real (non-emulator) environments, an explicit
+service account key file if GOOGLE_APPLICATION_CREDENTIALS points at one,
+otherwise Application Default Credentials.
+
+The ADC path (added for tasks.md Phase 7's Cloud Run deployment) matters
+because Cloud Run — and every other GCP compute product — provides
+credentials automatically via its metadata server, with no key file to
+download or manage at all. Before this existed, get_firestore_client()
+always required an explicit key file outside the emulator, which would
+have made the app silently lose all Firestore access the moment it ran
+on Cloud Run — this is the fix for that, not just an alternative path.
 """
 from __future__ import annotations
 import os
+
+import google.auth
 from google.auth.credentials import AnonymousCredentials
+from google.auth.exceptions import DefaultCredentialsError
 from google.cloud import firestore
 from google.oauth2 import service_account
 
 class FirestoreNotConfiguredError(Exception):
-    """Neither FIRESTORE_EMULATOR_HOST nor GOOGLE_APPLICATION_CREDENTIALS is
-    set. Callers that have a sensible offline fallback (menu_store's static
-    sample menu) should catch this specifically, not Firestore errors in
-    general — a real connection or permissions failure should still surface,
-    not be silently swallowed into "just serve stale sample data.\""""
+    """None of FIRESTORE_EMULATOR_HOST, GOOGLE_APPLICATION_CREDENTIALS, or
+    Application Default Credentials is available. Callers that have a
+    sensible offline fallback (menu_store's static sample menu) should
+    catch this specifically, not Firestore errors in general — a real
+    connection or permissions failure should still surface, not be
+    silently swallowed into "just serve stale sample data.\""""
 
 
 _client: firestore.Client | None = None
 
+# Set once ADC lookup has failed, so a "not configured" local dev/test
+# environment pays the slow cost of google.auth.default() timing out
+# against GCP's metadata server exactly once per process, not once per
+# call. Without this, a suite that exercises the not-configured fallback
+# across dozens of calls (every test that hits it before a
+# reset_firestore_client()) goes from ~2s to ~25s — the timeout itself is
+# a few seconds, and it was being paid over and over.
+_adc_unavailable: bool = False
+
+_NOT_CONFIGURED_MESSAGE = (
+    "No Firestore credentials available: FIRESTORE_EMULATOR_HOST, "
+    "GOOGLE_APPLICATION_CREDENTIALS, and Application Default Credentials "
+    "are all unset. Set one of these — or run `gcloud auth application-"
+    "default login` for local dev against real Firestore — to proceed."
+)
+
 
 def get_firestore_client() -> firestore.Client:
-    global _client
+    global _client, _adc_unavailable
     if _client is not None:
         return _client
 
@@ -35,15 +65,24 @@ def get_firestore_client() -> firestore.Client:
 
     if os.environ.get("FIRESTORE_EMULATOR_HOST"):
         _client = firestore.Client(project=project_id, credentials=AnonymousCredentials())
+    elif os.environ.get("GOOGLE_APPLICATION_CREDENTIALS"):
+        creds = service_account.Credentials.from_service_account_file(
+            os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
+        )
+        _client = firestore.Client(project=project_id, credentials=creds)
     else:
-        key_path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
-        if not key_path:
-            raise FirestoreNotConfiguredError(
-                "GOOGLE_APPLICATION_CREDENTIALS is not set. Either point it at a "
-                "Firebase service account key file, or set FIRESTORE_EMULATOR_HOST "
-                "to run against the local emulator instead."
-            )
-        creds = service_account.Credentials.from_service_account_file(key_path)
+        # Application Default Credentials: what Cloud Run provides
+        # automatically, no key file needed; also works locally after
+        # `gcloud auth application-default login`. Explicit key-file auth
+        # above still wins if both happen to be configured, matching the
+        # precedence that already existed.
+        if _adc_unavailable:
+            raise FirestoreNotConfiguredError(_NOT_CONFIGURED_MESSAGE)
+        try:
+            creds, _ = google.auth.default()
+        except DefaultCredentialsError:
+            _adc_unavailable = True
+            raise FirestoreNotConfiguredError(_NOT_CONFIGURED_MESSAGE)
         _client = firestore.Client(project=project_id, credentials=creds)
 
     return _client
@@ -51,6 +90,25 @@ def get_firestore_client() -> firestore.Client:
 
 def reset_firestore_client() -> None:
     """Test-only: force the next get_firestore_client() call to reconnect,
-    e.g. after changing FIRESTORE_EMULATOR_HOST between test runs."""
+    e.g. after changing FIRESTORE_EMULATOR_HOST between test runs.
+
+    Deliberately does NOT clear _adc_unavailable: whether Application
+    Default Credentials work at all is a fact about the machine/network
+    (can it reach GCP's metadata server, is there a gcloud ADC file on
+    disk), not something that changes per-test the way the emulator env
+    var does. Every emulator-gated test file's fixture calls this on
+    teardown — if it also cleared _adc_unavailable, every one of those
+    resets would re-arm the next non-emulator test to pay the slow ADC
+    probe again. Measured on a machine with no ADC configured at all:
+    ~25s before this caching existed (every not-configured call retried
+    the probe), ~12s once _adc_unavailable is cached but still cleared on
+    reset, ~12s even after excluding it from reset too — because
+    google.auth.default()'s own metadata-server timeout is itself ~6-12s
+    on a single call here, and that one-time cost is unavoidable the
+    first time it's genuinely needed. The fix here caps it at paying that
+    once per process instead of dozens of times; it doesn't make the
+    underlying probe itself fast. A real GCP environment (Cloud Run) or a
+    local `gcloud auth application-default login` both make this whole
+    branch resolve near-instantly instead of timing out at all."""
     global _client
     _client = None

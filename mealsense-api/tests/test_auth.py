@@ -116,12 +116,51 @@ def test_uid_with_kitchen_role_succeeds():
     assert uid == "kitchen-uid"
 
 
-def test_default_verifier_without_credentials_raises_runtime_error(monkeypatch):
-    """The real verify_id_token path (not the injected fake used everywhere
-    above) needs firebase_admin initialized with a real service account —
-    found via a live manual test hitting this exact gap: nothing in the
-    codebase ever called firebase_admin.initialize_app() before this fix."""
+def _reset_firebase_admin_apps():
+    """firebase_admin caches its initialized app(s) at module scope —
+    _ensure_firebase_admin_initialized() no-ops if one already exists, so
+    tests exercising the two different initialization branches below need
+    a clean slate between them, not just between test files."""
+    import firebase_admin
+    for name in list(firebase_admin._apps):
+        firebase_admin.delete_app(firebase_admin._apps[name])
+
+
+def test_ensure_firebase_admin_initialized_uses_explicit_key_file_when_set(monkeypatch):
+    from unittest.mock import MagicMock, patch
+
+    _reset_firebase_admin_apps()
+    monkeypatch.setenv("GOOGLE_APPLICATION_CREDENTIALS", "/fake/path/key.json")
+    from services.auth import _ensure_firebase_admin_initialized
+
+    fake_creds = MagicMock()
+    try:
+        with patch("firebase_admin.credentials.Certificate", return_value=fake_creds) as mock_cert:
+            with patch("firebase_admin.initialize_app") as mock_init:
+                _ensure_firebase_admin_initialized()
+        mock_cert.assert_called_once_with("/fake/path/key.json")
+        mock_init.assert_called_once_with(fake_creds)
+    finally:
+        _reset_firebase_admin_apps()
+
+
+def test_ensure_firebase_admin_initialized_falls_back_to_adc_when_unset(monkeypatch):
+    """The actual fix (tasks.md Phase 7): without an explicit key file,
+    this must still initialize successfully via Application Default
+    Credentials — what Cloud Run provides automatically — rather than
+    raising RuntimeError, which is what made every /admin/* request fail
+    with a misleading 401 "Invalid or expired token" before this existed
+    (the real error was swallowed by require_kitchen_role's generic
+    `except Exception`, never surfaced as what it actually was)."""
+    from unittest.mock import patch
+
+    _reset_firebase_admin_apps()
     monkeypatch.delenv("GOOGLE_APPLICATION_CREDENTIALS", raising=False)
-    from services.auth import _default_verifier
-    with pytest.raises(RuntimeError, match="GOOGLE_APPLICATION_CREDENTIALS"):
-        _default_verifier("some-token")
+    from services.auth import _ensure_firebase_admin_initialized
+
+    try:
+        with patch("firebase_admin.initialize_app") as mock_init:
+            _ensure_firebase_admin_initialized()
+        mock_init.assert_called_once_with()  # no credential arg — ADC fallback
+    finally:
+        _reset_firebase_admin_apps()
