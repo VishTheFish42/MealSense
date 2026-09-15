@@ -30,7 +30,7 @@ jobs:
         run: pip install -r requirements-dev.txt
 
       # The Firestore emulator (started below) needs a JRE.
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: "21"
@@ -87,7 +87,7 @@ jobs:
 
       # The Firestore emulator (used by `npm run test:rules`, via
       # `firebase emulators:exec`) needs a JRE.
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: "21"
