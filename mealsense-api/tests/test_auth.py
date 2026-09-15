@@ -131,6 +131,7 @@ def test_ensure_firebase_admin_initialized_uses_explicit_key_file_when_set(monke
 
     _reset_firebase_admin_apps()
     monkeypatch.setenv("GOOGLE_APPLICATION_CREDENTIALS", "/fake/path/key.json")
+    monkeypatch.delenv("K_SERVICE", raising=False)
     from services.auth import _ensure_firebase_admin_initialized
 
     fake_creds = MagicMock()
@@ -144,23 +145,49 @@ def test_ensure_firebase_admin_initialized_uses_explicit_key_file_when_set(monke
         _reset_firebase_admin_apps()
 
 
-def test_ensure_firebase_admin_initialized_falls_back_to_adc_when_unset(monkeypatch):
+def test_ensure_firebase_admin_initialized_falls_back_to_adc_on_cloud_run(monkeypatch):
     """The actual fix (tasks.md Phase 7): without an explicit key file,
-    this must still initialize successfully via Application Default
-    Credentials — what Cloud Run provides automatically — rather than
-    raising RuntimeError, which is what made every /admin/* request fail
-    with a misleading 401 "Invalid or expired token" before this existed
-    (the real error was swallowed by require_kitchen_role's generic
-    `except Exception`, never surfaced as what it actually was)."""
+    but genuinely running on Cloud Run (K_SERVICE set), this must still
+    initialize successfully via Application Default Credentials — what
+    Cloud Run provides automatically — rather than raising RuntimeError,
+    which is what made every /admin/* request fail with a misleading 401
+    "Invalid or expired token" before this existed (the real error was
+    swallowed by require_kitchen_role's generic `except Exception`, never
+    surfaced as what it actually was)."""
     from unittest.mock import patch
 
     _reset_firebase_admin_apps()
     monkeypatch.delenv("GOOGLE_APPLICATION_CREDENTIALS", raising=False)
+    monkeypatch.setenv("K_SERVICE", "mealsense-api")
     from services.auth import _ensure_firebase_admin_initialized
 
     try:
         with patch("firebase_admin.initialize_app") as mock_init:
             _ensure_firebase_admin_initialized()
         mock_init.assert_called_once_with()  # no credential arg — ADC fallback
+    finally:
+        _reset_firebase_admin_apps()
+
+
+def test_ensure_firebase_admin_initialized_refuses_bare_adc_off_cloud_run(monkeypatch):
+    """tasks.md Phase 7.3: the bare-ADC fallback must be refused outright
+    off Cloud Run, even if this machine happens to have real gcloud ADC
+    credentials configured for unrelated reasons (e.g. deploying) — same
+    fix, same reasoning as firestore_client.py's K_SERVICE gate
+    (test_firestore_client.py). Without this, local dev could initialize
+    Firebase Admin against real production identity, not just a
+    misleading-but-harmless failure."""
+    from unittest.mock import patch
+
+    _reset_firebase_admin_apps()
+    monkeypatch.delenv("GOOGLE_APPLICATION_CREDENTIALS", raising=False)
+    monkeypatch.delenv("K_SERVICE", raising=False)
+    from services.auth import _ensure_firebase_admin_initialized
+
+    try:
+        with patch("firebase_admin.initialize_app") as mock_init:
+            with pytest.raises(RuntimeError):
+                _ensure_firebase_admin_initialized()
+        mock_init.assert_not_called()
     finally:
         _reset_firebase_admin_apps()

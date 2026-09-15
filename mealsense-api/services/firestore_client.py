@@ -18,6 +18,21 @@ download or manage at all. Before this existed, get_firestore_client()
 always required an explicit key file outside the emulator, which would
 have made the app silently lose all Firestore access the moment it ran
 on Cloud Run — this is the fix for that, not just an alternative path.
+
+The bare-ADC branch is gated on K_SERVICE (tasks.md Phase 7.3), a env
+var Cloud Run — and only Cloud Run — automatically injects into every
+container instance (see
+https://cloud.google.com/run/docs/container-contract#env-vars). Without
+this gate, `google.auth.default()` also happily succeeds on any
+developer machine that has ever run `gcloud auth application-default
+login` for unrelated reasons (e.g. deploying) — confirmed hands-on
+while building this: local `uvicorn main:app --reload` with no emulator
+running silently connected to and read real *production* Firestore,
+using the developer's own gcloud credentials, with zero warning. The
+gate makes that the same clean, catchable FirestoreNotConfiguredError
+it always was pre-Phase-7 on any machine that isn't actually Cloud Run,
+regardless of what credentials happen to be sitting in that machine's
+gcloud config.
 """
 from __future__ import annotations
 import os
@@ -49,10 +64,12 @@ _client: firestore.Client | None = None
 _adc_unavailable: bool = False
 
 _NOT_CONFIGURED_MESSAGE = (
-    "No Firestore credentials available: FIRESTORE_EMULATOR_HOST, "
-    "GOOGLE_APPLICATION_CREDENTIALS, and Application Default Credentials "
-    "are all unset. Set one of these — or run `gcloud auth application-"
-    "default login` for local dev against real Firestore — to proceed."
+    "No Firestore credentials available: FIRESTORE_EMULATOR_HOST and "
+    "GOOGLE_APPLICATION_CREDENTIALS are both unset, and bare Application "
+    "Default Credentials are only trusted when actually running on Cloud "
+    "Run (K_SERVICE set). Start the Firestore emulator for ordinary local "
+    "dev, or set GOOGLE_APPLICATION_CREDENTIALS explicitly to point "
+    "local dev at real Firestore on purpose."
 )
 
 
@@ -70,12 +87,15 @@ def get_firestore_client() -> firestore.Client:
             os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
         )
         _client = firestore.Client(project=project_id, credentials=creds)
-    else:
+    elif os.environ.get("K_SERVICE"):
         # Application Default Credentials: what Cloud Run provides
-        # automatically, no key file needed; also works locally after
-        # `gcloud auth application-default login`. Explicit key-file auth
-        # above still wins if both happen to be configured, matching the
-        # precedence that already existed.
+        # automatically, no key file needed. Gated on K_SERVICE (a
+        # Cloud-Run-injected env var, never present on a developer
+        # machine) so this branch is only ever reached when actually
+        # running on Cloud Run — see the module docstring for why:
+        # bare google.auth.default() also succeeds on any machine with
+        # real gcloud ADC credentials configured for unrelated reasons,
+        # which would otherwise silently point local dev at production.
         if _adc_unavailable:
             raise FirestoreNotConfiguredError(_NOT_CONFIGURED_MESSAGE)
         try:
@@ -84,6 +104,8 @@ def get_firestore_client() -> firestore.Client:
             _adc_unavailable = True
             raise FirestoreNotConfiguredError(_NOT_CONFIGURED_MESSAGE)
         _client = firestore.Client(project=project_id, credentials=creds)
+    else:
+        raise FirestoreNotConfiguredError(_NOT_CONFIGURED_MESSAGE)
 
     return _client
 

@@ -23,6 +23,7 @@ from services.firestore_client import FirestoreNotConfiguredError, get_firestore
 def clean_state(monkeypatch):
     monkeypatch.delenv("FIRESTORE_EMULATOR_HOST", raising=False)
     monkeypatch.delenv("GOOGLE_APPLICATION_CREDENTIALS", raising=False)
+    monkeypatch.delenv("K_SERVICE", raising=False)
     firestore_client.reset_firestore_client()
     firestore_client._adc_unavailable = False
     yield
@@ -30,16 +31,37 @@ def clean_state(monkeypatch):
     firestore_client._adc_unavailable = False
 
 
-def test_raises_not_configured_when_adc_unavailable():
+def test_raises_not_configured_when_not_on_cloud_run():
+    """The bare-ADC branch must be entirely unreachable off Cloud Run
+    (tasks.md Phase 7.3) — without K_SERVICE set, google.auth.default()
+    must never even be attempted, regardless of what real gcloud ADC
+    credentials happen to exist on this machine (e.g. for deploying).
+    Confirmed hands-on while building this: before this gate existed,
+    local dev with real ADC configured silently read production
+    Firestore."""
+    with patch("google.auth.default") as mock_default:
+        with pytest.raises(FirestoreNotConfiguredError):
+            get_firestore_client()
+    mock_default.assert_not_called()
+
+
+def test_raises_not_configured_when_on_cloud_run_but_adc_unavailable(monkeypatch):
+    """A genuine Cloud Run misconfiguration (K_SERVICE set, but ADC still
+    fails) must still raise cleanly, not crash some other way."""
+    monkeypatch.setenv("K_SERVICE", "mealsense-api")
     with patch("google.auth.default", side_effect=DefaultCredentialsError("no creds")):
         with pytest.raises(FirestoreNotConfiguredError):
             get_firestore_client()
 
 
-def test_adc_failure_is_cached_not_retried_every_call():
+def test_adc_failure_is_cached_not_retried_every_call(monkeypatch):
     """The actual bug this was written to catch: without caching, every
     call in a not-configured environment re-pays google.auth.default()'s
-    own multi-second metadata-server timeout."""
+    own multi-second metadata-server timeout. Only reachable at all with
+    K_SERVICE set — see test_raises_not_configured_when_not_on_cloud_run
+    for the off-Cloud-Run case, which never calls google.auth.default()
+    in the first place."""
+    monkeypatch.setenv("K_SERVICE", "mealsense-api")
     with patch("google.auth.default", side_effect=DefaultCredentialsError("no creds")) as mock_default:
         with pytest.raises(FirestoreNotConfiguredError):
             get_firestore_client()
@@ -51,12 +73,13 @@ def test_adc_failure_is_cached_not_retried_every_call():
     assert mock_default.call_count == 1
 
 
-def test_reset_firestore_client_does_not_re_arm_the_adc_probe():
+def test_reset_firestore_client_does_not_re_arm_the_adc_probe(monkeypatch):
     """reset_firestore_client() clears the cached client (so a real config
     change, e.g. setting FIRESTORE_EMULATOR_HOST, takes effect) but must
     NOT clear the cached ADC-unavailable result — that's an environment
     fact, not per-test state, and re-probing on every reset is exactly
     the slowdown this caching exists to prevent."""
+    monkeypatch.setenv("K_SERVICE", "mealsense-api")
     with patch("google.auth.default", side_effect=DefaultCredentialsError("no creds")) as mock_default:
         with pytest.raises(FirestoreNotConfiguredError):
             get_firestore_client()
@@ -69,7 +92,8 @@ def test_reset_firestore_client_does_not_re_arm_the_adc_probe():
     assert mock_default.call_count == 1
 
 
-def test_uses_adc_when_available():
+def test_uses_adc_when_on_cloud_run(monkeypatch):
+    monkeypatch.setenv("K_SERVICE", "mealsense-api")
     fake_creds = MagicMock()
     fake_client = MagicMock()
 

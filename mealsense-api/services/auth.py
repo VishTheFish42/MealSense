@@ -38,7 +38,18 @@ def _ensure_firebase_admin_initialized() -> None:
     on Cloud Run with a misleading 401 "Invalid or expired token" — the
     real problem (this app never initializing at all) was a RuntimeError
     silently swallowed by require_kitchen_role's generic
-    `except Exception`, not a real token or auth failure."""
+    `except Exception`, not a real token or auth failure.
+
+    The bare-ADC fallback is gated on K_SERVICE (tasks.md Phase 7.3),
+    same as firestore_client.py and for the same reason: without the
+    gate, this also succeeds on a developer machine that merely has
+    `gcloud auth application-default login` credentials configured for
+    unrelated reasons, not just on real Cloud Run. require_kitchen_role
+    still calls get_firestore_client() for its role check regardless, so
+    that fix already blocks real production data access from local dev —
+    this gate closes the same bug class here too, so local dev fails
+    the same clean, expected way instead of only being accidentally safe
+    downstream."""
     import firebase_admin
     from firebase_admin import credentials
 
@@ -48,15 +59,23 @@ def _ensure_firebase_admin_initialized() -> None:
     key_path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
     if key_path:
         firebase_admin.initialize_app(credentials.Certificate(key_path))
-    else:
-        # No explicit key file — initialize_app() with no credential
-        # argument uses Application Default Credentials automatically
-        # (works on Cloud Run; locally after
-        # `gcloud auth application-default login`). If ADC genuinely
-        # isn't available either, this raises at use time, same
-        # "misleading 401" outcome as before for a truly unconfigured
-        # environment — not a regression, just no longer the *only* path.
+    elif os.environ.get("K_SERVICE"):
+        # No explicit key file, but genuinely running on Cloud Run —
+        # initialize_app() with no credential argument resolves
+        # Application Default Credentials automatically.
         firebase_admin.initialize_app()
+    else:
+        # Not Cloud Run and no explicit key file: refuse rather than
+        # silently trying bare ADC. If this ever legitimately needs to
+        # raise at use time instead (e.g. a future case with no good
+        # env-var signal), that's the same "misleading 401" outcome as
+        # before Phase 7 existed at all — not a regression.
+        raise RuntimeError(
+            "Firebase Admin has no credentials: GOOGLE_APPLICATION_CREDENTIALS "
+            "is unset and this isn't Cloud Run (K_SERVICE unset). Set "
+            "GOOGLE_APPLICATION_CREDENTIALS explicitly to test real admin auth "
+            "locally on purpose."
+        )
 
 
 def _default_verifier(token: str) -> dict:
